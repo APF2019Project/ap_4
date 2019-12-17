@@ -3,7 +3,10 @@ package controller;
 import view.*;
 import gamecenter.*;
 
-import java.util.Scanner;
+import gamecenter.plants.*;
+import gamecenter.zombies.*;
+import gamecenter.AllUsers;
+import gamecenter.AllUsers.*;
 
 public class ViewController {
     static Menu menu = new Menu();
