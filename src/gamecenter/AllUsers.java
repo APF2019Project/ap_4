@@ -3,13 +3,11 @@ package gamecenter;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-import static gamecenter.AllUsers.users;
-
 public class AllUsers {
     static String currentuser;
-    static ArrayList<User> users = new ArrayList<>();
+    public ArrayList<User> users = new ArrayList<>();
 
-    static boolean newUser(String username, String password) {
+    public boolean newUser(String username, String password) {
         for (User User : users) {
             if (username.equals(User.username))
                 return false;
@@ -18,7 +16,8 @@ public class AllUsers {
         users.add(u);
         return true;
     }
-     boolean login(String username, String password) {
+
+    public boolean login(String username, String password) {
         for (User User : users) {
             if (username.equals(User.username)) {
                 if (password.equals((User.password))) {
@@ -26,9 +25,10 @@ public class AllUsers {
                 } else return false;
             }
         }
-        return false;
+        return true;
     }
-    static String[] Leaderboard() {
+
+     public String[] Leaderboard() {
         users.sort(new Leaderboardsort());
         String[] usernames = new String[users.size()];
         for (User user : users) {
@@ -38,7 +38,8 @@ public class AllUsers {
         }
         return usernames;
     }
-    int[] Leaderboardnumbers() {
+
+    public int[] Leaderboardnumbers() {
         int[] numbers = new int[users.size()];
         for (User user : users) {
             int i = -1;
@@ -49,42 +50,6 @@ public class AllUsers {
     }
 }
 
-class User {
-    String username;
-    String password;
-    ArrayList<Zombies> ZombiesKilled = new ArrayList<>();
-    User(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
-    static boolean deleteUser(String username, String password) {
-        for (User User : users) {
-            if (username.equals(User.username))
-                if (password.equals((User.password))) {
-                    users.remove(User);
-                    return true;
-                } else return false;
-        }
-        return false;
-    }
-    static void renameUsername(String newusername) {
-        for (User User : users) {
-            if (AllUsers.currentuser.equals(User.username)){
-                User.username=newusername;
-                AllUsers.currentuser=newusername;
-            }else break;
-        }
-    }
-    static void change(String newusername,String newpassword) {
-        for (User User : users) {
-            if (AllUsers.currentuser.equals(User.username)){
-                User.username=newusername;
-                AllUsers.currentuser=newusername;
-                User.password=newpassword;
-            }else break;
-        }
-    }
-}
 
 class Leaderboardsort implements Comparator<User> {
     @Override

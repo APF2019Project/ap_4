@@ -3,14 +3,10 @@ package controller;
 import view.*;
 import gamecenter.*;
 
-import gamecenter.plants.*;
-import gamecenter.zombies.*;
-import gamecenter.AllUsers;
-import gamecenter.AllUsers.*;
 
 public class ViewController {
     static Menu menu = new Menu();
-    static AllUsers allusers = new AllUsers();
+    public static AllUsers allusers = new AllUsers();
     static String str = "";
 
     public static void main(String[] args) {
@@ -19,97 +15,150 @@ public class ViewController {
     }
 
     public static void loginMenu() {
-        str = menu.loginMenu();
         int flag = 0;
+        while (true) {
+            flag = 0;
+            str = menu.getOrder();
+            System.out.println("loginmenu");
 
-        if (str.matches("help")) {
-            menu.loginHelp();
-        }
+            if (str.matches("help")) {
+                flag = 1;
+                menu.loginHelp();
+            }
 
-        if (str.matches("create account")) {
-            flag = 1;
-            String username = menu.getUserName();
-            String password = menu.getPassword();
-            if (!allusers.newUser(username, password)) {
-                menu.invalidUser();
-            } else {
-                menu.loginMenu();
+            if (str.matches("create account")) {
+                flag = 1;
+                String username = menu.getUserName();
+                String password = menu.getPassword();
+                if (!allusers.newUser(username, password)) {
+                    menu.invalidUser();
+                    continue;
+                } else {
+                    continue;
+                }
+            }
+
+            if (str.matches("login")) {
+                flag = 1;
+                String username = menu.getUserName();
+                String password = menu.getPassword();
+                if (!allusers.login(username, password)) {
+                    menu.invalidUser();
+                    continue;
+                } else {
+                    mainMenu();
+                }
+            }
+
+            if (str.matches("leaderboard")) {
+                flag = 1;
+                leaderBoard();
+                continue;
+            }
+
+            if (str.matches("exit")) {
+                return;
+            }
+
+            if (flag == 0) {
+                menu.invalidCommand();
+                loginMenu();
             }
         }
-
-        if (str.matches("login")) {
-            flag = 1;
-            String username = menu.getUserName();
-            String password = menu.getPassword();
-            if (!allusers.login(username, password)) {
-                menu.invalidUser();
-            } else {
-                mainMenu(menu.mainMenu());
-            }
-        }
-
-        if (str.matches("leaderboard")) {
-            flag = 1;
-            leaderBoard();
-        }
-
-        if (str.matches("exit")) {
-            return;
-        }
-
-        if (flag == 0)
-            menu.invalidCommand();
     }
 
-    public static void mainMenu(String str) {
+    public static void mainMenu() {
         int flag = 0;
-        str = menu.mainMenu();
+        while (true) {
+            flag = 0;
+            System.out.println("mainmenu");
+            String str = menu.getOrder();
 
-        if (str.matches("play")) {
-            flag = 1;
-        }
-
-        if (str.matches("profile")) {
-            String str1 = menu.getProfileOrder();
-            flag = 1;
-
-            if (str1.matches("change")) {
-                String username = menu.getUserName();
-                String password = menu.getPassword();
-                User.change(username, password);
+            if (str.matches("play")) {
+                flag = 1;
             }
 
-            if (str1.matches("delete")) {
-                String username = menu.getUserName();
-                String password = menu.getPassword();
-                User.delete(username, password);
+            if (str.matches("profile")) {
+                flag = 1;
+                profile();
             }
 
-            if (str1.matches("rename")) {
-                String username = menu.getUserName();
-                User.rename(username);
+            if (str.matches("shop")) {
+                flag = 1;
             }
 
-            if (str1.matches("show")) {
-                User.show();
+            if (str.matches("help")) {
+                flag = 1;
+                menu.mainmenuHelp();
+                continue;
             }
 
-        }
+            if (str.matches("exit")) {
+                loginMenu();
+            }
 
-        if (str.matches("shop")) {
-            flag = 1;
+            if (flag == 0) {
+                menu.invalidCommand();
+                continue;
+            }
         }
-
-        if (str.matches("help")) {
-            flag = 1;
-            menu.mainmenuHelp();
-        }
-
-        if (flag == 0)
-            menu.invalidCommand();
     }
 
     public static void leaderBoard() {
+        for (int i = 0; i < allusers.users.size(); i++) {
+            System.out.print("name" + allusers.Leaderboard()[i] + "       killed");
+            System.out.println(allusers.Leaderboardnumbers()[i]);
+        }
+        String str = menu.getOrder();
+        if (str.matches("exit")){
+            return;
+        }
     }
 
+    public static void profile() {
+        int flag = 0;
+        while (true) {
+            flag = 0;
+            System.out.println("profile");
+            String str = menu.getOrder();
+
+            if (str.matches("change")) {
+                flag = 1;
+                String username = menu.getUserName();
+                String password = menu.getPassword();
+                User.change(username, password);
+                profile();
+            }
+
+            if (str.matches("delete")) {
+                flag = 1;
+                String username = menu.getUserName();
+                String password = menu.getPassword();
+                User.deleteUser(username, password);
+                profile();
+            }
+
+            if (str.matches("rename")) {
+                flag = 1;
+                String username = menu.getUserName();
+                User.renameUsername(username);
+                profile();
+            }
+
+            if (str.matches("show")) {
+                flag = 1;
+                profile();
+            }
+
+            if (str.matches("help")) {
+                flag = 1;
+                menu.profileHelp();
+                profile();
+            }
+
+            if (str.matches("exit")) {
+                mainMenu();
+            }
+        }
+    }
 }
