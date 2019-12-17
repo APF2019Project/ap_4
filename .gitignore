@@ -30,7 +30,6 @@ hs_err_pid*
 .idea/modules.xml
 .idea/uiDesigner.xml
 AP_Project.iml
-src/
 misc.xml
 modules.xml
 uiDesigner.xml
