@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class AllUsers {
-    static String currentuser;
+    public static String currentuser;
     public ArrayList<User> users = new ArrayList<>();
 
     public boolean newUser(String username, String password) {

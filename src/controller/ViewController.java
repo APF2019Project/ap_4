@@ -79,8 +79,8 @@ public class ViewController {
             }
 
             if (str.matches("profile")) {
-                flag = 1;
                 profile();
+                continue;
             }
 
             if (str.matches("shop")) {
@@ -88,7 +88,6 @@ public class ViewController {
             }
 
             if (str.matches("help")) {
-                flag = 1;
                 menu.mainmenuHelp();
                 continue;
             }
@@ -109,56 +108,55 @@ public class ViewController {
             System.out.print("name" + allusers.Leaderboard()[i] + "       killed");
             System.out.println(allusers.Leaderboardnumbers()[i]);
         }
-        String str = menu.getOrder();
-        if (str.matches("exit")){
-            return;
+        while (true){
+            String str = menu.getOrder();
+            if (str.matches("exit")){
+                return;
+            }
+            menu.invalidCommand();
         }
     }
 
     public static void profile() {
-        int flag = 0;
         while (true) {
-            flag = 0;
             System.out.println("profile");
             String str = menu.getOrder();
 
             if (str.matches("change")) {
-                flag = 1;
                 String username = menu.getUserName();
                 String password = menu.getPassword();
                 User.change(username, password);
-                profile();
+                continue;
             }
 
             if (str.matches("delete")) {
-                flag = 1;
                 String username = menu.getUserName();
                 String password = menu.getPassword();
                 User.deleteUser(username, password);
-                profile();
+                continue;
             }
 
             if (str.matches("rename")) {
-                flag = 1;
                 String username = menu.getUserName();
                 User.renameUsername(username);
-                profile();
+                continue;
             }
 
             if (str.matches("show")) {
-                flag = 1;
-                profile();
+                menu.showCurrentUser();
+                continue;
             }
 
             if (str.matches("help")) {
-                flag = 1;
                 menu.profileHelp();
-                profile();
+                continue;
             }
 
             if (str.matches("exit")) {
-                mainMenu();
+                return;
             }
+
+            menu.invalidCommand();
         }
     }
 }

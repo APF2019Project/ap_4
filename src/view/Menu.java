@@ -1,11 +1,10 @@
 package view;
 
+import gamecenter.AllUsers;
+
 import java.util.Scanner;
 
 public class Menu {
-
-    private int attribute;
-
     Scanner input = new Scanner(System.in);
 
     public String getOrder() {
@@ -28,6 +27,11 @@ public class Menu {
         System.out.println("change//rename//show//delete");
     }
 
+    public void showCurrentUser() {
+
+        System.out.println(AllUsers.currentuser);
+    }
+
     public String getUserName() {
         String str = input.nextLine();
         return str;
@@ -47,6 +51,4 @@ public class Menu {
 
         System.out.println("invalid command");
     }
-
-
 }
