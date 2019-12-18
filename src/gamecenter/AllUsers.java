@@ -23,12 +23,14 @@ public class AllUsers {
                 if (password.equals((User.password))) {
                     currentuser = username;
                 } else return false;
-            }
+            } else return false;
         }
-        return true;
+        if (users.size() != 0)
+            return true;
+        return false;
     }
 
-     public String[] Leaderboard() {
+    public String[] Leaderboard() {
         users.sort(new Leaderboardsort());
         String[] usernames = new String[users.size()];
         for (User user : users) {

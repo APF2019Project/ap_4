@@ -18,12 +18,13 @@ public class ViewController {
         int flag = 0;
         while (true) {
             flag = 0;
-            str = menu.getOrder();
             System.out.println("loginmenu");
+            str = menu.getOrder();
 
             if (str.matches("help")) {
                 flag = 1;
                 menu.loginHelp();
+                continue;
             }
 
             if (str.matches("create account")) {
@@ -62,7 +63,7 @@ public class ViewController {
 
             if (flag == 0) {
                 menu.invalidCommand();
-                loginMenu();
+                continue;
             }
         }
     }
@@ -93,7 +94,7 @@ public class ViewController {
             }
 
             if (str.matches("exit")) {
-                loginMenu();
+                return;
             }
 
             if (flag == 0) {
