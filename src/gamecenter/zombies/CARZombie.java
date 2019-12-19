@@ -1,14 +1,21 @@
 package gamecenter.zombies;
 
+import gamecenter.Ground;
+
 public class CARZombie extends Zombies {
 
-    public void Zomboni() {
-        // TODO - implement CARzombie.Zomboni
-        throw new UnsupportedOperationException();
+    public CARZombie(String name, Ground ground) {
+        if (name.matches("zomboni")){
+            setparameters(2,3,1,ground);
+        }
+        if (name.matches("catapultzombie")){
+            setparameters(2,3,1,ground);
+        }
     }
 
-    public void CatapultZombie() {
-        // TODO - implement CARzombie.CatapultZombie
-        throw new UnsupportedOperationException();
+    public void Zomboni(boolean status) {
+    }
+
+    public void CatapultZombie(boolean status) {
     }
 }

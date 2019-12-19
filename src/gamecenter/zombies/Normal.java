@@ -1,26 +1,31 @@
 package gamecenter.zombies;
 
+import gamecenter.Ground;
+
 public class Normal extends Zombies {
 
-    private int attribute;
-
-    public void operation() {
-        // TODO - implement normal.operation
-        throw new UnsupportedOperationException();
+    public Normal(String name, Ground ground) {
+        if (name.matches("zombie")) {
+            setparameters(2, 2, 1, ground);
+        }
+        if (name.matches("footballzombie")) {
+            setparameters(3, 4, 1, ground);
+        }
+        if (name.matches("bucketheadzombie")) {
+            setparameters(2, 3, 1, ground);
+        }
+        if (name.matches("coneheadzombie")) {
+            setparameters(2, 3, 1, ground);
+        }
     }
 
-    public void ConeheadZombie() {
-        // TODO - implement normal.ConeheadZombie
-        throw new UnsupportedOperationException();
+
+    public void ConeheadZombie(boolean status) {
     }
 
-    public void BucketheadZombie() {
-        // TODO - implement normal.BucketheadZombie
-        throw new UnsupportedOperationException();
+    public void BucketheadZombie(boolean status) {
     }
 
-    public void FootballZombie() {
-        // TODO - implement normal.FootballZombie
-        throw new UnsupportedOperationException();
+    public void FootballZombie(boolean status) {
     }
 }

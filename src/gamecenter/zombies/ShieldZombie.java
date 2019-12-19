@@ -1,22 +1,34 @@
 package gamecenter.zombies;
 
+import gamecenter.Ground;
+
 public class ShieldZombie extends Zombies {
-
-    private int attribute;
-
-    public void NewspaperZombie() {
-        // TODO - implement Shieldzombie.NewspaperZombie
-        throw new UnsupportedOperationException();
+    int shield;
+    public ShieldZombie(String name , Ground ground) {
+        if (name.matches("newspaperzombie")){
+            setparameters(2,2,1,ground);
+            shield = 2;
+        }
+        if (name.matches("targetzombie")){
+            setparameters(2,3,1,ground);
+            shield = 3;
+        }
+        if (name.matches("screendoorzombie")){
+            setparameters(2,2,1,ground);
+            shield = 4;
+        }
     }
 
-    public void TargetZombie() {
-        // TODO - implement Shieldzombie.TargetZombie
-        throw new UnsupportedOperationException();
+    public void NewspaperZombie(boolean status) {
+
     }
 
-    public void ScreenDoorZombie() {
-        // TODO - implement Shieldzombie.ScreenDoorZombie
-        throw new UnsupportedOperationException();
+    public void TargetZombie(boolean status) {
+
+    }
+
+    public void ScreenDoorZombie(boolean status) {
+
     }
 
 }
