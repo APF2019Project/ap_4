@@ -33,3 +33,7 @@ AP_Project.iml
 misc.xml
 modules.xml
 uiDesigner.xml
+build/
+node_modules/
+.idea/
+my_notes.txt
