@@ -1,5 +1,9 @@
 package gamecenter.zombies;
 
-public class GiantZombie extends Zombies {
+import gamecenter.Ground;
 
+public class GiantZombie extends Zombies {
+    public GiantZombie(Ground ground) {
+        setparameters("Giga-gargantuar",1,6,1000000,ground);
+    }
 }

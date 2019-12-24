@@ -3,19 +3,22 @@ package gamecenter.plants;
 import gamecenter.Ground;
 
 public class Plants {
-
+    private String name;
+    private int price;
     private int sun_used;
-    private int rest;
+    private int cooldown;
     private int health;
     private Ground ground;
 
     public Plants() {
     }
 
-    public void setparameters(int sun_used, int rest, int health, Ground ground) {
+    public void setparameters(String name, int sun_used, int cooldown, int health, Ground ground) {
+        this.price = sun_used * health * cooldown + 1;
+        this.name = name;
         this.sun_used = sun_used;
         this.health = health;
-        this.rest = rest;
+        this.cooldown = cooldown;
         this.ground = ground;
     }
 

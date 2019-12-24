@@ -1,14 +1,10 @@
 package gamecenter;
 
-import gamecenter.plants.Plants;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Collection {
+     ArrayList<String> plants_s = new ArrayList<>();
+    public ArrayList<String> zombies_s = new ArrayList<>();
 
-    public Plants[] Cards;
-    public Zombies[] Cards_z;
-
-    public void setcards() {
-        // TODO - implement Collection.setcards
-        throw new UnsupportedOperationException();
-    }
 }

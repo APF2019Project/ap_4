@@ -1,14 +1,26 @@
 package gamecenter.zombies;
 
-public class WaterZombie extends Zombies {
+import gamecenter.Ground;
 
-    public void DolphinRiderZombie() {
-        // TODO - implement waterzombie.DolphinRiderZombie
-        throw new UnsupportedOperationException();
+public class WaterZombie extends Zombies {
+    int shield;
+
+    public WaterZombie(String name, Ground ground) {
+        if (name.matches("Snorkel Zombie")) {
+            setparameters("Snorkel Zombie",2,2,1,ground);
+            shield = 0;
+        }else {
+            setparameters("Dolphin Rider Zombie",2,2,1,ground);
+            shield = 2;
+        }
+
     }
 
-    public void SnorkelZombie() {
-        // TODO - implement waterzombie.SnorkelZombie
-        throw new UnsupportedOperationException();
+    public void DolphinRiderZombie(boolean status) {
+
+    }
+
+    public void SnorkelZombie(boolean status) {
+
     }
 }
