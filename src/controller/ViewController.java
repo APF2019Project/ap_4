@@ -8,8 +8,11 @@ public class ViewController {
     static Menu menu = new Menu();
     public static AllUsers allusers = new AllUsers();
     static String str = "";
+    public static Collection collection = new Collection();
+    public static Shop shop = new Shop();
 
     public static void main(String[] args) {
+
 
         loginMenu();
     }
@@ -85,7 +88,8 @@ public class ViewController {
             }
 
             if (str.matches("shop")) {
-                flag = 1;
+                shop();
+                continue;
             }
 
             if (str.matches("help")) {
@@ -109,9 +113,9 @@ public class ViewController {
             System.out.print("name" + allusers.Leaderboard()[i] + "       killed");
             System.out.println(allusers.Leaderboardnumbers()[i]);
         }
-        while (true){
+        while (true) {
             String str = menu.getOrder();
-            if (str.matches("exit")){
+            if (str.matches("exit")) {
                 return;
             }
             menu.invalidCommand();
@@ -160,4 +164,60 @@ public class ViewController {
             menu.invalidCommand();
         }
     }
+
+    public static void shop() {
+        while (true) {
+            System.out.println("Shop");
+            String str = menu.getOrder();
+
+            if (str.matches("show shop")) {
+                menu.showShop();
+                continue;
+            }
+
+            if (str.matches("show collection")) {
+                menu.showCollection();
+                continue;
+            }
+
+            if (str.matches("buy \\w+")) {
+                String name = str.substring(str.indexOf("y")+2);
+                continue;
+            }
+
+            if (str.matches("money")) {
+                menu.showMoney();
+                continue;
+            }
+
+            if (str.matches("help")) {
+                menu.shopHelp();
+                continue;
+            }
+
+            if (str.matches("exit")) {
+                return;
+            }
+
+            menu.invalidCommand();
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -56,6 +56,7 @@ public class AllUsers {
 class Leaderboardsort implements Comparator<User> {
     @Override
     public int compare(User u1, User u2) {
+
         return u1.ZombiesKilled.size() - u2.ZombiesKilled.size();
     }
 }

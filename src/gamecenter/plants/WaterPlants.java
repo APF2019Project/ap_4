@@ -1,10 +1,16 @@
 package gamecenter.plants;
 
+import gamecenter.Ground;
+
 public class WaterPlants extends Plants {
 
-    public void LilyPad() {
-        // TODO - implement WaterPlants.LilyPad
-        throw new UnsupportedOperationException();
+    public WaterPlants(String name, Ground ground) {
+        if (name.matches("Lily Pad")){
+            setparameters("Lily Pad",0,1,1,ground);
+        }
+    }
+    public void LilyPad(boolean status) {
+
     }
 
 }

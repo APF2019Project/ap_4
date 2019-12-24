@@ -1,7 +1,7 @@
 package gamecenter;
 
 import java.util.ArrayList;
-
+import gamecenter.zombies.*;
 import controller.ViewController;
 
 public class User {

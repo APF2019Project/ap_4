@@ -6,12 +6,14 @@ public class WaterZombie extends Zombies {
     int shield;
 
     public WaterZombie(String name, Ground ground) {
-        if (name.matches("snorkelzombie")) {
+        if (name.matches("Snorkel Zombie")) {
+            setparameters("Snorkel Zombie",2,2,1,ground);
             shield = 0;
         }else {
+            setparameters("Dolphin Rider Zombie",2,2,1,ground);
             shield = 2;
         }
-        setparameters(2,2,1,ground);
+
     }
 
     public void DolphinRiderZombie(boolean status) {

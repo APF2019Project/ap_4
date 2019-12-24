@@ -1,45 +1,65 @@
 package gamecenter.plants;
 
+import gamecenter.Ground;
+
 public class Pea extends Plants {
-
-    public void Peashooter() {
-        // TODO - implement Pea.Peashooter
-        throw new UnsupportedOperationException();
+    public Pea(String name, Ground ground) {
+        if (name.matches("Peashooter")) {
+            setparameters("Peashooter", 2, 2, 2, ground);
+        }
+        if (name.matches("Repeater")) {
+            setparameters("Repeater", 3, 4, 4, ground);
+        }
+        if (name.matches("Threepeater")) {
+            setparameters("Threepeater", 4, 4, 5, ground);
+        }
+        if (name.matches("Cactus")) {
+            setparameters("Cactus", 5, 4, 5, ground);
+        }
+        if (name.matches("Split Pea")) {
+            setparameters("Split Pea", 4, 4, 3, ground);
+        }
+        if (name.matches("Gatling Pea")) {
+            setparameters("Gatling Pea", 5, 4, 3, ground);
+        }
+        if (name.matches("Scaredy-shroom")) {
+            setparameters("Scaredy-shroom", 1, 2, 1, ground);
+        }
+        if (name.matches("Snow Pea")) {
+            setparameters("Snow Pea", 3, 3, 3, ground);
+        }
     }
 
-    public void Repeater() {
-        // TODO - implement Pea.Repeater
-        throw new UnsupportedOperationException();
+    public void Peashooter(boolean status) {
+
     }
 
-    public void Threepeater() {
-        // TODO - implement Pea.Threepeater
-        throw new UnsupportedOperationException();
+    public void Repeater(boolean status) {
+
     }
 
-    public void Cactus() {
-        // TODO - implement Pea.Cactus
-        throw new UnsupportedOperationException();
+    public void Threepeater(boolean status) {
+
     }
 
-    public void SplitPea() {
-        // TODO - implement Pea.SplitPea
-        throw new UnsupportedOperationException();
+    public void Cactus(boolean status) {
+
     }
 
-    public void GatlingPea() {
-        // TODO - implement Pea.GatlingPea
-        throw new UnsupportedOperationException();
+    public void SplitPea(boolean status) {
+
     }
 
-    public void Scaredyshroom() {
-        // TODO - implement Pea.Scaredyshroom
-        throw new UnsupportedOperationException();
+    public void GatlingPea(boolean status) {
+
     }
 
-    public void SnowPea() {
-        // TODO - implement Pea.SnowPea
-        throw new UnsupportedOperationException();
+    public void Scaredyshroom(boolean status) {
+
+    }
+
+    public void SnowPea(boolean status) {
+
     }
 
 }

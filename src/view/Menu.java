@@ -27,6 +27,17 @@ public class Menu {
         System.out.println("change//rename//show//delete");
     }
 
+    public void shopHelp() {
+
+        System.out.println("show hand//show collection//play//buy card");
+    }
+
+    public void showShop() {}
+
+    public void showCollection() {}
+
+    public void showMoney() {}
+
     public void showCurrentUser() {
 
         System.out.println(AllUsers.currentuser);

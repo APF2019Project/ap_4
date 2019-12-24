@@ -5,17 +5,17 @@ import gamecenter.Ground;
 public class Normal extends Zombies {
 
     public Normal(String name, Ground ground) {
-        if (name.matches("zombie")) {
-            setparameters(2, 2, 1, ground);
+        if (name.matches("Zombie")) {
+            setparameters("Zombie",2, 2, 1, ground);
         }
-        if (name.matches("footballzombie")) {
-            setparameters(3, 4, 1, ground);
+        if (name.matches("Football Zombie")) {
+            setparameters("Football Zombie",3, 4, 1, ground);
         }
-        if (name.matches("bucketheadzombie")) {
-            setparameters(2, 3, 1, ground);
+        if (name.matches("Buckethead Zombie")) {
+            setparameters("Buckethead Zombie",2, 3, 1, ground);
         }
-        if (name.matches("coneheadzombie")) {
-            setparameters(2, 3, 1, ground);
+        if (name.matches("Conehead Zombie")) {
+            setparameters("Conehead Zombie",2, 3, 1, ground);
         }
     }
 
