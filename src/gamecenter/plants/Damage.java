@@ -29,7 +29,6 @@ public class Damage extends Plants {
     }
 
     public void PotatoMine(boolean status) {
-
     }
 
     public void CherryBomb(boolean status) {

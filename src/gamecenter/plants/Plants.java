@@ -23,6 +23,14 @@ public class Plants {
     }
 
 
+    public String getName() {
+        return name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
     public Ground getGround() {
         return ground;
     }
