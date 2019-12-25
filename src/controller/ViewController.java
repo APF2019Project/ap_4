@@ -13,7 +13,6 @@ public class ViewController {
 
     public static void main(String[] args) {
 
-
         loginMenu();
     }
 
@@ -72,14 +71,13 @@ public class ViewController {
     }
 
     public static void mainMenu() {
-        int flag = 0;
         while (true) {
-            flag = 0;
             System.out.println("mainmenu");
             String str = menu.getOrder();
 
             if (str.matches("play")) {
-                flag = 1;
+                play();
+                continue;
             }
 
             if (str.matches("profile")) {
@@ -101,18 +99,11 @@ public class ViewController {
                 return;
             }
 
-            if (flag == 0) {
-                menu.invalidCommand();
-                continue;
-            }
         }
     }
 
     public static void leaderBoard() {
-        for (int i = 0; i < allusers.users.size(); i++) {
-            System.out.print("name" + allusers.Leaderboard()[i] + "       killed");
-            System.out.println(allusers.Leaderboardnumbers()[i]);
-        }
+        menu.showLaeaderboards();
         while (true) {
             String str = menu.getOrder();
             if (str.matches("exit")) {
@@ -137,7 +128,9 @@ public class ViewController {
             if (str.matches("delete")) {
                 String username = menu.getUserName();
                 String password = menu.getPassword();
-                User.deleteUser(username, password);
+                if (!User.deleteUser(username, password)) {
+                    menu.invalidUser();
+                }
                 continue;
             }
 
@@ -181,7 +174,8 @@ public class ViewController {
             }
 
             if (str.matches("buy \\w+")) {
-                String name = str.substring(str.indexOf("y")+2);
+                String name = str.substring(str.indexOf("y") + 2);
+                shop.buyCard(name);
                 continue;
             }
 
@@ -202,6 +196,158 @@ public class ViewController {
             menu.invalidCommand();
         }
     }
+
+    public static void play() {
+
+        while (true) {
+            System.out.println("Play");
+            String str = menu.getOrder();
+
+            if (str.matches("day")) {
+                day();
+                continue;
+            }
+
+            if (str.matches("water")) {
+                continue;
+            }
+
+            if (str.matches("rail")) {
+                continue;
+            }
+
+            if (str.matches("zombie")) {
+                continue;
+            }
+
+            if (str.matches("pvp")) {
+                continue;
+            }
+
+            if (str.matches("help")) {
+                menu.playHelp();
+                continue;
+            }
+
+            if (str.matches("exit")) {
+                return;
+            }
+
+            menu.invalidCommand();
+        }
+    }
+
+    public static void day() {
+        collection_plants();
+        while (true) {
+            System.out.println("Day");
+            String str = menu.getOrder();
+
+            if (str.matches("show hand")) {
+                continue;
+            }
+
+            if (str.matches("plant \\d+,\\d+")) {
+                continue;
+            }
+
+            if (str.matches("remove \\d+,\\d+")) {
+                continue;
+            }
+
+            if (str.matches("select \\w+")) {
+                continue;
+            }
+
+            if (str.matches("end turn")) {
+                continue;
+            }
+
+            if (str.matches("show lawn")) {
+                continue;
+            }
+
+            if (str.matches("help")) {
+                menu.dayHelp();
+                continue;
+            }
+
+            if (str.matches("exit")) {
+                return;
+            }
+
+            menu.invalidCommand();
+        }
+    }
+
+    public static void collection_plants() {
+        while (true) {
+            System.out.println("Collection(Plants)");
+            String str = menu.getOrder();
+
+            if (str.matches("show hand")) {
+                continue;
+            }
+
+            if (str.matches("show collection")) {
+                continue;
+            }
+
+            if (str.matches("select \\w+")) {
+                continue;
+            }
+
+            if (str.matches("remove \\w+")) {
+                continue;
+            }
+
+            if (str.matches("help")) {
+                menu.collectionHelp();
+                continue;
+            }
+
+            if (str.matches("exit") || str.matches("play")) {
+                return;
+            }
+
+            menu.invalidCommand();
+        }
+    }
+
+    public static void collection_zombies() {
+        while (true) {
+            System.out.println("Collection(Zombies)");
+            String str = menu.getOrder();
+
+            if (str.matches("show hand")) {
+                continue;
+            }
+
+            if (str.matches("show collection")) {
+                continue;
+            }
+
+            if (str.matches("select \\w+")) {
+                continue;
+            }
+
+            if (str.matches("remove \\w+")) {
+                continue;
+            }
+
+            if (str.matches("help")) {
+                menu.collectionHelp();
+                continue;
+            }
+
+            if (str.matches("exit") || str.matches("play")) {
+                return;
+            }
+
+            menu.invalidCommand();
+        }
+    }
+
 }
 
 

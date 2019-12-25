@@ -13,6 +13,14 @@ public class Zombies {
     public Zombies() {
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
     public void setparameters(String name, int speed, int health, int damage, Ground ground) {
         this.name = name;
         this.price = (1 + speed) * health * 10;

@@ -1,5 +1,6 @@
 package view;
 
+import controller.ViewController;
 import gamecenter.AllUsers;
 
 import java.util.Scanner;
@@ -32,11 +33,41 @@ public class Menu {
         System.out.println("show hand//show collection//play//buy card");
     }
 
-    public void showShop() {}
+    public void playHelp() {
 
-    public void showCollection() {}
+        System.out.println("day//zombie//rail//pvp//water");
+    }
 
-    public void showMoney() {}
+    public void collectionHelp() {
+
+        System.out.println("show hand//show collection//play//select//remove");
+    }
+
+    public void dayHelp() {
+
+        System.out.println("show hand//select//plant//remove//show lawn//end turn");
+    }
+
+    public void showLaeaderboards() {
+
+        for (int i = 0; i < ViewController.allusers.users.size(); i++) {
+            System.out.print("name" + ViewController.allusers.Leaderboard()[i] + "       killed");
+            System.out.println(ViewController.allusers.Leaderboardnumbers()[i]);
+        }
+    }
+
+    public void showShop() {
+
+    }
+
+    public void showCollection() {
+
+    }
+
+    public void showMoney() {
+
+        System.out.println(ViewController.shop.getMoney());
+    }
 
     public void showCurrentUser() {
 
