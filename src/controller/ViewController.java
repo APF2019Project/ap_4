@@ -12,7 +12,6 @@ public class ViewController {
     public static Shop shop = new Shop();
 
     public static void main(String[] args) {
-
         loginMenu();
     }
 

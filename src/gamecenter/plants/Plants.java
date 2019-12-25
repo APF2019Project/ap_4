@@ -13,6 +13,14 @@ public class Plants {
     public Plants() {
     }
 
+    public int getSun_used() {
+        return sun_used;
+    }
+
+    public int getCooldown() {
+        return cooldown;
+    }
+
     public void setparameters(String name, int sun_used, int cooldown, int health, Ground ground) {
         this.price = sun_used * health * cooldown + 1;
         this.name = name;

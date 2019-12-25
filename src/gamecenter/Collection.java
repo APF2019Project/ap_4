@@ -35,15 +35,15 @@ public class Collection {
     ArrayList<Zombies> zombies_hand = new ArrayList<>();
     ArrayList<String> Showhandplants(){
         ArrayList<String> all =new ArrayList<String>();
-        for(int i=0;i<plants_hand.size();i++){
-            all.add(plants_hand.get(i).getName());
+        for (Plants plants : plants_hand) {
+            all.add(plants.getName());
         }
         return all;
     }
     ArrayList<String> Showhandzombie(){
         ArrayList<String> all =new ArrayList<String>();
-        for(int i=0;i<zombies_hand.size();i++){
-            all.add(zombies_hand.get(i).getName());
+        for (Zombies zombies : zombies_hand) {
+            all.add(zombies.getName());
         }
         return all;
     }
