@@ -5,6 +5,7 @@ import gamecenter.Ground;
 public class Sunflower extends Plants {
 
     public Sunflower(String name, Ground ground) {
+        type = "sunflower";
         if (name.matches("Sunflower")){
             setparameters("Sunflower",1,2,2,ground);
         }

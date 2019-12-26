@@ -21,7 +21,7 @@ public class Collection {
     );
     ArrayList<gamecenter.zombies.Zombies> zombies_s = new ArrayList<>(
             Arrays.asList(
-                    new BaloonZombie(null),
+                    new BaloonZombie(e),
                     new CARZombie("Zomboni", e),
                     new Normal("Zombie", e),
                     new Normal("Football Zombie", e),
@@ -30,51 +30,87 @@ public class Collection {
                     new SpiderZombie(e)
             )
     );
-///Inja ro Mitonim yedoone hand bezarim
+
+
     ArrayList<Plants> plants_hand = new ArrayList<>();
     ArrayList<Zombies> zombies_hand = new ArrayList<>();
-    ArrayList<String> Showhandplants(){
-        ArrayList<String> all =new ArrayList<String>();
-        for(int i=0;i<plants_hand.size();i++){
-            all.add(plants_hand.get(i).getName());
+
+    public ArrayList<String> showCollectionZombies() {
+        int flag = 1;
+        ArrayList<String> notChosen = new ArrayList<>();
+        for (int i = 0; i < zombies_s.size(); i++) {
+            for (int j = 0; j < zombies_hand.size(); j++) {
+                if (zombies_s.get(i).equals(zombies_hand.get(j))) {
+                    flag = 0;
+                }
+            }
+            if (flag == 1)
+                notChosen.add(zombies_s.get(i).getName());
         }
-        return all;
+        return notChosen;
     }
-    ArrayList<String> Showhandzombie(){
-        ArrayList<String> all =new ArrayList<String>();
-        for(int i=0;i<zombies_hand.size();i++){
-            all.add(zombies_hand.get(i).getName());
+
+    public ArrayList<String> showCollectionPlants() {
+        int flag = 1;
+        ArrayList<String> notChosen = new ArrayList<>();
+        for (int i = 0; i < plants_s.size(); i++) {
+            for (int j = 0; j < plants_hand.size(); j++) {
+                if (plants_s.get(i).equals(plants_hand.get(j))) {
+                    flag = 0;
+                }
+            }
+            if (flag == 1)
+                notChosen.add(plants_s.get(i).getName());
+        }
+        return notChosen;
+    }
+
+    public ArrayList<String> showHandPlants() {
+        ArrayList<String> all = new ArrayList<String>();
+        for (Plants plants : plants_hand) {
+            all.add(plants.getName());
         }
         return all;
     }
 
-    public void Select(String name) {
+    public ArrayList<String> showHandZombie() {
+        ArrayList<String> all = new ArrayList<String>();
+        for (Zombies zombies : zombies_hand) {
+            all.add(zombies.getName());
+        }
+        return all;
+    }
+
+    public boolean select(String name) {
         for (Plants plant : plants_s) {
             if (name.contains(plant.getName())) {
-                    plants_hand.add(plant);
-                    return;
+                plants_hand.add(plant);
+                return true;
             }
         }
         for (Zombies zombie : zombies_s) {
             if (name.contains(zombie.getName())) {
                 zombies_hand.add(zombie);
-                return;
+                return true;
             }
         }
+        return false;
     }
-    public void Remove(String name) {
+
+    public boolean remove(String name) {
         for (Plants plant : plants_hand) {
             if (name.contains(plant.getName())) {
                 plants_hand.remove(plant);
-                return;
+                return true;
             }
         }
         for (Zombies zombie : zombies_hand) {
             if (name.contains(zombie.getName())) {
                 zombies_hand.remove(zombie);
-                return;
+                return true;
             }
         }
+        return false;
     }
 
 }

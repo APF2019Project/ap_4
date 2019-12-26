@@ -3,7 +3,9 @@ package gamecenter.plants;
 import gamecenter.Ground;
 
 public class Pea extends Plants {
+
     public Pea(String name, Ground ground) {
+        type = "pea";
         if (name.matches("Peashooter")) {
             setparameters("Peashooter", 2, 2, 2, ground);
         }

@@ -169,7 +169,7 @@ public class ViewController {
             }
 
             if (str.matches("show collection")) {
-                menu.showCollection();
+                menu.showCollection_shop();
                 continue;
             }
 
@@ -238,24 +238,50 @@ public class ViewController {
     }
 
     public static void day() {
+        Day day = new Day();
         collection_plants();
         while (true) {
             System.out.println("Day");
             String str = menu.getOrder();
 
             if (str.matches("show hand")) {
+                menu.showHandDay(day);
                 continue;
             }
 
             if (str.matches("plant \\d+,\\d+")) {
+                int i = Integer.parseInt(str.substring(str.indexOf("t") + 2, str.lastIndexOf(",")));
+                int j = Integer.parseInt(str.substring(str.indexOf(",") + 1));
+                if (!day.plantingPlant(i, j)) {
+                    menu.spaceIsFull();
+                }
                 continue;
             }
 
             if (str.matches("remove \\d+,\\d+")) {
+                int i = Integer.parseInt(str.substring(str.indexOf("ve") + 3, str.lastIndexOf(",")));
+                int j = Integer.parseInt(str.substring(str.indexOf(",") + 1));
+                if (!day.removePlant(i, j)) {
+                    menu.noPlantFounded();
+                }
                 continue;
             }
 
             if (str.matches("select \\w+")) {
+                String name = str.substring(str.indexOf("t") + 2);
+                int status = day.select(name);
+                if (status == -1) {
+
+                    menu.invalidCard();
+                }
+                if (status == 0) {
+
+                    menu.notEnoughSun();
+                }
+                if (status == 1) {
+
+                    menu.plantIsTired();
+                }
                 continue;
             }
 
@@ -264,6 +290,7 @@ public class ViewController {
             }
 
             if (str.matches("show lawn")) {
+
                 continue;
             }
 
@@ -286,18 +313,28 @@ public class ViewController {
             String str = menu.getOrder();
 
             if (str.matches("show hand")) {
+                menu.showHandPlants();
                 continue;
             }
 
             if (str.matches("show collection")) {
+                menu.showCollectionPlants();
                 continue;
             }
 
             if (str.matches("select \\w+")) {
+                String name = str.substring(str.indexOf("t") + 2);
+                if (!collection.select(name)) {
+                    menu.invalidCard();
+                }
                 continue;
             }
 
             if (str.matches("remove \\w+")) {
+                String name = str.substring(str.indexOf("ve") + 3);
+                if (!collection.remove(name)) {
+                    menu.invalidCard();
+                }
                 continue;
             }
 

@@ -5,6 +5,7 @@ import gamecenter.Ground;
 public class WithoutActon extends Plants {
 
     public WithoutActon(String name, Ground ground) {
+        type = "withoutaction";
         if (name.matches("Wall-nut")){
             setparameters("Wall-nut",2,4,4,ground);
         }
@@ -15,6 +16,7 @@ public class WithoutActon extends Plants {
             setparameters("Magnet-shroom",4,4,2,ground);
         }
     }
+
     public void Wallnut(boolean status) {
 
     }

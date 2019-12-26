@@ -89,16 +89,14 @@ public class Shop {
         }
         return -1;
     }
-
-    public ArrayList<Integer> allprice = new ArrayList<>();
-
-    public ArrayList<String> ShowShop() {
-        ArrayList<String> all = new ArrayList<String>();
+    public ArrayList<Integer> allprice=new ArrayList<>();
+    public ArrayList<String> ShowShop(){
+     ArrayList<String> all =new ArrayList<String>();
         for (Zombies zombie : zombies) {
             all.add(zombie.getName());
             allprice.add(zombie.getPrice());
         }
-        for (int i = 0; i < ViewController.collection.zombies_s.size(); i++) {
+        for(int i=0;i<ViewController.collection.zombies_s.size();i++){
             all.remove(ViewController.collection.zombies_s.get(i).getName());
             allprice.remove(ViewController.collection.zombies_s.get(i).getPrice());
         }
@@ -106,30 +104,26 @@ public class Shop {
             all.add(plants.getName());
             allprice.add(plants.getPrice());
         }
-        for (int i = 0; i < ViewController.collection.plants_s.size(); i++) {
+        for(int i=0;i<ViewController.collection.plants_s.size();i++){
             all.remove(ViewController.collection.plants_s.get(i).getName());
             allprice.remove(ViewController.collection.plants_s.get(i).getPrice());
         }
         return all;
     }
-
     public ArrayList<Integer> ShowShopprices() {
-
-
-        return allprice;
+    return allprice;
     }
 
-    public ArrayList<String> ShowCollectionZombies() {
-        ArrayList<String> all = new ArrayList<String>();
-        for (int i = 0; i < ViewController.collection.zombies_s.size(); i++) {
+    public ArrayList<String> ShowCollectionZombies(){
+        ArrayList<String> all =new ArrayList<String>();
+        for(int i=0;i<ViewController.collection.zombies_s.size();i++){
             all.add(ViewController.collection.zombies_s.get(i).getName());
         }
         return all;
     }
-
-    public ArrayList<String> ShowCollectionPlants() {
-        ArrayList<String> all = new ArrayList<String>();
-        for (int i = 0; i < ViewController.collection.plants_s.size(); i++) {
+    public ArrayList<String> ShowCollectionPlants(){
+        ArrayList<String> all =new ArrayList<String>();
+        for(int i=0;i<ViewController.collection.plants_s.size();i++){
             all.add(ViewController.collection.plants_s.get(i).getName());
         }
         return all;

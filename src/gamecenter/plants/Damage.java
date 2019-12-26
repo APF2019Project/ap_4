@@ -5,6 +5,7 @@ import gamecenter.Ground;
 public class Damage extends Plants {
 
     public Damage(String name, Ground ground) {
+        type = "damage";
         if (name.matches("Tangle Kelp")){
             setparameters("Tangle Kelp",3,3,0,ground);
         }
