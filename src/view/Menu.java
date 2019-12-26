@@ -62,14 +62,18 @@ public class Menu {
     }
 
     public void showShop() {
-        for (int i = 0; i < ViewController.shop.ShowShop().size(); i++) {
-            System.out.println(ViewController.shop.ShowShop().get(i) +"     "+ ViewController.shop.ShowShopprices().get(i).intValue());
+        ArrayList<String> name = ViewController.shop.ShowShop();
+        ArrayList<Integer> number = ViewController.shop.ShowShopprices();
+        for (int i = 0; i < name.size(); i++) {
+            System.out.println(name.get(i) +" Price: "+ number.get(i));
         }
     }
 
     public void showCollection_shop() {
-        for (int i = 0; i < ViewController.shop.ShowCollectionPlants().size(); i++) {
-            System.out.print(ViewController.shop.ShowCollectionPlants().get(i) + "//");
+        ArrayList<String> name = ViewController.shop.ShowCollectionPlants();
+
+        for (int i = 0; i < name.size(); i++) {
+            System.out.print(name.get(i) + "//");
         }
         System.out.println();
     }
@@ -80,45 +84,49 @@ public class Menu {
     }
 
     public void showHandZombie() {
-        for (int i = 0; i < ViewController.collection.showHandZombie().size(); i++) {
-            System.out.print(ViewController.collection.showHandZombie().get(i) + "//");
+        ArrayList<String> name = ViewController.collection.showHandZombie();
+        for (int i = 0; i < name.size(); i++) {
+            System.out.print(name.get(i) + "//");
         }
         System.out.println();
     }
 
     public void showHandPlants() {
-        for (int i = 0; i < ViewController.collection.showHandPlants().size(); i++) {
-            System.out.print(ViewController.collection.showHandPlants().get(i) + "//");
+        ArrayList<String> name = ViewController.collection.showHandPlants();
+        for (int i = 0; i < name.size(); i++) {
+            System.out.print(name.get(i) + "//");
         }
         System.out.println();
     }
 
     public void showCollectionPlants() {
-        for (int i = 0; i < ViewController.collection.showCollectionPlants().size(); i++) {
-            System.out.print(ViewController.collection.showCollectionPlants().get(i) + "//");
+        ArrayList<String> name = ViewController.collection.showCollectionPlants();
+        for (int i = 0; i < name.size(); i++) {
+            System.out.print(name.get(i) + "//");
         }
         System.out.println();
     }
 
     public void showCollectionZombies() {
-        for (int i = 0; i < ViewController.collection.showCollectionZombies().size(); i++) {
-            System.out.print(ViewController.collection.showCollectionZombies().get(i) + "//");
+        ArrayList<String> name = ViewController.collection.showCollectionZombies();
+        for (int i = 0; i < name.size(); i++) {
+            System.out.print(name.get(i) + "//");
         }
         System.out.println();
     }
     
     public void showHandDay(Day day) {
-        for (int i = 0; i < day.showHand().size(); i++) {
-            System.out.print(day.showHand().get(i) +" sun "+ day.showHandSun().get(i) +" Cd "+ day.showHandCool().get(i));
+        ArrayList<String> name = day.showHand();
+        for (int i = 0; i < name.size(); i++) {
+            System.out.print(name.get(i) +" sun "+ day.showHandSun().get(i) +" Cd "+ day.showHandCool().get(i));
         }
     }
 
     public void showLawn(GameMode gameMode) {
-
-//        for (int i = 0; i < gameMode.; i++) {
-//            System.out.print(gameMode.showLawn().get(i) + " x " + gameMode.showLawnX().get(i) +" Y "+ gameMode.showLawnY().get(i) +" Health "+ gameMode.showLawnHealth().get(i));
-//
-//        }
+        ArrayList<String> name = gameMode.showLawn();
+        for (int i = 0; i < name.size(); i++) {
+            System.out.print(name.get(i) + " x " + gameMode.showLawnX().get(i) +" Y "+ gameMode.showLawnY().get(i) +" Health "+ gameMode.showLawnHealth().get(i));
+        }
     }
 
     public void showCurrentUser() {

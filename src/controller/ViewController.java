@@ -290,7 +290,7 @@ public class ViewController {
             }
 
             if (str.matches("show lawn")) {
-
+                menu.showLawn(day);
                 continue;
             }
 

@@ -79,9 +79,6 @@ public class Plants {
         return health > 0;
     }
 
-    public void operation() {
-    }
-
     public boolean isTired() {
         if (turn_cooldown == 0) {
             turn_cooldown = cooldown;
@@ -89,5 +86,8 @@ public class Plants {
         } else {
             return true;
         }
+    }
+
+    public void operation() {
     }
 }
