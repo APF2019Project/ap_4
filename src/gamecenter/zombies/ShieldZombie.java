@@ -3,7 +3,7 @@ package gamecenter.zombies;
 import gamecenter.Ground;
 
 public class ShieldZombie extends Zombies {
-    private int shield;
+
     public ShieldZombie(String name , Ground ground) {
         if (name.matches("Newspaper Zombie")){
             setparameters("Newspaper Zombie",2,2,1,ground);

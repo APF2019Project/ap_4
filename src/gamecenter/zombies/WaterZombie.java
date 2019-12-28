@@ -3,7 +3,6 @@ package gamecenter.zombies;
 import gamecenter.Ground;
 
 public class WaterZombie extends Zombies {
-    int shield;
 
     public WaterZombie(String name, Ground ground) {
         if (name.matches("Snorkel Zombie")) {

@@ -65,7 +65,7 @@ public class Menu {
         ArrayList<String> name = ViewController.shop.ShowShop();
         ArrayList<Integer> number = ViewController.shop.ShowShopprices();
         for (int i = 0; i < name.size(); i++) {
-            System.out.println(name.get(i) +" Price: "+ number.get(i));
+            System.out.println(name.get(i) + " Price: " + number.get(i));
         }
     }
 
@@ -114,18 +114,23 @@ public class Menu {
         }
         System.out.println();
     }
-    
+
     public void showHandDay(Day day) {
         ArrayList<String> name = day.showHand();
         for (int i = 0; i < name.size(); i++) {
-            System.out.print(name.get(i) +" sun "+ day.showHandSun().get(i) +" Cd "+ day.showHandCool().get(i));
+            System.out.print(name.get(i) + " sun " + day.showHandSun().get(i) + " Cd " + day.showHandCool().get(i));
         }
     }
 
     public void showLawn(GameMode gameMode) {
         ArrayList<String> name = gameMode.showLawn();
         for (int i = 0; i < name.size(); i++) {
-            System.out.print(name.get(i) + " x " + gameMode.showLawnX().get(i) +" Y "+ gameMode.showLawnY().get(i) +" Health "+ gameMode.showLawnHealth().get(i));
+            System.out.print(name.get(i) + " Y " + gameMode.showLawnX().get(i) + " X " + gameMode.showLawnY().get(i) + " Health " + gameMode.showLawnHealth().get(i));
+            if (i == gameMode.numberOfPlants()) {
+                System.out.println();
+            } else if ((i + 1) % 5 == 0) {
+                System.out.println();
+            }
         }
     }
 
@@ -162,6 +167,11 @@ public class Menu {
     public void notEnoughSun() {
 
         System.out.println("Not enough sun");
+    }
+
+    public void notEnoughMoney() {
+
+        System.out.println("Not enough money");
     }
 
     public void plantIsTired() {

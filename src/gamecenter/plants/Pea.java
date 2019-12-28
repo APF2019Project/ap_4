@@ -1,67 +1,61 @@
 package gamecenter.plants;
 
+import controller.ViewController;
 import gamecenter.Ground;
 
 public class Pea extends Plants {
+    private int turn_shoot = 0;
 
     public Pea(String name, Ground ground) {
         type = "pea";
-        if (name.matches("Peashooter")) {
+        if (name.matches("peashooter")) {
             setparameters("Peashooter", 2, 2, 2, ground);
         }
-        if (name.matches("Repeater")) {
+        if (name.matches("repeater")) {
             setparameters("Repeater", 3, 4, 4, ground);
         }
-        if (name.matches("Threepeater")) {
+        if (name.matches("threepeater")) {
             setparameters("Threepeater", 4, 4, 5, ground);
         }
-        if (name.matches("Cactus")) {
+        if (name.matches("cactus")) {
             setparameters("Cactus", 5, 4, 5, ground);
         }
-        if (name.matches("Split Pea")) {
+        if (name.matches("split pea")) {
             setparameters("Split Pea", 4, 4, 3, ground);
         }
-        if (name.matches("Gatling Pea")) {
+        if (name.matches("gatling pea")) {
             setparameters("Gatling Pea", 5, 4, 3, ground);
         }
-        if (name.matches("Scaredy-shroom")) {
+        if (name.matches("scaredy-shroom")) {
             setparameters("Scaredy-shroom", 1, 2, 1, ground);
         }
-        if (name.matches("Snow Pea")) {
+        if (name.matches("snow pea")) {
             setparameters("Snow Pea", 3, 3, 3, ground);
         }
     }
 
-    public void Peashooter(boolean status) {
-
+    @Override
+    public void operation() {
+        turn_shoot++;
+        if (name.equals("peashooter")) {
+            if (turn_shoot % 2 == 0) {
+                ViewController.day.peaadder(1);
+            }
+        }
+        if (name.equals("snow pea")) {
+            if (turn_shoot % 3 == 0) {
+                ViewController.day.peaadder(1);
+            }
+        }
+        if (name.equals("repeater")) {
+            if (turn_shoot % 3 == 0) {
+                ViewController.day.peaadder(2);
+            }
+        }
+        if (name.equals("gatling pea")) {
+            if (turn_shoot % 5 == 0) {
+                ViewController.day.peaadder(4);
+            }
+        }
     }
-
-    public void Repeater(boolean status) {
-
-    }
-
-    public void Threepeater(boolean status) {
-
-    }
-
-    public void Cactus(boolean status) {
-
-    }
-
-    public void SplitPea(boolean status) {
-
-    }
-
-    public void GatlingPea(boolean status) {
-
-    }
-
-    public void Scaredyshroom(boolean status) {
-
-    }
-
-    public void SnowPea(boolean status) {
-
-    }
-
 }

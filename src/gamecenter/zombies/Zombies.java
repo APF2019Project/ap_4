@@ -3,6 +3,8 @@ package gamecenter.zombies;
 import gamecenter.Ground;
 
 public class Zombies {
+    public int shield;
+    private String type;
     private String name;
     private int speed;
     private int health;
@@ -14,10 +16,12 @@ public class Zombies {
     }
 
     public String getName() {
+
         return name;
     }
 
     public int getPrice() {
+
         return price;
     }
 
@@ -32,18 +36,34 @@ public class Zombies {
 
 
     public Ground getGround() {
+
         return ground;
     }
 
     public void setGround(Ground ground) {
+
         this.ground = ground;
     }
 
     public void setHealth(int a) {
+
         health -= a;
     }
 
     public int getHealth() {
+
         return health;
     }
+
+    public boolean isDead() {
+
+        return health <= 0;
+    }
+
+    public String getType() {
+
+        return type;
+    }
+
+    public void operation() {}
 }

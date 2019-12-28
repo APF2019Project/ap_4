@@ -10,6 +10,7 @@ public class ViewController {
     static String str = "";
     public static Collection collection = new Collection();
     public static Shop shop = new Shop();
+    public static Day day = new Day();
 
     public static void main(String[] args) {
 
@@ -99,6 +100,7 @@ public class ViewController {
                 return;
             }
 
+            menu.invalidCommand();
         }
     }
 
@@ -173,9 +175,13 @@ public class ViewController {
                 continue;
             }
 
-            if (str.matches("buy \\w+")) {
+            if (str.matches("buy .+")) {
                 String name = str.substring(str.indexOf("y") + 2);
-                shop.buyCard(name);
+                int status = shop.buyCard(name);
+                if (status == 0)
+                    menu.notEnoughMoney();
+                if (status == -1)
+                    menu.invalidCard();
                 continue;
             }
 
@@ -198,7 +204,6 @@ public class ViewController {
     }
 
     public static void play() {
-
         while (true) {
             System.out.println("Play");
             String str = menu.getOrder();
@@ -238,7 +243,6 @@ public class ViewController {
     }
 
     public static void day() {
-        Day day = new Day();
         collection_plants();
         while (true) {
             System.out.println("Day");
@@ -267,7 +271,7 @@ public class ViewController {
                 continue;
             }
 
-            if (str.matches("select \\w+")) {
+            if (str.matches("select .+")) {
                 String name = str.substring(str.indexOf("t") + 2);
                 int status = day.select(name);
                 if (status == -1) {
@@ -286,6 +290,8 @@ public class ViewController {
             }
 
             if (str.matches("end turn")) {
+                day.operate();
+                day.deathSets();
                 continue;
             }
 
@@ -322,7 +328,7 @@ public class ViewController {
                 continue;
             }
 
-            if (str.matches("select \\w+")) {
+            if (str.matches("select .+")) {
                 String name = str.substring(str.indexOf("t") + 2);
                 if (!collection.select(name)) {
                     menu.invalidCard();
@@ -330,7 +336,7 @@ public class ViewController {
                 continue;
             }
 
-            if (str.matches("remove \\w+")) {
+            if (str.matches("remove .+")) {
                 String name = str.substring(str.indexOf("ve") + 3);
                 if (!collection.remove(name)) {
                     menu.invalidCard();

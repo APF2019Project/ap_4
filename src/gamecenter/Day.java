@@ -18,9 +18,10 @@ public class Day extends GameMode {
     ArrayList<Integer> cooldown_left = new ArrayList<>();
 
     public Day() {
+        super();
         plants_hand = ViewController.collection.plants_hand;
-        for (int i = 0; i < 19; i++) {
-            for (int k = 0; k < 6; k++) {
+        for (int i = 0; i < 6; i++) {
+            for (int k = 0; k < 19; k++) {
                 GameGround[i][k].groundX = i;
                 GameGround[i][k].groundY = k;
                 GameGround[i][k].type = true;
@@ -66,7 +67,7 @@ public class Day extends GameMode {
         return -1;
     }
 
-    public boolean plantingPlant(int i, int j) {
+    public boolean plantingPlant(int j, int i) {
         if (GameGround[i][j].settledPlant != null || GameGround[i][j].settledZombie != null) {
             GameGround[i][j].settledPlant = current;
             current.setGround(GameGround[i][j]);
@@ -75,7 +76,7 @@ public class Day extends GameMode {
         } else return false;
     }
 
-    public boolean removePlant(int i, int j) {
+    public boolean removePlant(int j, int i) {
         if (GameGround[i][j].settledPlant != null) {
             GameGround[i][j].settledPlant.setGround(null);
             GameGround[i][j].settledPlant = null;
@@ -115,6 +116,13 @@ public class Day extends GameMode {
     public void setSun(int sun) {
 
         this.sun += sun;
+    }
+
+    public void peaadder (int a) {
+        for (int i = 0; i < a; i++) {
+            Peas pea = new Peas();
+            peas.add(pea);
+        }
     }
 
 }

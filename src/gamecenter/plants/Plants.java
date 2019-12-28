@@ -3,19 +3,20 @@ package gamecenter.plants;
 import gamecenter.Ground;
 
 public class Plants {
-    private int turn_cooldown;
+    protected int turn_cooldown;
     public String type = "";
-    private String name;
-    private int price;
-    private int sun_used;
-    private int cooldown;
-    private int health;
-    private Ground ground;
+    protected String name;
+    protected int price;
+    protected int sun_used;
+    protected int cooldown;
+    protected int health;
+    protected Ground ground;
 
     public Plants() {
     }
 
     public void setparameters(String name, int sun_used, int cooldown, int health, Ground ground) {
+        name = name.toLowerCase();
         this.price = sun_used * health * cooldown + 1;
         this.name = name;
         this.sun_used = sun_used;
@@ -74,9 +75,9 @@ public class Plants {
         return health;
     }
 
-    public boolean isAlive() {
+    public boolean isDead() {
 
-        return health > 0;
+        return health <= 0;
     }
 
     public boolean isTired() {
@@ -88,6 +89,6 @@ public class Plants {
         }
     }
 
-    public void operation() {
-    }
+    public void operation() {}
+
 }

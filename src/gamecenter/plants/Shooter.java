@@ -6,16 +6,16 @@ public class Shooter extends Plants {
 
     public Shooter(String name, Ground ground) {
         type = "shooter";
-        if (name.matches("Cabbage-pult")){
+        if (name.matches("cabbage-pult")){
             setparameters("Cabbage-pult",2,3,2,ground);
         }
-        if (name.matches("Winter Melon")){
+        if (name.matches("winter melon")){
             setparameters("Winter Melon",4,5,3,ground);
         }
-        if (name.matches("Melon-pult")){
+        if (name.matches("melon-pult")){
             setparameters("Melon-pult",3,3,3,ground);
         }
-        if (name.matches("Kernel-pult")){
+        if (name.matches("kernel-pult")){
             setparameters("Kernel-pult",3,3,2,ground);
         }
     }
