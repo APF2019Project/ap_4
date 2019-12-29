@@ -1,5 +1,7 @@
 package controller;
 
+import gamecenter.zombies.GiantZombie;
+import gamecenter.zombies.Zombies;
 import view.*;
 import gamecenter.*;
 
@@ -10,8 +12,10 @@ public class ViewController {
     static String str = "";
     public static Collection collection = new Collection();
     public static Shop shop = new Shop();
+    public static Day day = new Day();
 
     public static void main(String[] args) {
+
         loginMenu();
     }
 
@@ -98,6 +102,7 @@ public class ViewController {
                 return;
             }
 
+            menu.invalidCommand();
         }
     }
 
@@ -168,13 +173,17 @@ public class ViewController {
             }
 
             if (str.matches("show collection")) {
-                menu.showCollection();
+                menu.showCollection_shop();
                 continue;
             }
 
-            if (str.matches("buy \\w+")) {
+            if (str.matches("buy .+")) {
                 String name = str.substring(str.indexOf("y") + 2);
-                shop.buyCard(name);
+                int status = shop.buyCard(name);
+                if (status == 0)
+                    menu.notEnoughMoney();
+                if (status == -1)
+                    menu.invalidCard();
                 continue;
             }
 
@@ -197,7 +206,6 @@ public class ViewController {
     }
 
     public static void play() {
-
         while (true) {
             System.out.println("Play");
             String str = menu.getOrder();
@@ -243,26 +251,54 @@ public class ViewController {
             String str = menu.getOrder();
 
             if (str.matches("show hand")) {
+                menu.showHandDay(day);
                 continue;
             }
 
             if (str.matches("plant \\d+,\\d+")) {
+                int i = Integer.parseInt(str.substring(str.indexOf("t") + 2, str.lastIndexOf(",")));
+                int j = Integer.parseInt(str.substring(str.indexOf(",") + 1));
+                if (!day.plantingPlant(i, j)) {
+                    menu.spaceIsFull();
+                }
                 continue;
             }
 
             if (str.matches("remove \\d+,\\d+")) {
+                int i = Integer.parseInt(str.substring(str.indexOf("ve") + 3, str.lastIndexOf(",")));
+                int j = Integer.parseInt(str.substring(str.indexOf(",") + 1));
+                if (!day.removePlant(i, j)) {
+                    menu.noPlantFounded();
+                }
                 continue;
             }
 
-            if (str.matches("select \\w+")) {
+            if (str.matches("select .+")) {
+                String name = str.substring(str.indexOf("t") + 2);
+                int status = day.select(name);
+                if (status == -1) {
+
+                    menu.invalidCard();
+                }
+                if (status == 0) {
+
+                    menu.notEnoughSun();
+                }
+                if (status == 1) {
+
+                    menu.plantIsTired();
+                }
                 continue;
             }
 
             if (str.matches("end turn")) {
+                day.operate();
+                day.deathSets();
                 continue;
             }
 
             if (str.matches("show lawn")) {
+                menu.showLawn(day);
                 continue;
             }
 
@@ -285,18 +321,28 @@ public class ViewController {
             String str = menu.getOrder();
 
             if (str.matches("show hand")) {
+                menu.showHandPlants();
                 continue;
             }
 
             if (str.matches("show collection")) {
+                menu.showCollectionPlants();
                 continue;
             }
 
-            if (str.matches("select \\w+")) {
+            if (str.matches("select .+")) {
+                String name = str.substring(str.indexOf("t") + 2);
+                if (!collection.select(name)) {
+                    menu.invalidCard();
+                }
                 continue;
             }
 
-            if (str.matches("remove \\w+")) {
+            if (str.matches("remove .+")) {
+                String name = str.substring(str.indexOf("ve") + 3);
+                if (!collection.remove(name)) {
+                    menu.invalidCard();
+                }
                 continue;
             }
 
@@ -346,4 +392,23 @@ public class ViewController {
             menu.invalidCommand();
         }
     }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

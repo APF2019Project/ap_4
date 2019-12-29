@@ -5,22 +5,23 @@ import gamecenter.Ground;
 public class Damage extends Plants {
 
     public Damage(String name, Ground ground) {
-        if (name.matches("Tangle Kelp")){
+        type = "damage";
+        if (name.matches("tangle kelp")){
             setparameters("Tangle Kelp",3,3,0,ground);
         }
-        if (name.matches("Potato Mine")){
+        if (name.matches("potato mine")){
             setparameters("Potato Mine",2,3,1,ground);
         }
-        if (name.matches("Cherry Bomb")){
+        if (name.matches("cherry bomb")){
             setparameters("Cherry Bomb",2,4,0,ground);
         }
-        if (name.matches("Cattail")){
+        if (name.matches("cattail")){
             setparameters("Cattail",5,5,3,ground);
         }
-        if (name.matches("Jalapeno")){
+        if (name.matches("jalapeno")){
             setparameters("Jalapeno",4,5,0,ground);
         }
-        if (name.matches("Explode-o-nut")){
+        if (name.matches("explode-o-nut")){
             setparameters("Explode-o-nut",4,5,3,ground);
         }
     }

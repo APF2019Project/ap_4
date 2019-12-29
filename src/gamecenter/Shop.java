@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Shop {
-    private int money;
+    private int money = 0;
     Ground e = null;
     ArrayList<Plants> plants = new ArrayList<>(
             Arrays.asList(
@@ -59,12 +59,15 @@ public class Shop {
                     new WaterZombie("Snorkel Zombie", e),
                     new WaterZombie("Dolphin Rider Zombie", e)
             ));
+    public ArrayList<Integer> allprice = new ArrayList<>();
 
     public int getMoney() {
+
         return money;
     }
 
     public void setMoney(int money) {
+
         this.money = money;
     }
 
@@ -89,41 +92,51 @@ public class Shop {
         }
         return -1;
     }
-    public ArrayList<Integer> allprice=new ArrayList<>();
-    public ArrayList<String> ShowShop(){
-     ArrayList<String> all =new ArrayList<String>();
+
+    public ArrayList<String> ShowShop() {
+        ArrayList<String> all = new ArrayList<String>();
+        int flag;
         for (Zombies zombie : zombies) {
-            all.add(zombie.getName());
-            allprice.add(zombie.getPrice());
-        }
-        for(int i=0;i<ViewController.collection.zombies_s.size();i++){
-            all.remove(ViewController.collection.zombies_s.get(i).getName());
-            allprice.remove(ViewController.collection.zombies_s.get(i).getPrice());
+            flag = 1;
+            for (int i = 0; i < ViewController.collection.zombies_s.size(); i++) {
+                if (zombie.getName().equals(ViewController.collection.zombies_s.get(i).getName()))
+                    flag = 0;
+            }
+            if (flag == 1) {
+                all.add(zombie.getName());
+                allprice.add(zombie.getPrice());
+            }
         }
         for (Plants plants : plants) {
-            all.add(plants.getName());
-            allprice.add(plants.getPrice());
-        }
-        for(int i=0;i<ViewController.collection.plants_s.size();i++){
-            all.remove(ViewController.collection.plants_s.get(i).getName());
-            allprice.remove(ViewController.collection.plants_s.get(i).getPrice());
+            flag = 1;
+            for (int i = 0; i < ViewController.collection.plants_s.size(); i++) {
+                if (plants.getName().equals(ViewController.collection.plants_s.get(i).getName()))
+                    flag = 0;
+            }
+            if (flag == 1) {
+                all.add(plants.getName());
+                allprice.add(plants.getPrice());
+            }
         }
         return all;
     }
+
     public ArrayList<Integer> ShowShopprices() {
-    return allprice;
+
+        return allprice;
     }
 
-    public ArrayList<String> ShowCollectionZombies(){
-        ArrayList<String> all =new ArrayList<String>();
-        for(int i=0;i<ViewController.collection.zombies_s.size();i++){
+    public ArrayList<String> ShowCollectionZombies() {
+        ArrayList<String> all = new ArrayList<String>();
+        for (int i = 0; i < ViewController.collection.zombies_s.size(); i++) {
             all.add(ViewController.collection.zombies_s.get(i).getName());
         }
         return all;
     }
-    public ArrayList<String> ShowCollectionPlants(){
-        ArrayList<String> all =new ArrayList<String>();
-        for(int i=0;i<ViewController.collection.plants_s.size();i++){
+
+    public ArrayList<String> ShowCollectionPlants() {
+        ArrayList<String> all = new ArrayList<String>();
+        for (int i = 0; i < ViewController.collection.plants_s.size(); i++) {
             all.add(ViewController.collection.plants_s.get(i).getName());
         }
         return all;
