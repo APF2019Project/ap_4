@@ -34,8 +34,7 @@ public class WaterZombie extends Zombies {
 
                 if (grounds[y - 1].settledPlant.getHealth() <= 0) {
                     grounds[y - 1].settledPlant = null;
-
-                }
+                }else break;
             }
         }
         y = getGround().getGroundY();

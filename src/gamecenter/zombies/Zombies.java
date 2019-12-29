@@ -79,12 +79,11 @@ public class Zombies {
                     grounds[y - 1].settledZombie.add(this);
                     this.setGround(grounds[y - 1]);
                 } else {
-                    if (grounds[y - 1].settledPlant.getHealth() > 0)
+                    if (grounds[y - 1].settledPlant.getHealth() > 0) {
                         grounds[y - 1].settledPlant.setHealth(getDamage());
-
-                    if (grounds[y - 1].settledPlant.getHealth() <= 0) {
-                        grounds[y - 1].settledPlant = null;
-
+                        if (grounds[y - 1].settledPlant.getHealth() <= 0) {
+                            grounds[y - 1].settledPlant = null;
+                        }else  break;
                     }
                 }
             }
