@@ -3,13 +3,15 @@ package gamecenter;
 import gamecenter.plants.Plants;
 import gamecenter.zombies.Zombies;
 
+import java.util.ArrayList;
+
 public class Ground {
 
     int groundX;
     int groundY;
     boolean type;
     public Plants settledPlant = null;
-    public Zombies settledZombie = null;
+    public ArrayList<Zombies> settledZombie = null;
 
     public void setGroundX(int groundX) {
 

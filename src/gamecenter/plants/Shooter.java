@@ -1,35 +1,51 @@
 package gamecenter.plants;
 
+import controller.ViewController;
 import gamecenter.Ground;
 
 public class Shooter extends Plants {
 
     public Shooter(String name, Ground ground) {
         type = "shooter";
-        if (name.matches("cabbage-pult")){
-            setparameters("Cabbage-pult",2,3,2,ground);
+        if (name.matches("cabbage-pult")) {
+            setparameters("Cabbage-pult", 2, 3, 2, ground);
         }
-        if (name.matches("winter melon")){
-            setparameters("Winter Melon",4,5,3,ground);
+        if (name.matches("winter melon")) {
+            setparameters("Winter Melon", 4, 5, 3, ground);
         }
-        if (name.matches("melon-pult")){
-            setparameters("Melon-pult",3,3,3,ground);
+        if (name.matches("melon-pult")) {
+            setparameters("Melon-pult", 3, 3, 3, ground);
         }
-        if (name.matches("kernel-pult")){
-            setparameters("Kernel-pult",3,3,2,ground);
+        if (name.matches("kernel-pult")) {
+            setparameters("Kernel-pult", 3, 3, 2, ground);
         }
     }
 
-    public void Cabbagepult(boolean status) {
-    }
+    @Override
+    public void operation() {
+        turn_shoot++;
+        if (!isThereAnyZombie())
+            return;
 
-    public void WinterMelon(boolean status) {
+        if (name.equals("cabbage-pult")) {
+            if (turn_shoot % 2 == 0) {
+                ViewController.day.shotadder(1, ground, 2, null);
+            }
+        }
+        if (name.equals("melon-pult")) {
+            if (turn_shoot % 4 == 0) {
+                ViewController.day.shotadder(1, ground, 3, null);
+            }
+        }
+        if (name.equals("winter melon")) {
+            if (turn_shoot % 4 == 0) {
+                ViewController.day.shotadder(1, ground, 3, "icy");
+            }
+        }
+        if (name.equals("kernel-pult")) {
+            if (turn_shoot % 4 == 0) {
+                ViewController.day.shotadder(1, ground, 0, "sticky");
+            }
+        }
     }
-
-    public void Melonpult(boolean status) {
-    }
-
-    public void Kernelpult(boolean status) {
-    }
-
 }

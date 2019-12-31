@@ -3,9 +3,15 @@ package gamecenter.plants;
 import gamecenter.Ground;
 
 public class Peas {
-    Ground ground = new Ground();
+    Ground ground;
     int groundX;
     int groundY;
+    boolean icy;
+
+    public Peas(Ground ground) {
+
+        this.ground = ground;
+    }
 
     public boolean operation(Ground[] grounds) {
         int flag = 0;
@@ -17,11 +23,14 @@ public class Peas {
             }
         }
         for (int i = flag; i < flag + 4; i++) {
-            if (grounds[i].settledZombie != null) {
-                if (grounds[i].settledZombie.shield > 0) {
-                    grounds[i].settledZombie.shield--;
+            if (grounds[i].settledZombie.size() != 0) {
+                if (grounds[i].settledZombie.get(0).shield > 0) {
+                    grounds[i].settledZombie.get(0).shield--;
                 } else {
-                    grounds[i].settledZombie.setHealth(1);
+                    grounds[i].settledZombie.get(0).setHealth(1);
+                }
+                if (icy) {
+                    //grounds[i].settledZombie.icyplant.
                 }
                 return true;
             }

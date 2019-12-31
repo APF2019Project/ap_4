@@ -68,7 +68,7 @@ public class Day extends GameMode {
     }
 
     public boolean plantingPlant(int j, int i) {
-        if (GameGround[i][j].settledPlant != null || GameGround[i][j].settledZombie != null) {
+        if (GameGround[i][j].settledPlant != null) {
             GameGround[i][j].settledPlant = current;
             current.setGround(GameGround[i][j]);
             current = null;
@@ -118,11 +118,5 @@ public class Day extends GameMode {
         this.sun += sun;
     }
 
-    public void peaadder (int a) {
-        for (int i = 0; i < a; i++) {
-            Peas pea = new Peas();
-            peas.add(pea);
-        }
-    }
 
 }

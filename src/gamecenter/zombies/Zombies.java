@@ -4,13 +4,14 @@ import gamecenter.Ground;
 
 public class Zombies {
     public int shield;
-    private String type;
-    private String name;
-    private int speed;
-    private int health;
-    private int damage;
-    private Ground ground;
-    private int price;
+    protected String type;
+    protected String name;
+    protected int speed;
+    protected int health;
+    protected int damage;
+    protected Ground ground;
+    protected int price;
+    protected int turn;
 
     public Zombies() {
     }
@@ -33,7 +34,6 @@ public class Zombies {
         this.damage = damage;
         this.ground = ground;
     }
-
 
     public Ground getGround() {
 
@@ -66,4 +66,9 @@ public class Zombies {
     }
 
     public void operation() {}
+
+    //NEW THINGS
+    public void suddenDeath() {
+        health = 0;
+    }
 }
