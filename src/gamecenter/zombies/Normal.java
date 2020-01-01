@@ -8,6 +8,7 @@ public class Normal extends Zombies {
     boolean buckethead;
     public Normal(String name, Ground ground) {
         buckethead=true;
+        type="Normal";
         if (name.matches("Zombie")) {
             setparameters("Zombie", 2, 2, 1, ground);
         }

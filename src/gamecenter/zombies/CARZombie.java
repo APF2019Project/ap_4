@@ -5,6 +5,7 @@ import gamecenter.Ground;
 public class CARZombie extends Zombies {
 
     public CARZombie(String name, Ground ground) {
+        type="CARZombie";
         if (name.matches("Zomboni")) {
             setparameters("Zomboni", 2, 3, 1000, ground);
         }

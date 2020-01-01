@@ -4,7 +4,7 @@ import gamecenter.Ground;
 
 public class Zombies {
     public int shield;
-    private String type;
+    public String type="";
     private String name;
     private int speed;
     private int health;

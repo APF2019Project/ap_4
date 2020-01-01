@@ -20,6 +20,7 @@ public class ShieldZombie extends Zombies {
             shield = 4;
             setHealth(-4);
         }
+        type="ShieldZombie";
     }
 
     public int getShield() {

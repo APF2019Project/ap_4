@@ -5,6 +5,7 @@ import gamecenter.Ground;
 public class WaterZombie extends Zombies {
 
     public WaterZombie(String name, Ground ground) {
+        type="WaterZombie";
         if (name.matches("Snorkel Zombie")) {
             setparameters("Snorkel Zombie", 2, 2, 1, ground);
             shield = 0;
