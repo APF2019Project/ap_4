@@ -81,20 +81,34 @@ public class Collection {
         return all;
     }
 
-    public boolean select(String name) {
+    public int select(String name) {
+        for (Plants plants : plants_hand) {
+            if (plants.getName().equals(name)) {
+                return 2;
+            }
+        }
+        for (Zombies zombies : zombies_hand) {
+            if (zombies.getName().equals(name)) {
+                return 2;
+            }
+        }
         for (Plants plant : plants_s) {
             if (name.contains(plant.getName())) {
+                if (plants_s.size() >= 7)
+                    return 0;
                 plants_hand.add(plant);
-                return true;
+                return 1;
             }
         }
         for (Zombies zombie : zombies_s) {
             if (name.contains(zombie.getName())) {
+                if (zombies_s.size() >= 7)
+                    return 0;
                 zombies_hand.add(zombie);
-                return true;
+                return 1;
             }
         }
-        return false;
+        return -1;
     }
 
     public boolean remove(String name) {

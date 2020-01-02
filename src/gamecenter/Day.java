@@ -13,7 +13,7 @@ public class Day extends GameMode {
     Plants current;
     Random generator = new Random();
     ArrayList<gamecenter.zombies.Zombies> Zombies = new ArrayList<>();
-    ArrayList<Plants> plants_hand = new ArrayList<>();
+    ArrayList<Plants> plants_hand;
     ArrayList<Integer> sunneeded = new ArrayList<>();
     ArrayList<Integer> cooldown_left = new ArrayList<>();
 
@@ -50,7 +50,7 @@ public class Day extends GameMode {
 
         return cooldown_left;
     }
-
+//problem detected: select sth that its been selected
     public int select(String name) {
         for (Plants plant : plants_hand) {
             if (name.contains(plant.getName())) {
@@ -84,7 +84,7 @@ public class Day extends GameMode {
         } else return false;
     }
 
-    public Plants cardFinder(Plants plant, String name) {
+    private Plants cardFinder(Plants plant, String name) {
 
         if (plant.type.equals("damage")) {
             return new Damage(name, null);
@@ -117,6 +117,4 @@ public class Day extends GameMode {
 
         this.sun += sun;
     }
-
-
 }

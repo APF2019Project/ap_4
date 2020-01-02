@@ -4,7 +4,7 @@ import gamecenter.Ground;
 
 public class Zombies {
     public int shield;
-    protected String type;
+    public String type;
     protected String name;
     protected int speed;
     protected int health;
@@ -27,7 +27,7 @@ public class Zombies {
     }
 
     public void setparameters(String name, int speed, int health, int damage, Ground ground) {
-        this.name = name;
+        this.name = name.toLowerCase();
         this.price = (1 + speed) * health * 10;
         this.speed = speed;
         this.health = health;

@@ -11,6 +11,8 @@ public class ViewController {
     public static Collection collection = new Collection();
     public static Shop shop = new Shop();
     public static Day day = new Day();
+    public static Rail rail = new Rail();
+    public static ZombieGameMode zombieGameMode = new ZombieGameMode();
 
     public static void main(String[] args) {
 
@@ -182,6 +184,8 @@ public class ViewController {
                     menu.notEnoughMoney();
                 if (status == -1)
                     menu.invalidCard();
+                if (status == 2)
+                    menu.itsBeenBoughtBefore();
                 continue;
             }
 
@@ -313,6 +317,141 @@ public class ViewController {
         }
     }
 
+    public static void rail() {
+        while (true) {
+            System.out.println("Day");
+            String str = menu.getOrder();
+
+            if (str.matches("list")) {
+
+                continue;
+            }
+
+            if (str.matches("record")) {
+
+                continue;
+            }
+
+            if (str.matches("plant \\d+,\\d+")) {
+                int i = Integer.parseInt(str.substring(str.indexOf("t") + 2, str.lastIndexOf(",")));
+                int j = Integer.parseInt(str.substring(str.indexOf(",") + 1));
+                if (!rail.plantingPlant(i, j)) {
+                    menu.spaceIsFull();
+                }
+                continue;
+            }
+
+            if (str.matches("remove \\d+,\\d+")) {
+                int i = Integer.parseInt(str.substring(str.indexOf("ve") + 3, str.lastIndexOf(",")));
+                int j = Integer.parseInt(str.substring(str.indexOf(",") + 1));
+                if (!rail.removePlant(i, j)) {
+                    menu.noPlantFounded();
+                }
+                continue;
+            }
+
+            if (str.matches("select .+")) {
+                String name = str.substring(str.indexOf("t") + 2);
+                int status = rail.select(name);
+                if (status == -1) {
+                    menu.invalidCard();
+                }
+                if (status == 0) {
+                    menu.notEnoughSun();
+                }
+                if (status == 1) {
+                    menu.plantIsTired();
+                }
+                continue;
+            }
+
+            if (str.matches("end turn")) {
+
+                continue;
+            }
+
+            if (str.matches("show lawn")) {
+                menu.showLawn(rail);
+                continue;
+            }
+
+            if (str.matches("help")) {
+                menu.railHelp();
+                continue;
+            }
+
+            if (str.matches("exit")) {
+                return;
+            }
+
+            menu.invalidCommand();
+        }
+    }
+
+    public static void zombie_mode() {
+        collection_zombies();
+        while (true) {
+            System.out.println("zombies mode");
+            String str = menu.getOrder();
+
+            if (str.matches("show hand")) {
+                menu.showHandZombies(zombieGameMode);
+                continue;
+            }
+
+            if (str.matches("show lanes")) {
+                menu.showLanes(zombieGameMode);
+                continue;
+            }
+
+            if (str.matches("put .+,\\d+,\\d+")) {
+                String name = str.substring(str.indexOf("t") + 2, str.indexOf(","));
+                int number = Integer.parseInt(str.substring(str.indexOf(",") + 1, str.lastIndexOf(",")));
+                int line = Integer.parseInt(str.substring(str.lastIndexOf(",") + 1));
+                int status = zombieGameMode.put(name, number, line);
+                if (status == 0){
+                    menu.notEnoughCoin();
+                }
+                if (status == -2) {
+                    menu.invalidLine();
+                }
+                if (status == -1) {
+                    menu.invalidCard();
+                }
+                if (status == 1) {
+                    menu.outOfSize();
+                }
+                continue;
+            }
+
+            if (str.matches("start")) {
+                while (true) {
+                    if (str.matches("end turn")) {
+
+                        continue;
+                    }
+                    if (str.matches("show lawn")) {
+                        menu.showLawn(rail);
+                        continue;
+                    }
+                    break;
+                }
+                continue;
+            }
+
+            if (str.matches("help")) {
+                menu.zombieHelp();
+                continue;
+            }
+
+            if (str.matches("exit")) {
+                return;
+            }
+
+            menu.invalidCommand();
+        }
+    }
+
     public static void collection_plants() {
         while (true) {
             System.out.println("Collection(Plants)");
@@ -330,8 +469,13 @@ public class ViewController {
 
             if (str.matches("select .+")) {
                 String name = str.substring(str.indexOf("t") + 2);
-                if (!collection.select(name)) {
+                int status = collection.select(name);
+                if (status == 0) {
+                    menu.handIsFull();
+                } else if (status == -1) {
                     menu.invalidCard();
+                } else if (status == 2) {
+                    menu.itsBeenSelectedBefore();
                 }
                 continue;
             }
@@ -363,18 +507,33 @@ public class ViewController {
             String str = menu.getOrder();
 
             if (str.matches("show hand")) {
+                menu.showHandZombie();
                 continue;
             }
 
             if (str.matches("show collection")) {
+                menu.showCollectionZombies();
                 continue;
             }
 
-            if (str.matches("select \\w+")) {
+            if (str.matches("select .+")) {
+                String name = str.substring(str.indexOf("t") + 2);
+                int status = collection.select(name);
+                if (status == 0) {
+                    menu.handIsFull();
+                } else if (status == -1) {
+                    menu.invalidCard();
+                } else if (status == 2) {
+                    menu.itsBeenSelectedBefore();
+                }
                 continue;
             }
 
-            if (str.matches("remove \\w+")) {
+            if (str.matches("remove .+")) {
+                String name = str.substring(str.indexOf("ve") + 3);
+                if (!collection.remove(name)) {
+                    menu.invalidCard();
+                }
                 continue;
             }
 
