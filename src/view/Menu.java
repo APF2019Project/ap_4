@@ -5,8 +5,11 @@ import gamecenter.AllUsers;
 import controller.ViewController.*;
 import gamecenter.Day;
 import gamecenter.GameMode;
+import gamecenter.ZombieGameMode;
+import gamecenter.zombies.Zombies;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Menu {
@@ -52,6 +55,16 @@ public class Menu {
         System.out.println("show hand//select//plant//remove//show lawn//end turn");
     }
 
+    public void railHelp() {
+
+        System.out.println("list//record//plant//remove//show lawn//end turn//end turn");
+    }
+
+    public void zombieHelp() {
+
+        System.out.println("show hand//show lanes//put//start//end turn//show lawn");
+    }
+
     public void showLaeaderboards() {
         String[] name = ViewController.allusers.Leaderboard();
         int[] number = ViewController.allusers.Leaderboardnumbers();
@@ -71,9 +84,13 @@ public class Menu {
 
     public void showCollection_shop() {
         ArrayList<String> name = ViewController.shop.ShowCollectionPlants();
-
+        ArrayList<String> name1 = ViewController.shop.ShowCollectionZombies();
         for (int i = 0; i < name.size(); i++) {
             System.out.print(name.get(i) + "//");
+        }
+        System.out.println();
+        for (int i = 0; i < name1.size(); i++) {
+            System.out.print(name1.get(i) + "//");
         }
         System.out.println();
     }
@@ -120,6 +137,15 @@ public class Menu {
         for (int i = 0; i < name.size(); i++) {
             System.out.print(name.get(i) + " sun " + day.showHandSun().get(i) + " Cd " + day.showHandCool().get(i));
         }
+        System.out.println();
+    }
+
+    public void showHandZombies(ZombieGameMode zombieGameMode) {
+        ArrayList<String> name = zombieGameMode.showHand();
+        for (int i = 0; i < name.size(); i++) {
+            System.out.print(name.get(i) + " health " + zombieGameMode.showHandHealth().get(i));
+        }
+        System.out.println();
     }
 
     public void showLawn(GameMode gameMode) {
@@ -131,6 +157,13 @@ public class Menu {
             } else if ((i + 1) % 5 == 0) {
                 System.out.println();
             }
+        }
+    }
+
+    public void showLanes(ZombieGameMode zombieGameMode) {
+        HashMap<String,String> showlanes = zombieGameMode.showLanes();
+        for (int i = 0; i < 6; i++) {
+            System.out.println(i + showlanes.get(Integer.toString(i)));
         }
     }
 
@@ -187,5 +220,35 @@ public class Menu {
     public void noPlantFounded() {
 
         System.out.println("no plant founded");
+    }
+
+    public void handIsFull() {
+
+        System.out.println("hand is full");
+    }
+
+    public void itsBeenSelectedBefore() {
+
+        System.out.println("its been selected before");
+    }
+
+    public void itsBeenBoughtBefore() {
+
+        System.out.println("its been bought before");
+    }
+
+    public void notEnoughCoin() {
+
+        System.out.println("not enough coin");
+    }
+
+    public void outOfSize() {
+
+        System.out.println("out of size");
+    }
+
+    public void invalidLine() {
+
+        System.out.println("invalid line");
     }
 }

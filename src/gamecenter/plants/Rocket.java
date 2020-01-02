@@ -4,12 +4,19 @@ import gamecenter.Ground;
 
 public class Rocket {
 
-    Ground ground = new Ground();
+    Ground ground;
     int groundX;
     int groundY;
     int damage;
+    String kind;
 
-    public boolean operation(Ground[] grounds, int damage) {
+    public Rocket(Ground groundm, int damage, String kind) {
+        this.kind = kind;
+        this.damage = damage;
+        this.ground = ground;
+    }
+
+    public boolean operation(Ground[] grounds) {
         int flag = 0;
         for (int i = 0; i < grounds.length; i++) {
             if (grounds[i] == ground) {
@@ -18,8 +25,14 @@ public class Rocket {
             }
         }
         for (int i = flag; i < flag + 4; i++) {
-            if (grounds[i].settledZombie != null) {
-                grounds[i].settledZombie.setHealth(damage);
+            if (grounds[i].settledZombie.size() != 0) {
+                grounds[i].settledZombie.get(0).setHealth(damage);
+                if (kind.equals("icy")) {
+                    //winter melon
+                }
+                if (kind.equals("sticky")) {
+                    //kernel pult
+                }
                 return true;
             }
             if (i == 18) {

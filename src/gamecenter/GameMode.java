@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class GameMode {
-    Ground[][] GameGround;
+    public Ground[][] GameGround;
     public int sun;
     ArrayList<Plants> PlantsinGame;
     ArrayList<Zombies> ZombiesinGame;
-    ArrayList<Peas> peas ;
+    ArrayList<Peas> peas;
     ArrayList<Rocket> rockets;
     ArrayList<Integer> showLawnX;
     ArrayList<Integer> showLawnY;
@@ -43,7 +43,7 @@ public class GameMode {
             }
         }
         for (int i = 0; i < ZombiesinGame.size(); i++) {
-            if (ZombiesinGame.get(i).isDead()){
+            if (ZombiesinGame.get(i).isDead()) {
                 ZombiesinGame.get(i).getGround().settledZombie.remove(ZombiesinGame.get(i));
                 ZombiesinGame.remove(i);
             }
@@ -64,14 +64,41 @@ public class GameMode {
         }
     }
 
+    public void tripleadder() {
+
+    }
+
+    public void shotadder(int a, Ground ground, boolean icy) {
+        for (int i = 0; i < a; i++) {
+            Peas pea = new Peas(ground);
+            peas.add(pea);
+        }
+    }
+
+    public void shotadder(int a, Ground ground) {
+        for (int i = 0; i < a; i++) {
+            Peas pea = new Peas(ground);
+            peas.add(pea);
+        }
+    }
+
+    public void shotadder(int a, Ground ground, int damage, String kind) {
+        for (int i = 0; i < a; i++) {
+            Rocket rocket = new Rocket(ground, damage, kind);
+            rockets.add(rocket);
+        }
+    }
+
     public int numberOfPlants() {
 
         return PlantsinGame.size();
     }
 
-    public Ground[] getGroundline(int i){
+
+    public Ground[] getGroundline(int i) {
         return GameGround[i];
     }
+
     public int numberOfZombies() {
 
 
@@ -188,6 +215,7 @@ public class GameMode {
         }
         return null;
     }
+
     public Zombies randomZombie() {
         int k = generator.nextInt(ViewController.collection.zombies_s.size());
         gamecenter.zombies.Zombies current;

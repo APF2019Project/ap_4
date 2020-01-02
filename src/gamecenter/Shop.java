@@ -71,7 +71,18 @@ public class Shop {
         this.money = money;
     }
 
+    //buy sth bought
     public int buyCard(String name) {
+        for (Plants plants : ViewController.collection.plants_s) {
+            if (plants.getName().equals(name)) {
+                return 2;
+            }
+        }
+        for (Zombies zombies : ViewController.collection.zombies_s) {
+            if (zombies.getName().equals(name)) {
+                return 2;
+            }
+        }
         for (Plants plant : plants) {
             if (name.contains(plant.getName())) {
                 if (plant.getPrice() <= money) {

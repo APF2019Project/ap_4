@@ -7,7 +7,7 @@ public class SpiderZombie extends Zombies {
     int turn;
     public SpiderZombie(Ground ground) {
         type="SpiderZombie";
-        setparameters("Bungee Zombie",0,3,10000,ground); turn=0;
+        setparameters("bungee zombie",0,3,10000,ground); turn=0;
     }
 @Override
     public void operation(Ground[] grounds){

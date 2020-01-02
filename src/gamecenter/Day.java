@@ -128,24 +128,8 @@ public class Day extends GameMode {
         return cooldown_left;
     }
 
-    public int select(String name) {
-        for (Plants plant : plants_hand) {
-            if (name.contains(plant.getName())) {
-                if (plant.getSun_used() <= sun) {
-                    if (!plant.isTired()) {
-                        sun -= plant.getSun_used();
-                        current = cardFinder(plant, name);
-                        PlantsinGame.add(current);
-                        return 2;
-                    } else return 1;
-                } else return 0;
-            }
-        }
-        return -1;
-    }
-
     public boolean plantingPlant(int j, int i) {
-        if (GameGround[i][j].settledPlant != null || GameGround[i][j].settledZombie != null) {
+        if (GameGround[i][j].settledPlant == null || GameGround[i][j].settledZombie.size() == 0) {
             GameGround[i][j].settledPlant = current;
             current.setGround(GameGround[i][j]);
             current = null;
@@ -170,17 +154,27 @@ public class Day extends GameMode {
     }
 
 
-
     public void setSun(int sun) {
 
         this.sun += sun;
     }
 
-    public void peaadder(int a) {
-        for (int i = 0; i < a; i++) {
-            Peas pea = new Peas();
-            peas.add(pea);
+    //problem detected: select sth that its been selected
+    public int select(String name) {
+        for (Plants plant : plants_hand) {
+            if (name.contains(plant.getName())) {
+                if (plant.getSun_used() <= sun) {
+                    if (!plant.isTired()) {
+                        sun -= plant.getSun_used();
+                        current = cardFinder(plant, name);
+                        PlantsinGame.add(current);
+                        return 2;
+                    } else return 1;
+                } else return 0;
+            }
         }
+        return -1;
     }
+
 
 }

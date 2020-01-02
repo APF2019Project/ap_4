@@ -4,7 +4,6 @@ import controller.ViewController;
 import gamecenter.plants.*;
 import gamecenter.zombies.*;
 
-import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -13,6 +12,7 @@ public class Rail extends GameMode {
     ArrayList<Zombies> DeadZombies = new ArrayList<>();
     ArrayList<Plants> Plants = new ArrayList<>();
     Random generator = new Random();
+    ArrayList<Plants> plants_hand = new ArrayList<>();
     Plants current;
     int turn;
     int addingplantturn = 1;
@@ -21,6 +21,14 @@ public class Rail extends GameMode {
 
     public Rail() {
         turn = 0;
+        plants_hand = ViewController.collection.plants_hand;
+        for (int i = 0; i < 6; i++) {
+            for (int k = 0; k < 19; k++) {
+                GameGround[i][k].groundX = i;
+                GameGround[i][k].groundY = k;
+                GameGround[i][k].type = true;
+            }
+        }
     }
 
 
@@ -32,6 +40,22 @@ public class Rail extends GameMode {
         current = Plants.get(i);
         Plants.remove(i);
         return current.getName();
+    }
+
+    public int select(String name) {
+        for (Plants plant : plants_hand) {
+            if (name.contains(plant.getName())) {
+                if (plant.getSun_used() <= sun) {
+                    if (!plant.isTired()) {
+                        sun -= plant.getSun_used();
+                        current = cardFinder(plant, name);
+                        PlantsinGame.add(current);
+                        return 2;
+                    } else return 1;
+                } else return 0;
+            }
+        }
+        return -1;
     }
 
     public boolean plantingPlant(int j, int i) {
@@ -97,8 +121,9 @@ public class Rail extends GameMode {
         }
         return false;
     }
+
     @Override
-    public void deathSets(){
+    public void deathSets() {
         for (int i = 0; i < PlantsinGame.size(); i++) {
             if (PlantsinGame.get(i).isDead()) {
                 PlantsinGame.get(i).getGround().settledPlant = null;
@@ -106,7 +131,7 @@ public class Rail extends GameMode {
             }
         }
         for (int i = 0; i < ZombiesinGame.size(); i++) {
-            if (ZombiesinGame.get(i).isDead()){
+            if (ZombiesinGame.get(i).isDead()) {
                 ZombiesinGame.get(i).getGround().settledZombie.remove(ZombiesinGame.get(i));
                 DeadZombies.add(ZombiesinGame.get(i));
                 ZombiesinGame.remove(i);

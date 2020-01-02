@@ -1,5 +1,6 @@
 package gamecenter.plants;
 
+import controller.ViewController;
 import gamecenter.Ground;
 
 public class Plants {
@@ -11,6 +12,9 @@ public class Plants {
     protected int cooldown;
     protected int health;
     protected Ground ground;
+    protected int groundX;
+    protected int groundY;
+    protected int turn_shoot = 0;
 
     public Plants() {
     }
@@ -24,6 +28,7 @@ public class Plants {
         this.cooldown = cooldown;
         this.ground = ground;
         turn_cooldown = 0;
+        setXY();
     }
 
     public int getSun_used() {
@@ -70,6 +75,8 @@ public class Plants {
         health -= a;
     }
 
+    public void suddenDeath() {}
+
     public int getHealth() {
 
         return health;
@@ -89,6 +96,27 @@ public class Plants {
         }
     }
 
-    public void operation() {}
+    private void setXY() {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 19; j++) {
+                if (ViewController.day.GameGround[i][j] == ground) {
+                    groundX = i;
+                    groundY = j;
+                }
+            }
+        }
+    }
+
+    public void operation() {
+    }
+
+     protected boolean isThereAnyZombie() {
+        for (int j = groundY; j < 6; ++j){
+            if (ViewController.day.GameGround[groundX][j].settledZombie.size() != 0) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

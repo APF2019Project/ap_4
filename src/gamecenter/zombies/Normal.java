@@ -9,17 +9,17 @@ public class Normal extends Zombies {
     public Normal(String name, Ground ground) {
         buckethead=true;
         type="Normal";
-        if (name.matches("Zombie")) {
+        if (name.matches("zombie")) {
             setparameters("Zombie", 2, 2, 1, ground);
         }
-        if (name.matches("Football Zombie")) {
+        if (name.matches("football zombie")) {
             setparameters("Football Zombie", 3, 4, 1, ground);
         }
-        if (name.matches("Buckethead Zombie")) {
+        if (name.matches("buckethead zombie")) {
             setparameters("Buckethead Zombie", 2, 3, 1, ground);
 
         }
-        if (name.matches("Conehead Zombie")) {
+        if (name.matches("conehead zombie")) {
             setparameters("Conehead Zombie", 2, 3, 1, ground);
         }
     }

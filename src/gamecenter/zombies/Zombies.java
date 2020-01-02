@@ -30,7 +30,7 @@ public class Zombies {
     }
 
     public void setparameters(String name, int speed, int health, int damage, Ground ground) {
-        this.name = name;
+        this.name = name.toLowerCase();
         this.price = (1 + speed) * health * 10;
         this.speed = speed;
         this.health = health;
@@ -97,4 +97,8 @@ public class Zombies {
     public int getDamage() {
         return damage;
     }
+
+    public void suddenDeath(){health=0;}
+    public void speedLimiter(){speed=speed/2;}
+    public void speedUnLimiter(){speed=2*speed;}
 }
