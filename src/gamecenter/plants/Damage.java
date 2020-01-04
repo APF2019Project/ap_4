@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class Damage extends Plants {
 
     public Damage(String name, Ground ground) {
+        name = name.toLowerCase();
         type = "damage";
         if (name.matches("tangle kelp")) {
             setparameters("Tangle Kelp", 3, 3, 0, ground);

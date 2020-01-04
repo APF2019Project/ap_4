@@ -9,9 +9,10 @@ import java.util.Random;
 
 public class GameMode {
     public Ground[][] GameGround;
-    public int sun;
     ArrayList<Plants> PlantsinGame;
     ArrayList<Zombies> ZombiesinGame;
+    ArrayList<Zombies> zombies_dead;
+    ArrayList<Plants> plants_dead;
     ArrayList<Peas> peas;
     ArrayList<Rocket> rockets;
     ArrayList<Integer> showLawnX;
@@ -33,39 +34,25 @@ public class GameMode {
         showLawnX = new ArrayList<>();
         showLawnY = new ArrayList<>();
         showLawnHealth = new ArrayList<>();
+        zombies_dead = new ArrayList<>();
+        plants_dead = new ArrayList<>();
     }
 
     public void deathSets() {
         for (int i = 0; i < PlantsinGame.size(); i++) {
             if (PlantsinGame.get(i).isDead()) {
                 PlantsinGame.get(i).getGround().settledPlant = null;
+                plants_dead.add(PlantsinGame.get(i));
                 PlantsinGame.remove(i);
             }
         }
         for (int i = 0; i < ZombiesinGame.size(); i++) {
             if (ZombiesinGame.get(i).isDead()) {
                 ZombiesinGame.get(i).getGround().settledZombie.remove(ZombiesinGame.get(i));
+                zombies_dead.add(ZombiesinGame.get(i));
                 ZombiesinGame.remove(i);
             }
         }
-    }
-
-    public void operate() {
-        for (int i = 0; i < PlantsinGame.size(); i++) {
-            PlantsinGame.get(i).operation();
-        }
-        for (int i = 0; i < peas.size(); i++) {
-            int x = peas.get(i).getGroundX();
-            peas.get(i).operation(GameGround[x]);
-        }
-        for (int i = 0; i < ZombiesinGame.size(); i++) {
-            int x = ZombiesinGame.get(i).getGroundX();
-            ZombiesinGame.get(i).operation(GameGround[x]);
-        }
-    }
-
-    public void tripleadder() {
-
     }
 
     public void shotadder(int a, Ground ground, boolean icy) {
@@ -93,7 +80,6 @@ public class GameMode {
 
         return PlantsinGame.size();
     }
-
 
     public Ground[] getGroundline(int i) {
         return GameGround[i];
@@ -138,19 +124,6 @@ public class GameMode {
         return showLawnHealth;
     }
 
-    public void setSun(int sun) {
-
-        this.sun += sun;
-    }
-
-    public void peaadder(int a) {
-        for (int i = 0; i < a; i++) {
-            Peas pea = new Peas();
-            peas.add(pea);
-        }
-    }
-
-
     public Plants cardFinder(Plants plant, String name) {
 
         if (plant.type.equals("damage")) {
@@ -175,6 +148,10 @@ public class GameMode {
 
         if (plant.type.equals("withoutaction")) {
             return new WithoutActon(name, null);
+        }
+
+        if (plant.type.equals("magnet")) {
+            return new magnet(name , null);
         }
 
         return null;
@@ -217,10 +194,9 @@ public class GameMode {
     }
 
     public Zombies randomZombie() {
-        int k = generator.nextInt(ViewController.collection.zombies_s.size());
+        int k = generator.nextInt(ViewController.shop.zombies.size());
         gamecenter.zombies.Zombies current;
-        current = ViewController.collection.zombies_s.get(k);
+        current = ViewController.shop.zombies.get(k);
         return cardFinder(current, current.getName());
     }
-
 }

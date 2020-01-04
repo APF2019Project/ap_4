@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Rail extends GameMode {
-
+    private int sun;
     ArrayList<Zombies> DeadZombies = new ArrayList<>();
     ArrayList<Plants> Plants = new ArrayList<>();
     Random generator = new Random();
-    ArrayList<Plants> plants_hand = new ArrayList<>();
+    ArrayList<Plants> plants_hand;
     Plants current;
     int turn;
     int addingplantturn = 1;
@@ -44,7 +44,7 @@ public class Rail extends GameMode {
 
     public int select(String name) {
         for (Plants plant : plants_hand) {
-            if (name.contains(plant.getName())) {
+            if (name.equals(plant.getName())) {
                 if (plant.getSun_used() <= sun) {
                     if (!plant.isTired()) {
                         sun -= plant.getSun_used();
@@ -59,7 +59,7 @@ public class Rail extends GameMode {
     }
 
     public boolean plantingPlant(int j, int i) {
-        if (GameGround[i][j].settledPlant == null || GameGround[i][j].settledZombie.size() == 0) {
+        if (GameGround[i][j].settledPlant == null) {
             current = cardFinder(current, current.getName());
             GameGround[i][j].settledPlant = current;
             current.setGround(GameGround[i][j]);
@@ -98,6 +98,7 @@ public class Rail extends GameMode {
             plantingZombie(k);
         }
         for (Plants plant : PlantsinGame) {
+            plant.setXY();
             plant.operation();
         }
 
@@ -112,7 +113,6 @@ public class Rail extends GameMode {
         deathSets();
 
     }
-
 
     boolean zombieWins() {
         for (int k = 0; k < 6; k++) {

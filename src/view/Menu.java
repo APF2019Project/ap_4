@@ -97,7 +97,7 @@ public class Menu {
 
     public void showMoney() {
 
-        System.out.println(ViewController.shop.getMoney());
+        System.out.println(ViewController.shop.getCoin());
     }
 
     public void showHandZombie() {
@@ -135,7 +135,7 @@ public class Menu {
     public void showHandDay(Day day) {
         ArrayList<String> name = day.showHand();
         for (int i = 0; i < name.size(); i++) {
-            System.out.print(name.get(i) + " sun " + day.showHandSun().get(i) + " Cd " + day.showHandCool().get(i));
+            System.out.print(name.get(i) + " sun " + day.showHandSun().get(i) + " Cd " + day.showHandCool().get(i) + "   ");
         }
         System.out.println();
     }
@@ -143,7 +143,7 @@ public class Menu {
     public void showHandZombies(ZombieGameMode zombieGameMode) {
         ArrayList<String> name = zombieGameMode.showHand();
         for (int i = 0; i < name.size(); i++) {
-            System.out.print(name.get(i) + " health " + zombieGameMode.showHandHealth().get(i));
+            System.out.print(name.get(i) + " health " + zombieGameMode.showHandHealth().get(i) + "   ");
         }
         System.out.println();
     }
@@ -151,19 +151,20 @@ public class Menu {
     public void showLawn(GameMode gameMode) {
         ArrayList<String> name = gameMode.showLawn();
         for (int i = 0; i < name.size(); i++) {
-            System.out.print(name.get(i) + " Y " + gameMode.showLawnX().get(i) + " X " + gameMode.showLawnY().get(i) + " Health " + gameMode.showLawnHealth().get(i));
-            if (i == gameMode.numberOfPlants()) {
+            System.out.print(name.get(i) + " Y " + gameMode.showLawnX().get(i) + " X " + gameMode.showLawnY().get(i) + " Health " + gameMode.showLawnHealth().get(i) + "    ");
+            if (i == gameMode.numberOfPlants() - 1) {
                 System.out.println();
             } else if ((i + 1) % 5 == 0) {
                 System.out.println();
             }
         }
+        System.out.println();
     }
 
     public void showLanes(ZombieGameMode zombieGameMode) {
         HashMap<String,String> showlanes = zombieGameMode.showLanes();
         for (int i = 0; i < 6; i++) {
-            System.out.println(i + showlanes.get(Integer.toString(i)));
+            System.out.println(i +"  "+ showlanes.get(Integer.toString(i)) + "   ");
         }
     }
 
@@ -250,5 +251,38 @@ public class Menu {
     public void invalidLine() {
 
         System.out.println("invalid line");
+    }
+
+    public void outOfLadder() {
+
+        System.out.println("out of ladders");
+    }
+
+    public void zombieswin() {
+
+        System.out.println("zombies win");
+    }
+
+    public void plantswin() {
+
+        System.out.println("plants win");
+    }
+
+    public void enterNextWave() {
+
+        System.out.println("enter next wave");
+    }
+
+    public void recordRail() {
+
+        System.out.println(ViewController.rail.record());
+    }
+
+    public void listRail() {
+        ArrayList<String> name = ViewController.rail.list();
+        for (int i = 0; i < name.size(); i++) {
+            System.out.print(name.get(i) + "//");
+        }
+        System.out.println();
     }
 }

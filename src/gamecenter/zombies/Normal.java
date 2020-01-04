@@ -7,13 +7,14 @@ import gamecenter.Ground;
 public class Normal extends Zombies {
     boolean buckethead;
     public Normal(String name, Ground ground) {
+        name = name.toLowerCase();
         buckethead=true;
         type="Normal";
         if (name.matches("zombie")) {
             setparameters("Zombie", 2, 2, 1, ground);
         }
         if (name.matches("football zombie")) {
-            setparameters("Football Zombie", 3, 4, 1, ground);
+            setparameters("football zombie", 3, 4, 1, ground);
         }
         if (name.matches("buckethead zombie")) {
             setparameters("Buckethead Zombie", 2, 3, 1, ground);

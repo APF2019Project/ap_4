@@ -20,15 +20,14 @@ public class Plants {
     }
 
     public void setparameters(String name, int sun_used, int cooldown, int health, Ground ground) {
-        name = name.toLowerCase();
         this.price = sun_used * health * cooldown + 1;
-        this.name = name;
+        this.name = name.toLowerCase();
         this.sun_used = sun_used;
         this.health = health;
         this.cooldown = cooldown;
         this.ground = ground;
         turn_cooldown = 0;
-        setXY();
+
     }
 
     public int getSun_used() {
@@ -96,7 +95,7 @@ public class Plants {
         }
     }
 
-    private void setXY() {
+    public void setXY() {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 19; j++) {
                 if (ViewController.day.GameGround[i][j] == ground) {

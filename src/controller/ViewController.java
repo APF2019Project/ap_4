@@ -214,6 +214,7 @@ public class ViewController {
 
             if (str.matches("day")) {
                 day();
+                day.setDefaults();
                 continue;
             }
 
@@ -222,10 +223,13 @@ public class ViewController {
             }
 
             if (str.matches("rail")) {
+                rail();
                 continue;
             }
 
             if (str.matches("zombie")) {
+                zombie_mode();
+                zombieGameMode.setDefaults();
                 continue;
             }
 
@@ -260,7 +264,11 @@ public class ViewController {
             if (str.matches("plant \\d+,\\d+")) {
                 int i = Integer.parseInt(str.substring(str.indexOf("t") + 2, str.lastIndexOf(",")));
                 int j = Integer.parseInt(str.substring(str.indexOf(",") + 1));
-                if (!day.plantingPlant(i, j)) {
+                int status = day.plantingPlant(i, j);
+                if (status == 0) {
+                    menu.invalidLine();
+                }
+                if (status == -1) {
                     menu.spaceIsFull();
                 }
                 continue;
@@ -294,8 +302,15 @@ public class ViewController {
             }
 
             if (str.matches("end turn")) {
-                day.operate();
-                day.deathSets();
+                int status = day.endTurn();
+                if (status == 0) {
+                    menu.zombieswin();
+                    return;
+                }
+                if (status == 1) {
+                    menu.plantswin();
+                    return;
+                }
                 continue;
             }
 
@@ -323,12 +338,12 @@ public class ViewController {
             String str = menu.getOrder();
 
             if (str.matches("list")) {
-
+                menu.listRail();
                 continue;
             }
 
             if (str.matches("record")) {
-
+                menu.recordRail();
                 continue;
             }
 
@@ -409,7 +424,7 @@ public class ViewController {
                 int number = Integer.parseInt(str.substring(str.indexOf(",") + 1, str.lastIndexOf(",")));
                 int line = Integer.parseInt(str.substring(str.lastIndexOf(",") + 1));
                 int status = zombieGameMode.put(name, number, line);
-                if (status == 0){
+                if (status == 0) {
                     menu.notEnoughCoin();
                 }
                 if (status == -2) {
@@ -425,16 +440,43 @@ public class ViewController {
             }
 
             if (str.matches("start")) {
+                zombieGameMode.setLadder();
+                zombieGameMode.randomPlanting();
                 while (true) {
-                    if (str.matches("end turn")) {
 
+                    if (str.matches("put ladder \\d+")) {
+                        int line = Integer.parseInt(str.substring(str.lastIndexOf("r") + 1));
+                        int status = zombieGameMode.putLadder(line);
+                        if (status == 0)
+                            menu.outOfLadder();
+                        if (status == -1)
+                            menu.invalidLine();
                         continue;
                     }
+
+                    if (str.matches("end turn")) {
+                        int status = zombieGameMode.endTurn();
+                        if (status == 2) {
+                            menu.zombieswin();
+                            return;
+                        }
+                        if (status == 0) {
+                            menu.plantswin();
+                            return;
+                        }
+                        if (status == 1) {
+                            menu.enterNextWave();
+                            break;
+                        }
+                        continue;
+                    }
+
                     if (str.matches("show lawn")) {
                         menu.showLawn(rail);
                         continue;
                     }
-                    break;
+
+                    menu.invalidCommand();
                 }
                 continue;
             }
@@ -549,7 +591,6 @@ public class ViewController {
             menu.invalidCommand();
         }
     }
-
 }
 
 
