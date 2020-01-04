@@ -6,6 +6,7 @@ import gamecenter.Ground;
 public class Shooter extends Plants {
 
     public Shooter(String name, Ground ground) {
+        name = name.toLowerCase();
         type = "shooter";
         if (name.matches("cabbage-pult")) {
             setparameters("Cabbage-pult", 2, 3, 2, ground);

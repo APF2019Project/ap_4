@@ -2,23 +2,25 @@ package gamecenter;
 
 import controller.ViewController;
 import gamecenter.plants.*;
-import gamecenter.zombies.Zombies;
+import gamecenter.zombies.*;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Rail extends GameMode{
-    private int sun = 2;
-    static int turn = 1;
-    Plants current;
+public class Rail extends GameMode {
+    private int sun;
+    ArrayList<Zombies> DeadZombies = new ArrayList<>();
+    ArrayList<Plants> Plants = new ArrayList<>();
     Random generator = new Random();
-    ArrayList<gamecenter.zombies.Zombies> Zombies = new ArrayList<>();
-    ArrayList<Plants> plants_hand = new ArrayList<>();
-    ArrayList<Integer> sunneeded = new ArrayList<>();
-    ArrayList<Integer> cooldown_left = new ArrayList<>();
+    ArrayList<Plants> plants_hand;
+    Plants current;
+    int turn;
+    int addingplantturn = 1;
+    int addingzombieturn = 1;
+
 
     public Rail() {
-        super();
+        turn = 0;
         plants_hand = ViewController.collection.plants_hand;
         for (int i = 0; i < 6; i++) {
             for (int k = 0; k < 19; k++) {
@@ -29,31 +31,20 @@ public class Rail extends GameMode{
         }
     }
 
-    public ArrayList<String> showHand() {
-        ArrayList<String> all = new ArrayList<String>();
-        for (int i = 0; i < plants_hand.size(); i++) {
-            all.add(plants_hand.get(i).getName());
-            sunneeded.add(plants_hand.get(i).getSun_used());
-            cooldown_left.add(plants_hand.get(i).getTurn_cooldown());
-        }
-        return all;
+
+    public int record() {
+        return DeadZombies.size();
     }
 
-    public ArrayList<Integer> showHandSun() {
-
-
-        return sunneeded;
-    }
-
-    public ArrayList<Integer> showHandCool() {
-
-
-        return cooldown_left;
+    public String select(int i) {
+        current = Plants.get(i);
+        Plants.remove(i);
+        return current.getName();
     }
 
     public int select(String name) {
         for (Plants plant : plants_hand) {
-            if (name.contains(plant.getName())) {
+            if (name.equals(plant.getName())) {
                 if (plant.getSun_used() <= sun) {
                     if (!plant.isTired()) {
                         sun -= plant.getSun_used();
@@ -68,53 +59,104 @@ public class Rail extends GameMode{
     }
 
     public boolean plantingPlant(int j, int i) {
-        if (GameGround[i][j].settledPlant != null) {
+        if (GameGround[i][j].settledPlant == null) {
+            current = cardFinder(current, current.getName());
             GameGround[i][j].settledPlant = current;
             current.setGround(GameGround[i][j]);
+            PlantsinGame.add(current);
             current = null;
             return true;
         } else return false;
     }
 
+    public ArrayList<String> list() {
+        ArrayList<String> all = new ArrayList<String>();
+        for (int i = 0; i < Plants.size(); i++) {
+            all.add(Plants.get(i).getName());
+        }
+        return all;
+    }
+
     public boolean removePlant(int j, int i) {
         if (GameGround[i][j].settledPlant != null) {
+            PlantsinGame.remove(GameGround[i][j].settledPlant);
             GameGround[i][j].settledPlant.setGround(null);
             GameGround[i][j].settledPlant = null;
             return true;
         } else return false;
     }
 
-    public Plants cardFinder(Plants plant, String name) {
-
-        if (plant.type.equals("damage")) {
-            return new Damage(name, null);
+    public void endTurn() {
+        turn++;
+        if (turn == addingplantturn) {
+            addingplantturn = turn + generator.nextInt(3) + 2;
+            addPlantsCard();
+        }
+        if (turn == addingzombieturn) {
+            addingzombieturn = turn + generator.nextInt(3) + 3;
+            int k = generator.nextInt(6);
+            plantingZombie(k);
+        }
+        for (Plants plant : PlantsinGame) {
+            plant.setXY();
+            plant.operation();
         }
 
-        if (plant.type.equals("pea")) {
-            return new Pea(name, null);
+        for (Zombies zombie : ZombiesinGame) {
+            int i = zombie.getGroundX();
+            zombie.operation(getGroundline(i));
         }
 
-        if (plant.type.equals("shooter")) {
-            return new Shooter(name, null);
+        if (zombieWins()) {
+            //Game end
         }
+        deathSets();
 
-        if (plant.type.equals("sunflower")) {
-            return new Sunflower(name, null);
-        }
-
-        if (plant.type.equals("waterplants")) {
-            return new WaterPlants(name, null);
-        }
-
-        if (plant.type.equals("withoutaction")) {
-            return new WithoutActon(name, null);
-        }
-
-        return null;
     }
 
-    public void setSun(int sun) {
-
-        this.sun += sun;
+    boolean zombieWins() {
+        for (int k = 0; k < 6; k++) {
+            if (!GameGround[k][0].chamanzan && GameGround[k][0].settledZombie.size() != 0)
+                return true;
+        }
+        return false;
     }
+
+    @Override
+    public void deathSets() {
+        for (int i = 0; i < PlantsinGame.size(); i++) {
+            if (PlantsinGame.get(i).isDead()) {
+                PlantsinGame.get(i).getGround().settledPlant = null;
+                PlantsinGame.remove(i);
+            }
+        }
+        for (int i = 0; i < ZombiesinGame.size(); i++) {
+            if (ZombiesinGame.get(i).isDead()) {
+                ZombiesinGame.get(i).getGround().settledZombie.remove(ZombiesinGame.get(i));
+                DeadZombies.add(ZombiesinGame.get(i));
+                ZombiesinGame.remove(i);
+            }
+        }
+    }
+
+    public void plantingZombie(int q) {
+        gamecenter.zombies.Zombies zombie = randomZombie();
+        zombie.setGround(GameGround[q][18]);
+        GameGround[q][18].settledZombie.add(zombie);
+        ZombiesinGame.add(zombie);
+    }
+
+
+    public void addPlantsCard() {
+        Plants.add(randomPlant());
+    }
+
+    public Plants randomPlant() {
+        int k = generator.nextInt(ViewController.collection.plants_s.size());
+        Plants current;
+        current = ViewController.collection.plants_s.get(k);
+        return cardFinder(current, current.getName());
+    }
+
+
 }

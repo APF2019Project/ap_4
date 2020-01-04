@@ -1,17 +1,15 @@
 package gamecenter;
 
 import controller.ViewController;
-import gamecenter.Collection.*;
 import gamecenter.plants.*;
 import gamecenter.zombies.*;
 import gamecenter.zombies.Zombies;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class Shop {
-    private int money = 0;
+    int coin = 0;
     Ground e = null;
     ArrayList<Plants> plants = new ArrayList<>(
             Arrays.asList(
@@ -61,15 +59,6 @@ public class Shop {
             ));
     public ArrayList<Integer> allprice = new ArrayList<>();
 
-    public int getMoney() {
-
-        return money;
-    }
-
-    public void setMoney(int money) {
-
-        this.money = money;
-    }
 
     //buy sth bought
     public int buyCard(String name) {
@@ -84,19 +73,19 @@ public class Shop {
             }
         }
         for (Plants plant : plants) {
-            if (name.contains(plant.getName())) {
-                if (plant.getPrice() <= money) {
+            if (name.equals(plant.getName())) {
+                if (plant.getPrice() <= coin) {
                     ViewController.collection.plants_s.add(plant);
-                    money -= plant.getPrice();
+                    coin -= plant.getPrice();
                     return 1;
                 } else return 0;
             }
         }
         for (Zombies zombie : zombies) {
-            if (name.contains(zombie.getName())) {
-                if (zombie.getPrice() <= money) {
+            if (name.equals(zombie.getName())) {
+                if (zombie.getPrice() <= coin) {
                     ViewController.collection.zombies_s.add(zombie);
-                    money -= zombie.getPrice();
+                    coin -= zombie.getPrice();
                     return 1;
                 } else return 0;
             }
@@ -153,6 +142,13 @@ public class Shop {
         return all;
     }
 
+    public int getCoin() {
+        return coin;
+    }
+
+    public void setCoin(int coin) {
+        this.coin += coin;
+    }
 }
 
 

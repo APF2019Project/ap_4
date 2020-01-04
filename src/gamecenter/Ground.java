@@ -11,7 +11,12 @@ public class Ground {
     int groundY;
     boolean type;
     public Plants settledPlant = null;
-    public ArrayList<Zombies> settledZombie = null;
+    public ArrayList<Zombies> settledZombie = new ArrayList<>();
+    boolean chamanzan = true;
+
+    public boolean isType() {
+        return type;
+    }
 
     public void setGroundX(int groundX) {
 
@@ -38,8 +43,14 @@ public class Ground {
     public void Bilche() {
     }
 
-    public void Chamnzan() {
-
+    public void Chamnzan(Ground[] grounds) {
+        if (groundY == 0 && chamanzan) {
+            for (int i = 0; i < 19; i++) {
+                for (int k = 0; k < grounds[i].settledZombie.size(); i++)
+                    grounds[i].settledZombie.remove(k);
+            }
+            chamanzan = false;
+        }
     }
 
 }

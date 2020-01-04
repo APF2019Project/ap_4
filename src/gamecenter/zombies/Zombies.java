@@ -1,24 +1,32 @@
 package gamecenter.zombies;
 
+import controller.ViewController;
 import gamecenter.Ground;
 
 public class Zombies {
     public int shield;
-    public String type;
-    protected String name;
-    protected int speed;
-    protected int health;
-    protected int damage;
-    protected Ground ground;
-    protected int price;
-    protected int turn;
+    public String type = "";
+    private String name;
+    private int speed;
+    private int health;
+    private int damage;
+    private Ground ground;
+    private int price;
+    protected int groundX;
+    protected int groundY;
 
     public Zombies() {
     }
 
     public String getName() {
 
+
         return name;
+    }
+
+    public int getSpeed() {
+
+        return speed;
     }
 
     public int getPrice() {
@@ -65,10 +73,65 @@ public class Zombies {
         return type;
     }
 
-    public void operation() {}
+    public void operation(Ground[] grounds) {
+        int y = getGround().getGroundY();
+        if (y == 0) {
+            grounds[0].Chamnzan(grounds);
+            return;
+        }
+        for (int i = 0; i < getSpeed(); i++) {
+            if (grounds[y - 1].settledPlant == null) {
+                grounds[y].settledZombie.remove(this);
+                grounds[y - 1].settledZombie.add(this);
+                this.setGround(grounds[y - 1]);
+            } else {
+                if (grounds[y - 1].settledPlant.getHealth() > 0) {
+                    grounds[y - 1].settledPlant.setHealth(getDamage());
+                    if (grounds[y - 1].settledPlant.getHealth() <= 0) {
+                        grounds[y - 1].settledPlant = null;
+                    } else break;
+                }
+            }
+        }
+        y = getGround().getGroundY();
+        if (y == 0) {
+            grounds[0].Chamnzan(grounds);
+        }
+    }
 
-    //NEW THINGS
+    public int getGroundX() {
+
+        return ground.getGroundX();
+    }
+
+    public int getDamage() {
+
+        return damage;
+    }
+
     public void suddenDeath() {
+
         health = 0;
+    }
+
+    public void speedLimiter() {
+
+        speed = speed / 2;
+    }
+
+    public void speedUnLimiter() {
+
+        speed = 2 * speed;
+    }
+
+    private void setXY() {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 19; j++) {
+                if (ViewController.day.GameGround[i][j] == ground) {
+                    groundX = i;
+                    groundY = j;
+                }
+            }
+        }
     }
 }

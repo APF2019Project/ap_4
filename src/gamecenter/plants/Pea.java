@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class Pea extends Plants {
 
     public Pea(String name, Ground ground) {
+        name = name.toLowerCase();
         type = "pea";
         if (name.matches("peashooter")) {
             setparameters("Peashooter", 2, 2, 2, ground);
