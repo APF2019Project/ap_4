@@ -32,11 +32,11 @@ public class Day extends GameMode {
     }
 
     public void setDefaults() {
-
         GameGround = new Ground[6][19];
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 19; j++) {
                 GameGround[i][j] = new Ground();
+                GameGround[i][j].settledPlant = new Plants();
             }
         }
         PlantsinGame = new ArrayList<>();
@@ -83,14 +83,16 @@ public class Day extends GameMode {
             wave();
         }
         for (Plants plant : PlantsinGame) {
-            plant.setXY();
-            plant.operation();
+            plant.setXY(this);
+            plant.operation(this);
         }
         for (int i = 0; i < peas.size(); i++) {
+            peas.get(i).setXY(this);
             int x = peas.get(i).getGroundX();
             peas.get(i).operation(GameGround[x]);
         }
         for (int i = 0; i < rockets.size(); i++) {
+            rockets.get(i).setXY(this);
             int x = rockets.get(i).getGroundX();
             rockets.get(i).operation(GameGround[x]);
         }
@@ -178,8 +180,6 @@ public class Day extends GameMode {
         if (j % 2 != 0 || j > 18 || i > 5)
             return 0;
         if (GameGround[i][j].settledPlant == null && current != null) {
-
-
             GameGround[i][j].settledPlant = current;
             current.setGround(GameGround[i][j]);
             current = null;
@@ -189,10 +189,8 @@ public class Day extends GameMode {
 
     public void plantingZombie(int q) {
         gamecenter.zombies.Zombies zombie = randomZombie();
-        int k = generator.nextInt(4);
-        if (!zombie.type.equals("s")) k = 9;
-        zombie.setGround(GameGround[q][2 * k]);
-        GameGround[q][2 * k].settledZombie.add(zombie);
+        zombie.setGround(GameGround[q][18]);
+        GameGround[q][18].settledZombie.add(zombie);
         ZombiesinGame.add(zombie);
     }
 
@@ -209,7 +207,6 @@ public class Day extends GameMode {
 
         this.sun += sun;
     }
-
     //problem detected: select sth that its been selected
     public int select(String name) {
         for (Plants plant : plants_hand) {
@@ -217,7 +214,7 @@ public class Day extends GameMode {
                 if (plant.getSun_used() <= sun) {
                     if (!plant.isTired()) {
                         sun -= plant.getSun_used();
-                        current = cardFinder(plant, name.toLowerCase());
+                        current = cardFinder(plant, name);
                         PlantsinGame.add(current);
                         return 2;
                     } else return 1;

@@ -1,6 +1,5 @@
 package gamecenter.plants;
 
-import controller.ViewController;
 import gamecenter.Ground;
 
 public class WaterPlants extends Plants {
@@ -13,11 +12,6 @@ public class WaterPlants extends Plants {
         }
     }
 
-@Override
-    public void operation() {
-      //  if (!ViewController.watermode.GameGround[groundX][groundY].type)
-    //ViewController.watermode.GameGround[groundX][groundY].type==true;
-    }
+
 
 }
-

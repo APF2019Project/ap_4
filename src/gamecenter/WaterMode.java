@@ -37,7 +37,7 @@ public class WaterMode extends GameMode {
         setSun(generator.nextInt(4) + 2);
 
         for (Plants plant : PlantsinGame) {
-            plant.operation();
+            plant.operation(this);
         }
 
         for (Zombies zombie : ZombiesinGame) {

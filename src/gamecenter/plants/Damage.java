@@ -1,6 +1,7 @@
 package gamecenter.plants;
 
 import controller.ViewController;
+import gamecenter.GameMode;
 import gamecenter.Ground;
 import gamecenter.zombies.Zombies;
 
@@ -32,13 +33,12 @@ public class Damage extends Plants {
     }
 
     @Override
-    public void operation() {
+    public void operation(GameMode gameMode) {
         turn_shoot++;
-        if (!isThereAnyZombie())
+        if (!isThereAnyZombie(gameMode))
             return;
-
         if (name.equals("explode-o-nut")) {
-            ArrayList<Zombies> zombies = ViewController.day.GameGround[groundX][groundY + 1].settledZombie;
+            ArrayList<Zombies> zombies = gameMode.GameGround[groundX][groundY + 1].settledZombie;
             if (zombies.size() != 0) {
                 zombies.get(0).setHealth(1);
             }
@@ -46,7 +46,7 @@ public class Damage extends Plants {
 
         if (name.equals("jalapeno")) {
             for (int j = 0; j < 19; j++) {
-                ArrayList<Zombies> zombies = ViewController.day.GameGround[groundX][j].settledZombie;
+                ArrayList<Zombies> zombies = gameMode.GameGround[groundX][j].settledZombie;
                 for (int i = 0; i < zombies.size(); i++) {
                     zombies.get(i).suddenDeath();
                 }
@@ -55,7 +55,7 @@ public class Damage extends Plants {
 
         if (name.equals("potato mine")) {
             if (turn_shoot > 1) {
-                ArrayList<Zombies> zombies = ViewController.day.GameGround[groundX][groundY].settledZombie;
+                ArrayList<Zombies> zombies = gameMode.GameGround[groundX][groundY].settledZombie;
                 if (zombies.size() != 0) {
                     zombies.get(0).suddenDeath();
                 }
@@ -65,7 +65,7 @@ public class Damage extends Plants {
         if (name.equals("cherry bomb")) {
             for (int i = -1; i <= 1; i++) {
                 for (int j = -1; j <= 1; j++) {
-                    ArrayList<Zombies> zombies = ViewController.day.GameGround[groundX + i][groundY + j].settledZombie;
+                    ArrayList<Zombies> zombies = gameMode.GameGround[groundX + i][groundY + j].settledZombie;
                     for (int k = 0; k < zombies.size(); k++) {
                         zombies.get(k).suddenDeath();
                     }

@@ -1,6 +1,7 @@
 package gamecenter.plants;
 
 import controller.ViewController;
+import gamecenter.GameMode;
 import gamecenter.Ground;
 import gamecenter.zombies.Zombies;
 
@@ -17,12 +18,14 @@ public class magnet extends Plants {
     }
 
     @Override
-    public void operation() {
+    public void operation(GameMode gameMode) {
         turn_shoot++;
+        if (!isThereAnyZombie(gameMode))
+            return;
         if (name.equals("magnet-shroom")) {
             for (int i = -1; i <= 1; i++) {
                 for (int j = -1; j <= 1; j++) {
-                    ArrayList<Zombies> zombies = ViewController.day.GameGround[groundX + i][groundY + j].settledZombie;
+                    ArrayList<Zombies> zombies = gameMode.GameGround[groundX + i][groundY + j].settledZombie;
                     for (int k = 0; k < zombies.size(); k++) {
                         if (zombies.get(k).getName().equals("screendoor Zombie")) {
                             zombies.get(k).shield = 0;

@@ -1,5 +1,6 @@
 package gamecenter.plants;
 
+import gamecenter.GameMode;
 import gamecenter.Ground;
 
 public class Rocket {
@@ -81,5 +82,16 @@ public class Rocket {
     public void setDamage(int damage) {
 
         this.damage = damage;
+    }
+
+    public void setXY(GameMode gameMode) {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 19; j++) {
+                if (gameMode.GameGround[i][j] == ground) {
+                    groundX = i;
+                    groundY = j;
+                }
+            }
+        }
     }
 }

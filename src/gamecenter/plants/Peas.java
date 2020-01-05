@@ -1,5 +1,6 @@
 package gamecenter.plants;
 
+import gamecenter.GameMode;
 import gamecenter.Ground;
 
 public class Peas {
@@ -9,13 +10,11 @@ public class Peas {
     boolean icy;
 
     public Peas(Ground ground) {
-
         this.ground = ground;
     }
 
     public boolean operation(Ground[] grounds) {
         int flag = 0;
-
         for (int i = 0; i < grounds.length; i++) {
             if (grounds[i] == ground) {
                 flag = i;
@@ -24,6 +23,7 @@ public class Peas {
         }
         for (int i = flag; i < flag + 4; i++) {
             if (grounds[i].settledZombie.size() != 0) {
+                System.out.println("beeeeee");
                 if (grounds[i].settledZombie.get(0).shield > 0) {
                     grounds[i].settledZombie.get(0).shield--;
                 } else {
@@ -72,5 +72,15 @@ public class Peas {
         this.groundY = groundY;
     }
 
+    public void setXY(GameMode gameMode) {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 19; j++) {
+                if (gameMode.GameGround[i][j] == ground) {
+                    groundX = i;
+                    groundY = j;
+                }
+            }
+        }
+    }
 }
 

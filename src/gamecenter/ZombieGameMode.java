@@ -19,7 +19,9 @@ public class ZombieGameMode extends GameMode {
     ArrayList<Integer> zombies_health = new ArrayList<>();
     ArrayList<Plants> plants = new ArrayList<>();
     Zombies[][] zombies = new Zombies[6][2];
-    HashMap<String, String> showLanes = new HashMap<>();
+    int[] lanes = new int[6];
+    ArrayList<String> showLanes = new ArrayList<>();
+    ArrayList<Integer> showlanesNumbers = new ArrayList<>();
 
 
     public ZombieGameMode() {
@@ -32,8 +34,12 @@ public class ZombieGameMode extends GameMode {
             }
         }
         for (int i = 0; i < 6; i++) {
+            lanes[i] = 0;
+        }
+        for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 2; j++) {
-                zombies[i][j] = new Zombies();
+                if (zombies[i][j] == null)
+                    zombies[i][j] = new Zombies();
             }
         }
     }
@@ -43,6 +49,7 @@ public class ZombieGameMode extends GameMode {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 19; j++) {
                 GameGround[i][j] = new Ground();
+                GameGround[i][j].settledPlant = new Plants();
             }
         }
         PlantsinGame = new ArrayList<>();
@@ -61,7 +68,8 @@ public class ZombieGameMode extends GameMode {
         zombies_health = new ArrayList<>();
         plants = new ArrayList<>();
         zombies = new Zombies[6][2];
-        showLanes = new HashMap<>();
+        showLanes = new ArrayList<>();
+        showlanesNumbers = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
             for (int k = 0; k < 19; k++) {
                 GameGround[i][k].groundX = i;
@@ -69,25 +77,34 @@ public class ZombieGameMode extends GameMode {
                 GameGround[i][k].type = true;
             }
         }
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 2; j++) {
+                if (zombies[i][j] == null)
+                    zombies[i][j] = new Zombies();
+            }
+        }
     }
 
     public int endTurn() {
         turn++;
         for (Plants plant : PlantsinGame) {
-            plant.setXY();
-            plant.operation();
+            plant.setXY(this);
+            plant.operation(this);
         }
         for (int i = 0; i < peas.size(); i++) {
+            peas.get(i).setXY(this);
             int x = peas.get(i).getGroundX();
             peas.get(i).operation(GameGround[x]);
         }
         for (int i = 0; i < rockets.size(); i++) {
+            rockets.get(i).setXY(this);
             int x = rockets.get(i).getGroundX();
             rockets.get(i).operation(GameGround[x]);
         }
         for (Zombies zombie : ZombiesinGame) {
+            zombie.setXY();
             int i = zombie.getGroundX();
-            zombie.operation(getGroundline(i));
+            zombie.operation(GameGround[i]);
         }
         deathSets();
         for (int i = 0; i < plants_dead.size(); i++) {
@@ -152,7 +169,6 @@ public class ZombieGameMode extends GameMode {
             for (int k = 0; k < 19; k++) {
                 if (!GameGround[i][k].settledPlant.isDead())
                     check = true;
-
             }
         }
         return check;
@@ -174,23 +190,39 @@ public class ZombieGameMode extends GameMode {
     public int put(String name, int number, int line) {
         if (line > 5)
             return -2;
-        if (zombies[line].length + number > 2)
+        if (lanes[line] + number > 2)
             return 1;
         for (Zombies zombie : zombies_hand) {
             if (name.equals(zombie.getName())) {
-                if (coin >= 10 * zombie.getHealth()) {
-                    coin -= zombie.getHealth() * 10;
+                if (coin >= 10 * zombie.getHealth() * number) {
+                    coin -= zombie.getHealth() * 10 * number;
                     current = cardFinder(zombie, name);
-                    if (zombies[line][0] == null) {
+                    if (number == 1) {
+                        if (lanes[line] == 0) {
+                            zombies[line][0] = current;
+                            current.setGround(GameGround[line][17]);
+                            GameGround[line][17].settledZombie.add(current);
+                        }
+                        if (lanes[line] == 1) {
+                            zombies[line][1] = current;
+                            GameGround[line][18].settledZombie.add(current);
+                            current.setGround(GameGround[line][18]);
+                        }
+                        lanes[line]++;
+                        ZombiesinGame.add(current);
+                    }
+                    if (number == 2) {
                         zombies[line][0] = current;
                         current.setGround(GameGround[line][17]);
                         GameGround[line][17].settledZombie.add(current);
-                    } else {
+                        ZombiesinGame.add(current);
+                        current = cardFinder(zombie, name);
                         zombies[line][1] = current;
                         GameGround[line][18].settledZombie.add(current);
                         current.setGround(GameGround[line][18]);
+                        ZombiesinGame.add(current);
+                        lanes[line] += 2;
                     }
-                    ZombiesinGame.add(current);
                     return 2;
                 } else return 0;
             }
@@ -212,13 +244,19 @@ public class ZombieGameMode extends GameMode {
         return 1;
     }
 
-    public HashMap<String, String> showLanes() {
+    public ArrayList<String> showLanes() {
         for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < zombies[i].length; j++) {
-                showLanes.put(Integer.toString(i), zombies[i][j].getName());
+            showlanesNumbers.add(i);
+            for (int j = 0; j < 2; j++) {
+                showLanes.add(zombies[i][j].getName());
             }
         }
         return showLanes;
+    }
+
+    public ArrayList<Integer> showlanesNumbers() {
+
+        return showlanesNumbers;
     }
 
     public ArrayList<String> showHand() {

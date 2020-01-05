@@ -98,8 +98,8 @@ public class Rail extends GameMode {
             plantingZombie(k);
         }
         for (Plants plant : PlantsinGame) {
-            plant.setXY();
-            plant.operation();
+            plant.setXY(this);
+            plant.operation(this);
         }
 
         for (Zombies zombie : ZombiesinGame) {
