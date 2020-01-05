@@ -19,6 +19,6 @@ public class ShieldZombie extends Zombies {
             setparameters("Screendoor Zombie",2,2,1,ground);
             shield = 4;
         }
-        type="ShieldZombie";
+        type="sh";
     }
 }

@@ -5,11 +5,11 @@ import gamecenter.Ground;
 public class CARZombie extends Zombies {
 
     public CARZombie(String name, Ground ground) {
-        type = "CARZombie";
+        type = "c";
         if (name.matches("zomboni")) {
             setparameters("Zomboni", 2, 3, 1000, ground);
         }
-        if (name.matches("catapult zombie")) {
+        else {
             setparameters("Catapult Zombie", 2, 3, 1000, ground);
         }
     }
@@ -21,7 +21,8 @@ public class CARZombie extends Zombies {
             grounds[0].Chamnzan(grounds);
             return;
         }
-        for (int i = 0; i < getSpeed(); i++) {
+        for (int i = 0; i <= getSpeed(); i++) {
+            y = getGround().getGroundY();
             if (grounds[y - 1].settledPlant == null) {
                 grounds[y].settledZombie.remove(this);
                 grounds[y - 1].settledZombie.add(this);
@@ -34,6 +35,7 @@ public class CARZombie extends Zombies {
                     } else break;
                 }
             }
+
         }
         CatapultZombie();
         y = getGround().getGroundY();

@@ -9,7 +9,7 @@ public class Normal extends Zombies {
     public Normal(String name, Ground ground) {
         name = name.toLowerCase();
         buckethead=true;
-        type="Normal";
+        type="n";
         if (name.matches("zombie")) {
             setparameters("Zombie", 2, 2, 1, ground);
         }

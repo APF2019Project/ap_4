@@ -1,6 +1,7 @@
 package gamecenter.zombies;
 
 import controller.ViewController;
+import gamecenter.GameMode;
 import gamecenter.Ground;
 
 public class Zombies {
@@ -74,12 +75,15 @@ public class Zombies {
     }
 
     public void operation(Ground[] grounds) {
+
         int y = getGround().getGroundY();
         if (y == 0) {
             grounds[0].Chamnzan(grounds);
             return;
         }
-        for (int i = 0; i < getSpeed(); i++) {
+        for (int i = 0; i <= getSpeed(); i++) {
+            y = getGround().getGroundY();
+            if(y==0) break;
             if (grounds[y - 1].settledPlant == null) {
                 grounds[y].settledZombie.remove(this);
                 grounds[y - 1].settledZombie.add(this);
@@ -124,10 +128,10 @@ public class Zombies {
         speed = 2 * speed;
     }
 
-    private void setXY() {
+    public void setXY(GameMode gameMode) {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 19; j++) {
-                if (ViewController.day.GameGround[i][j] == ground) {
+                if (gameMode.GameGround[i][j] == ground) {
                     groundX = i;
                     groundY = j;
                 }
