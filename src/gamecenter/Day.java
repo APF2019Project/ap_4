@@ -82,6 +82,10 @@ public class Day extends GameMode {
             waveNumber++;
             wave();
         }
+        for (int i = 0; i < plants_hand.size(); i++) {
+            if (plants_hand.get(i).getTurn_cooldown() > 0)
+                plants_hand.get(i).setTurn_cooldown();
+        }
         for (Plants plant : PlantsinGame) {
             plant.setXY(this);
             plant.operation(this);
@@ -103,7 +107,7 @@ public class Day extends GameMode {
         }
         deathSets();
         ViewController.shop.setCoin(zombies_dead.size() * 10);
-
+        leaderBoards();
         if (zombieWins()) {
             return 0;
         }
@@ -155,6 +159,8 @@ public class Day extends GameMode {
     }
 
     public ArrayList<String> showHand() {
+        sunneeded = new ArrayList<>();
+        cooldown_left = new ArrayList<>();
         ArrayList<String> all = new ArrayList<String>();
         for (int i = 0; i < plants_hand.size(); i++) {
             all.add(plants_hand.get(i).getName());
@@ -207,6 +213,7 @@ public class Day extends GameMode {
 
         this.sun += sun;
     }
+
     //problem detected: select sth that its been selected
     public int select(String name) {
         for (Plants plant : plants_hand) {

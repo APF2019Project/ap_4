@@ -171,7 +171,7 @@ public class Menu {
 
     public void showCurrentUser() {
 
-        System.out.println(AllUsers.currentuser);
+        System.out.println(ViewController.allusers.currentuser);
     }
 
     public String getUserName() {

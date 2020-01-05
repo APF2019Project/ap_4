@@ -8,7 +8,7 @@ import controller.ViewController;
 public class User {
     String username;
     String password;
-    ArrayList<Zombies> ZombiesKilled = new ArrayList<>();
+    public ArrayList<Zombies> ZombiesKilled = new ArrayList<>();
 
     User(String username, String password) {
         this.username = username;
@@ -28,18 +28,18 @@ public class User {
 
     public static void renameUsername(String newusername) {
         for (User User : ViewController.allusers.users) {
-            if (AllUsers.currentuser.equals(User.username)) {
+            if (ViewController.allusers.currentuser.equals(User.username)) {
                 User.username = newusername;
-                AllUsers.currentuser = newusername;
+                ViewController.allusers.currentuser = newusername;
             } else break;
         }
     }
 
     public static void change(String newusername, String newpassword) {
         for (User User : ViewController.allusers.users) {
-            if (AllUsers.currentuser.equals(User.username)) {
+            if (ViewController.allusers.currentuser.equals(User.username)) {
                 User.username = newusername;
-                AllUsers.currentuser = newusername;
+                ViewController.allusers.currentuser = newusername;
                 User.password = newpassword;
             } else break;
         }

@@ -19,6 +19,7 @@ public class Sunflower extends Plants {
 
     @Override
     public void operation(GameMode gameMode) {
+        ;
         turn_shoot++;
         if (name.equals("sunflower")) {
             if (turn_shoot % 2 == 0) {

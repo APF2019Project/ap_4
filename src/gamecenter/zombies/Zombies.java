@@ -15,6 +15,7 @@ public class Zombies {
     private int price;
     protected int groundX;
     protected int groundY;
+    protected int turn_freeze;
 
     public Zombies() {
     }
@@ -81,9 +82,9 @@ public class Zombies {
             grounds[0].Chamnzan(grounds);
             return;
         }
-        for (int i = 0; i <= getSpeed(); i++) {
+        for (int i = 0; i < getSpeed(); i++) {
             y = getGround().getGroundY();
-            if(y==0) break;
+            if (y == 0) break;
             if (grounds[y - 1].settledPlant == null) {
                 grounds[y].settledZombie.remove(this);
                 grounds[y - 1].settledZombie.add(this);
@@ -101,6 +102,7 @@ public class Zombies {
         if (y == 0) {
             grounds[0].Chamnzan(grounds);
         }
+
     }
 
     public int getGroundX() {
@@ -136,6 +138,12 @@ public class Zombies {
                     groundY = j;
                 }
             }
+        }
+    }
+
+    public void CatapultZombie() {
+        if (getName().equals("zomboni") && getHealth() <= 0) {
+            setparameters("Zombie", 2, 2, 1, getGround());
         }
     }
 }

@@ -334,7 +334,7 @@ public class ViewController {
 
     public static void rail() {
         while (true) {
-            System.out.println("Day");
+            System.out.println("Rail");
             String str = menu.getOrder();
 
             if (str.matches("list")) {
@@ -365,9 +365,9 @@ public class ViewController {
                 continue;
             }
 
-            if (str.matches("select .+")) {
-                String name = str.substring(str.indexOf("t") + 2);
-                int status = rail.select(name);
+            if (str.matches("select \\d+")) {
+                int s = Integer.parseInt(str.substring(str.indexOf("t") + 2));
+                int status = rail.select(s);
                 if (status == -1) {
                     menu.invalidCard();
                 }
@@ -381,7 +381,7 @@ public class ViewController {
             }
 
             if (str.matches("end turn")) {
-
+                rail.endTurn();
                 continue;
             }
 

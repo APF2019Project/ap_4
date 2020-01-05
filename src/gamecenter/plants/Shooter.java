@@ -25,6 +25,7 @@ public class Shooter extends Plants {
 
     @Override
     public void operation(GameMode gameMode) {
+
         turn_shoot++;
         if (!isThereAnyZombie(gameMode))
             return;

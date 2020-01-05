@@ -32,7 +32,6 @@ public class GameMode {
         ZombiesinGame = new ArrayList<>();
         peas = new ArrayList<>();
         rockets = new ArrayList<>();
-
         zombies_dead = new ArrayList<>();
         plants_dead = new ArrayList<>();
     }
@@ -47,6 +46,11 @@ public class GameMode {
         }
         for (int i = 0; i < ZombiesinGame.size(); i++) {
             if (ZombiesinGame.get(i).isDead()) {
+                if (ZombiesinGame.get(i).getName().equals("zomboni")) {
+                    zombies_dead.add(ZombiesinGame.get(i));
+                    ZombiesinGame.get(i).CatapultZombie();
+                    continue;
+                }
                 ZombiesinGame.get(i).getGround().settledZombie.remove(ZombiesinGame.get(i));
                 zombies_dead.add(ZombiesinGame.get(i));
                 ZombiesinGame.remove(i);
@@ -57,6 +61,7 @@ public class GameMode {
     public void shotadder(int a, Ground ground, boolean icy) {
         for (int i = 0; i < a; i++) {
             Peas pea = new Peas(ground);
+            pea.setIcy(icy);
             peas.add(pea);
         }
     }
@@ -89,6 +94,9 @@ public class GameMode {
     }
 
     public ArrayList<String> showLawn() {
+        showLawnX = new ArrayList<>();
+        showLawnY = new ArrayList<>();
+        showLawnHealth = new ArrayList<>();
         ArrayList<String> a = new ArrayList<>();
         for (int i = 0; i < PlantsinGame.size(); i++) {
             a.add(PlantsinGame.get(i).getName());
@@ -195,5 +203,12 @@ public class GameMode {
         if (k == 13 || k == 14) k = 5;
         current = ViewController.shop.zombies.get(k);
         return cardFinder(current, current.getName());
+    }
+
+    public void leaderBoards() {
+        for (int i = 0; i < zombies_dead.size(); i++) {
+            Zombies zombies = new Zombies();
+            ViewController.allusers.currentuser1.ZombiesKilled.add(zombies);
+        }
     }
 }

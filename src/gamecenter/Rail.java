@@ -36,13 +36,14 @@ public class Rail extends GameMode {
         return DeadZombies.size();
     }
 
-    public String select(int i) {
+    public String select1(int i) {
         current = Plants.get(i);
         Plants.remove(i);
         return current.getName();
     }
 
-    public int select(String name) {
+    public int select(int i) {
+        String name = select1(i);
         for (Plants plant : plants_hand) {
             if (name.equals(plant.getName())) {
                 if (plant.getSun_used() <= sun) {
@@ -86,7 +87,7 @@ public class Rail extends GameMode {
         } else return false;
     }
 
-    public void endTurn() {
+    public int endTurn() {
         turn++;
         if (turn == addingplantturn) {
             addingplantturn = turn + generator.nextInt(3) + 2;
@@ -97,21 +98,36 @@ public class Rail extends GameMode {
             int k = generator.nextInt(6);
             plantingZombie(k);
         }
+        for (int i = 0; i < plants_hand.size(); i++) {
+            if (plants_hand.get(i).getTurn_cooldown() > 0)
+                plants_hand.get(i).setTurn_cooldown();
+        }
         for (Plants plant : PlantsinGame) {
             plant.setXY(this);
             plant.operation(this);
         }
-
+        for (int i = 0; i < peas.size(); i++) {
+            peas.get(i).setXY(this);
+            int x = peas.get(i).getGroundX();
+            peas.get(i).operation(GameGround[x]);
+        }
+        for (int i = 0; i < rockets.size(); i++) {
+            rockets.get(i).setXY(this);
+            int x = rockets.get(i).getGroundX();
+            rockets.get(i).operation(GameGround[x]);
+        }
         for (Zombies zombie : ZombiesinGame) {
+            zombie.setXY(this);
             int i = zombie.getGroundX();
             zombie.operation(getGroundline(i));
         }
-
-        if (zombieWins()) {
-            //Game end
-        }
         deathSets();
-
+        ViewController.shop.setCoin(DeadZombies.size() * 10);
+        leaderBoards();
+        if (zombieWins()) {
+            return 1;
+        }else
+            return 0;
     }
 
     boolean zombieWins() {
@@ -134,6 +150,7 @@ public class Rail extends GameMode {
             if (ZombiesinGame.get(i).isDead()) {
                 ZombiesinGame.get(i).getGround().settledZombie.remove(ZombiesinGame.get(i));
                 DeadZombies.add(ZombiesinGame.get(i));
+                zombies_dead.add(ZombiesinGame.get(i));
                 ZombiesinGame.remove(i);
             }
         }

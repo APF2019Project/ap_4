@@ -1,6 +1,7 @@
 package gamecenter.plants;
 
 import controller.ViewController;
+import gamecenter.GameMode;
 import gamecenter.Ground;
 import gamecenter.zombies.Zombies;
 
@@ -19,4 +20,8 @@ public class WithoutActon extends Plants {
         }
     }
 
+    @Override
+    public void operation(GameMode gameMode) {
+
+    }
 }

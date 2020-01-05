@@ -102,7 +102,7 @@ public class ZombieGameMode extends GameMode {
             rockets.get(i).operation(GameGround[x]);
         }
         for (Zombies zombie : ZombiesinGame) {
-            zombie.setXY();
+            zombie.setXY(this);
             int i = zombie.getGroundX();
             zombie.operation(GameGround[i]);
         }
@@ -167,6 +167,8 @@ public class ZombieGameMode extends GameMode {
         boolean check = false;
         for (int i = 0; i < 6; i++) {
             for (int k = 0; k < 19; k++) {
+                if (GameGround[i][k].settledPlant == null)
+                    continue;
                 if (!GameGround[i][k].settledPlant.isDead())
                     check = true;
             }

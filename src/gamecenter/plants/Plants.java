@@ -5,7 +5,7 @@ import gamecenter.GameMode;
 import gamecenter.Ground;
 
 public class Plants {
-    protected int turn_cooldown;
+    protected int turn_cooldown = 0;
     public String type = "";
     protected String name;
     protected int price;
@@ -28,7 +28,6 @@ public class Plants {
         this.cooldown = cooldown;
         this.ground = ground;
         turn_cooldown = 0;
-
     }
 
     public int getSun_used() {
@@ -106,6 +105,11 @@ public class Plants {
                 }
             }
         }
+    }
+
+    public void setTurn_cooldown() {
+        if (turn_cooldown > 0)
+            this.turn_cooldown -= 1;
     }
 
     public void operation(GameMode gameMode) {

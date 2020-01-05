@@ -23,14 +23,13 @@ public class Peas {
         }
         for (int i = flag; i < flag + 4; i++) {
             if (grounds[i].settledZombie.size() != 0) {
-                System.out.println("beeeeee");
                 if (grounds[i].settledZombie.get(0).shield > 0) {
                     grounds[i].settledZombie.get(0).shield--;
                 } else {
                     grounds[i].settledZombie.get(0).setHealth(1);
                 }
                 if (icy) {
-                    //grounds[i].settledZombie.icyplant.
+                    //grounds[i].settledZombie.get(0).speedLimiter();
                 }
                 return true;
             }
@@ -81,6 +80,10 @@ public class Peas {
                 }
             }
         }
+    }
+
+    public void setIcy(boolean icy) {
+        this.icy = icy;
     }
 }
 
