@@ -151,7 +151,7 @@ public class Menu {
     public void showLawn(GameMode gameMode) {
         ArrayList<String> name = gameMode.showLawn();
         for (int i = 0; i < name.size(); i++) {
-            System.out.print(name.get(i) + " Y " + gameMode.showLawnX().get(i) + " X " + gameMode.showLawnY().get(i) + " Health " + gameMode.showLawnHealth().get(i) + "    ");
+            System.out.print(name.get(i) + " X " + gameMode.showLawnX().get(i) + " Y " + gameMode.showLawnY().get(i) + " Health " + gameMode.showLawnHealth().get(i) + "    ");
             if (i == gameMode.numberOfPlants() - 1) {
                 System.out.println();
             } else if ((i + 1) % 5 == 0) {
@@ -162,9 +162,10 @@ public class Menu {
     }
 
     public void showLanes(ZombieGameMode zombieGameMode) {
-        HashMap<String,String> showlanes = zombieGameMode.showLanes();
-        for (int i = 0; i < 6; i++) {
-            System.out.println(i +"  "+ showlanes.get(Integer.toString(i)) + "   ");
+        ArrayList<Integer> showlanesNumbers = zombieGameMode.showlanesNumbers();
+        ArrayList<String> showlanes = zombieGameMode.showLanes();
+        for (int i = 0; i < 12; i++) {
+            System.out.println(showlanesNumbers.get(i/2) + "  " + showlanes.get(i) + "  ");
         }
     }
 

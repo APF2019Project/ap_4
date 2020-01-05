@@ -443,7 +443,8 @@ public class ViewController {
                 zombieGameMode.setLadder();
                 zombieGameMode.randomPlanting();
                 while (true) {
-
+                    System.out.println("start menu");
+                    str = menu.getOrder();
                     if (str.matches("put ladder \\d+")) {
                         int line = Integer.parseInt(str.substring(str.lastIndexOf("r") + 1));
                         int status = zombieGameMode.putLadder(line);
@@ -472,7 +473,7 @@ public class ViewController {
                     }
 
                     if (str.matches("show lawn")) {
-                        menu.showLawn(rail);
+                        menu.showLawn(zombieGameMode);
                         continue;
                     }
 

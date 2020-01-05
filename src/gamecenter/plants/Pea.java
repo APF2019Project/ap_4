@@ -1,6 +1,7 @@
 package gamecenter.plants;
 
 import controller.ViewController;
+import gamecenter.GameMode;
 import gamecenter.Ground;
 import gamecenter.ZombieGameMode;
 import gamecenter.zombies.Zombies;
@@ -39,48 +40,49 @@ public class Pea extends Plants {
     }
 
     @Override
-    public void operation() {
+    public void operation(GameMode gameMode) {
         turn_shoot++;
-        if (!isThereAnyZombie())
+        if (!isThereAnyZombie(gameMode))
             return;
-
         if (name.equals("peashooter")) {
             if (turn_shoot % 2 == 0) {
-                ViewController.day.shotadder(1, ground);
+                gameMode.shotadder(1, ground);
             }
         }
 
         if (name.equals("snow pea")) {
             if (turn_shoot % 3 == 0) {
-                ViewController.day.shotadder(1, ground, true);
+                gameMode.shotadder(1, ground, true);
             }
         }
 
         if (name.equals("repeater")) {
             if (turn_shoot % 3 == 0) {
-                ViewController.day.shotadder(2, ground);
+                gameMode.shotadder(2, ground);
             }
         }
 
         if (name.equals("gatling pea")) {
             if (turn_shoot % 5 == 0) {
-                ViewController.day.shotadder(4, ground);
+                gameMode.shotadder(4, ground);
             }
         }
 
         if (name.equals("threepeater")) {
             if (turn_shoot % 4 == 0) {
-                ViewController.day.shotadder(1, ground);
-                ViewController.day.shotadder(1, ViewController.day.GameGround[groundX + 1][groundY]);
-                ViewController.day.shotadder(1, ViewController.day.GameGround[groundX - 1][groundY]);
+                gameMode.shotadder(1, ground);
+                if (groundX + 1 < 6 && groundX + 1 >= 0)
+                    gameMode.shotadder(1, gameMode.GameGround[groundX + 1][groundY]);
+                if (groundX - 1 < 6 && groundX - 1 >= 0)
+                    gameMode.shotadder(1, gameMode.GameGround[groundX - 1][groundY]);
             }
         }
 
         if (name.equals("cactus")) {
             if (turn_shoot % 2 == 0) {
-                ViewController.day.shotadder(1, ground);
+                gameMode.shotadder(1, ground);
             }
-            ArrayList<Zombies> zombies = ViewController.day.GameGround[groundX][groundY + 1].settledZombie;
+            ArrayList<Zombies> zombies = gameMode.GameGround[groundX][groundY + 1].settledZombie;
             for (int i = 0; i < zombies.size(); i++) {
                 if (!zombies.get(i).getType().equals("Normal")) {
                     zombies.get(i).setHealth(1);
@@ -91,19 +93,17 @@ public class Pea extends Plants {
 
         if (name.equals("scaredy-shroom")) {
             boolean a = false;
-            for (int j = groundY; j < groundY + 3; ++j){
-                if (ViewController.day.GameGround[groundX][j].settledZombie.size() != 0) {
+            for (int j = groundY; j < groundY + 3; ++j) {
+                if (gameMode.GameGround[groundX][j].settledZombie.size() != 0) {
                     a = true;
                     break;
                 }
             }
             if (!a) {
                 if (turn_shoot % 2 == 0) {
-                    ViewController.day.shotadder(1, ground);
+                    gameMode.shotadder(1, ground);
                 }
             }
         }
-
-
     }
 }

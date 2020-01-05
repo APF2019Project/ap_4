@@ -1,6 +1,7 @@
 package gamecenter.plants;
 
 import controller.ViewController;
+import gamecenter.GameMode;
 import gamecenter.Ground;
 
 public class Shooter extends Plants {
@@ -23,29 +24,28 @@ public class Shooter extends Plants {
     }
 
     @Override
-    public void operation() {
+    public void operation(GameMode gameMode) {
         turn_shoot++;
-        if (!isThereAnyZombie())
+        if (!isThereAnyZombie(gameMode))
             return;
-
         if (name.equals("cabbage-pult")) {
             if (turn_shoot % 2 == 0) {
-                ViewController.day.shotadder(1, ground, 2, null);
+                gameMode.shotadder(1, ground, 2, null);
             }
         }
         if (name.equals("melon-pult")) {
             if (turn_shoot % 4 == 0) {
-                ViewController.day.shotadder(1, ground, 3, null);
+                gameMode.shotadder(1, ground, 3, null);
             }
         }
         if (name.equals("winter melon")) {
             if (turn_shoot % 4 == 0) {
-                ViewController.day.shotadder(1, ground, 3, "icy");
+                gameMode.shotadder(1, ground, 3, "icy");
             }
         }
         if (name.equals("kernel-pult")) {
             if (turn_shoot % 4 == 0) {
-                ViewController.day.shotadder(1, ground, 0, "sticky");
+                gameMode.shotadder(1, ground, 0, "sticky");
             }
         }
     }

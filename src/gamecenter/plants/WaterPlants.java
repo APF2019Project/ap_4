@@ -13,7 +13,5 @@ public class WaterPlants extends Plants {
     }
 
 
-    public void operation() {
-    }
 
 }

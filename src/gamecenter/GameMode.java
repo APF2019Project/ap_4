@@ -25,6 +25,7 @@ public class GameMode {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 19; j++) {
                 GameGround[i][j] = new Ground();
+                GameGround[i][j].settledPlant = new Plants();
             }
         }
         PlantsinGame = new ArrayList<>();

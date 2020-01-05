@@ -79,11 +79,11 @@ public class Zombies {
             grounds[0].Chamnzan(grounds);
             return;
         }
-        for (int i = 0; i < getSpeed(); i++) {
+        for (int i = 0; i <= getSpeed() + 2; i++) {
             if (grounds[y - 1].settledPlant == null) {
-                grounds[y].settledZombie.remove(this);
                 grounds[y - 1].settledZombie.add(this);
                 this.setGround(grounds[y - 1]);
+                grounds[y].settledZombie.remove(this);
             } else {
                 if (grounds[y - 1].settledPlant.getHealth() > 0) {
                     grounds[y - 1].settledPlant.setHealth(getDamage());
@@ -124,7 +124,7 @@ public class Zombies {
         speed = 2 * speed;
     }
 
-    private void setXY() {
+    public void setXY() {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 19; j++) {
                 if (ViewController.day.GameGround[i][j] == ground) {

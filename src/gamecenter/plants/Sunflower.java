@@ -1,6 +1,7 @@
 package gamecenter.plants;
 
 import controller.ViewController;
+import gamecenter.GameMode;
 import gamecenter.Ground;
 
 public class Sunflower extends Plants {
@@ -17,7 +18,7 @@ public class Sunflower extends Plants {
     }
 
     @Override
-    public void operation() {
+    public void operation(GameMode gameMode) {
         turn_shoot++;
         if (name.equals("sunflower")) {
             if (turn_shoot % 2 == 0) {

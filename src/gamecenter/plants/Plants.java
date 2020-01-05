@@ -1,6 +1,7 @@
 package gamecenter.plants;
 
 import controller.ViewController;
+import gamecenter.GameMode;
 import gamecenter.Ground;
 
 public class Plants {
@@ -74,7 +75,8 @@ public class Plants {
         health -= a;
     }
 
-    public void suddenDeath() {}
+    public void suddenDeath() {
+    }
 
     public int getHealth() {
 
@@ -95,10 +97,10 @@ public class Plants {
         }
     }
 
-    public void setXY() {
+    public void setXY(GameMode gameMode) {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 19; j++) {
-                if (ViewController.day.GameGround[i][j] == ground) {
+                if (gameMode.GameGround[i][j] == ground) {
                     groundX = i;
                     groundY = j;
                 }
@@ -106,16 +108,15 @@ public class Plants {
         }
     }
 
-    public void operation() {
+    public void operation(GameMode gameMode) {
     }
 
-     protected boolean isThereAnyZombie() {
-        for (int j = groundY; j < 6; ++j){
-            if (ViewController.day.GameGround[groundX][j].settledZombie.size() != 0) {
+    protected boolean isThereAnyZombie(GameMode gameMode) {
+        for (int j = groundY; j < 19; ++j) {
+            if (gameMode.GameGround[groundX][j].settledZombie.size() > 0) {
                 return true;
             }
         }
         return false;
     }
-
 }

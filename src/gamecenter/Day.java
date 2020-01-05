@@ -36,6 +36,7 @@ public class Day extends GameMode {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 19; j++) {
                 GameGround[i][j] = new Ground();
+                GameGround[i][j].settledPlant = new Plants();
             }
         }
         PlantsinGame = new ArrayList<>();
@@ -82,18 +83,21 @@ public class Day extends GameMode {
             wave();
         }
         for (Plants plant : PlantsinGame) {
-            plant.setXY();
-            plant.operation();
+            plant.setXY(this);
+            plant.operation(this);
         }
         for (int i = 0; i < peas.size(); i++) {
+            peas.get(i).setXY(this);
             int x = peas.get(i).getGroundX();
             peas.get(i).operation(GameGround[x]);
         }
         for (int i = 0; i < rockets.size(); i++) {
+            rockets.get(i).setXY(this);
             int x = rockets.get(i).getGroundX();
             rockets.get(i).operation(GameGround[x]);
         }
         for (Zombies zombie : ZombiesinGame) {
+            zombie.setXY(this);
             int i = zombie.getGroundX();
             zombie.operation(getGroundline(i));
         }
@@ -175,7 +179,7 @@ public class Day extends GameMode {
     public int plantingPlant(int j, int i) {
         if (j % 2 != 0 || j > 18 || i > 5)
             return 0;
-        if (GameGround[i][j].settledPlant == null) {
+        if (GameGround[i][j].settledPlant == null && current != null) {
             GameGround[i][j].settledPlant = current;
             current.setGround(GameGround[i][j]);
             current = null;
