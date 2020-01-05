@@ -15,26 +15,24 @@ public class GameMode {
     ArrayList<Plants> plants_dead;
     ArrayList<Peas> peas;
     ArrayList<Rocket> rockets;
-    ArrayList<Integer> showLawnX;
-    ArrayList<Integer> showLawnY;
-    ArrayList<Integer> showLawnHealth;
+    ArrayList<Integer> showLawnX = new ArrayList<>();
+    ArrayList<Integer> showLawnY = new ArrayList<>();
+    ArrayList<Integer> showLawnHealth = new ArrayList<>();
     Random generator = new Random();
+    Zombies current;
 
     public GameMode() {
         GameGround = new Ground[6][19];
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 19; j++) {
                 GameGround[i][j] = new Ground();
-                GameGround[i][j].settledPlant = new Plants();
             }
         }
         PlantsinGame = new ArrayList<>();
         ZombiesinGame = new ArrayList<>();
         peas = new ArrayList<>();
         rockets = new ArrayList<>();
-        showLawnX = new ArrayList<>();
-        showLawnY = new ArrayList<>();
-        showLawnHealth = new ArrayList<>();
+
         zombies_dead = new ArrayList<>();
         plants_dead = new ArrayList<>();
     }
@@ -87,8 +85,6 @@ public class GameMode {
     }
 
     public int numberOfZombies() {
-
-
         return ZombiesinGame.size();
     }
 
@@ -152,7 +148,7 @@ public class GameMode {
         }
 
         if (plant.type.equals("magnet")) {
-            return new magnet(name , null);
+            return new magnet(name, null);
         }
 
         return null;
@@ -160,43 +156,43 @@ public class GameMode {
 
     public Zombies cardFinder(Zombies zombie, String name) {
 
-        if (zombie.type.equals("BaloonZombie")) {
+        if (zombie.type.equals("b")) {
             return new BaloonZombie(null);
         }
 
-        if (zombie.type.equals("CARZombie")) {
+        if (zombie.type.equals("c")) {
             return new CARZombie(name, null);
         }
 
-        if (zombie.type.equals("GiantZombie")) {
+        if (zombie.type.equals("g")) {
             return new GiantZombie(null);
         }
 
-        if (zombie.type.equals("JumperZombie")) {
+        if (zombie.type.equals("j")) {
             return new JumperZombie(null);
         }
 
-        if (zombie.type.equals("Normal")) {
+        if (zombie.type.equals("n")) {
             return new Normal(name, null);
         }
 
-        if (zombie.type.equals("ShieldZombie")) {
+        if (zombie.type.equals("sh")) {
             return new ShieldZombie(name, null);
         }
 
-        if (zombie.type.equals("SpiderZombie")) {
+        if (zombie.type.equals("s")) {
             return new SpiderZombie(null);
         }
 
-        if (zombie.type.equals("WaterZombie")) {
-            return new WaterZombie(name, null);
+        if (zombie.type.equals("w")) {
+            return new Normal(name, null);
         }
         return null;
     }
 
     public Zombies randomZombie() {
         int k = generator.nextInt(ViewController.shop.zombies.size());
-        gamecenter.zombies.Zombies current;
+        if (k == 13 || k == 14) k = 5;
         current = ViewController.shop.zombies.get(k);
         return cardFinder(current, current.getName());
     }

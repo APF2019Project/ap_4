@@ -6,7 +6,7 @@ import gamecenter.Ground;
 public class SpiderZombie extends Zombies {
     int turn;
     public SpiderZombie(Ground ground) {
-        type="SpiderZombie";
+        type="s";
         setparameters("bungee zombie",0,3,10000,ground); turn=0;
     }
 @Override

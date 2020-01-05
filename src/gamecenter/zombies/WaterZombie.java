@@ -6,14 +6,13 @@ public class WaterZombie extends Zombies {
 
     public WaterZombie(String name, Ground ground) {
         name = name.toLowerCase();
-        type="WaterZombie";
+        type="w";
         if (name.matches("snorkel zombie")) {
             setparameters("Snorkel Zombie", 2, 2, 1, ground);
             shield = 0;
         } else {
             setparameters("dolphin rider zombie", 2, 2, 1, ground);
             shield = 2;
-            setHealth(-2);
         }
 
     }
