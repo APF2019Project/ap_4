@@ -23,6 +23,7 @@ public class Peas {
         }
         for (int i = flag; i < flag + 4; i++) {
             if (grounds[i].settledZombie.size() != 0) {
+                System.out.println(grounds[i].settledZombie.get(0));
                 if (grounds[i].settledZombie.get(0).shield > 0) {
                     grounds[i].settledZombie.get(0).shield--;
                 } else {

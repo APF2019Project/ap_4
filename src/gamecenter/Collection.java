@@ -27,6 +27,7 @@ public class Collection {
                     new Normal("football zombie", e),
                     new Normal("buckethead zombie", e),
                     new ShieldZombie("screendoor zombie", e),
+                    new GiantZombie(e),
                     new SpiderZombie(e)
             )
     );

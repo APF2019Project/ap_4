@@ -69,7 +69,11 @@ public class Day extends GameMode {
     public int endTurn() {
         turn++;
         setSun(generator.nextInt(4) + 2);
-
+        for (int i = 0; i < 6; i++) {
+            for (int k = 0; k < 19; k++) {
+                GameGround[i][k].Chamnzan(GameGround[i]);
+            }
+        }
         if (turn == 3) {
             wave();
             waveNumber = 1;
@@ -93,12 +97,16 @@ public class Day extends GameMode {
         for (int i = 0; i < peas.size(); i++) {
             peas.get(i).setXY(this);
             int x = peas.get(i).getGroundX();
-            peas.get(i).operation(GameGround[x]);
+            if (peas.get(i).operation(GameGround[x])) {
+                peas.remove(i);
+            }
         }
         for (int i = 0; i < rockets.size(); i++) {
             rockets.get(i).setXY(this);
             int x = rockets.get(i).getGroundX();
-            rockets.get(i).operation(GameGround[x]);
+            if (rockets.get(i).operation(GameGround[x])) {
+                rockets.remove(i);
+            }
         }
         for (Zombies zombie : ZombiesinGame) {
             zombie.setXY(this);

@@ -12,7 +12,7 @@ import java.util.Random;
 public class ZombieGameMode extends GameMode {
     int turn = 0;
     Random generator = new Random();
-    private int coin = 50;
+    private int coin = 50000;
     private int ladder = 3;
     Zombies current;
     ArrayList<Zombies> zombies_hand;
@@ -94,12 +94,16 @@ public class ZombieGameMode extends GameMode {
         for (int i = 0; i < peas.size(); i++) {
             peas.get(i).setXY(this);
             int x = peas.get(i).getGroundX();
-            peas.get(i).operation(GameGround[x]);
+            if (peas.get(i).operation(GameGround[x])) {
+                peas.remove(i);
+            }
         }
         for (int i = 0; i < rockets.size(); i++) {
             rockets.get(i).setXY(this);
             int x = rockets.get(i).getGroundX();
-            rockets.get(i).operation(GameGround[x]);
+            if (rockets.get(i).operation(GameGround[x])) {
+                rockets.remove(i);
+            }
         }
         for (Zombies zombie : ZombiesinGame) {
             zombie.setXY(this);

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Shop {
-    int coin = 0;
+    int coin = 10000;
     Ground e = null;
     ArrayList<Plants> plants = new ArrayList<>(
             Arrays.asList(
@@ -98,10 +98,6 @@ public class Shop {
         int flag;
         for (Zombies zombie : zombies) {
             flag = 1;
-            for (int i = 0; i < ViewController.collection.zombies_s.size(); i++) {
-                if (zombie.getName().equals(ViewController.collection.zombies_s.get(i).getName()))
-                    flag = 0;
-            }
             if (flag == 1) {
                 all.add(zombie.getName());
                 allprice.add(zombie.getPrice());
@@ -109,10 +105,7 @@ public class Shop {
         }
         for (Plants plants : plants) {
             flag = 1;
-            for (int i = 0; i < ViewController.collection.plants_s.size(); i++) {
-                if (plants.getName().equals(ViewController.collection.plants_s.get(i).getName()))
-                    flag = 0;
-            }
+
             if (flag == 1) {
                 all.add(plants.getName());
                 allprice.add(plants.getPrice());

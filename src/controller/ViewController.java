@@ -199,6 +199,11 @@ public class ViewController {
                 continue;
             }
 
+            if (str.matches("money")) {
+                System.out.println(ViewController.shop.getCoin());
+                continue;
+            }
+
             if (str.matches("exit")) {
                 return;
             }

@@ -10,9 +10,8 @@ import java.util.Random;
 public class Rail extends GameMode {
     private int sun;
     ArrayList<Zombies> DeadZombies = new ArrayList<>();
-    ArrayList<Plants> Plants = new ArrayList<>();
-    Random generator = new Random();
     ArrayList<Plants> plants_hand;
+    Random generator = new Random();
     Plants current;
     int turn;
     int addingplantturn = 1;
@@ -37,9 +36,11 @@ public class Rail extends GameMode {
     }
 
     public String select1(int i) {
-        current = Plants.get(i);
-        Plants.remove(i);
-        return current.getName();
+        try{current = plants_hand.get(i);
+            plants_hand.remove(i);
+            return current.getName();}
+        catch (Exception e){}
+        return "";
     }
 
     public int select(int i) {
@@ -72,8 +73,8 @@ public class Rail extends GameMode {
 
     public ArrayList<String> list() {
         ArrayList<String> all = new ArrayList<String>();
-        for (int i = 0; i < Plants.size(); i++) {
-            all.add(Plants.get(i).getName());
+        for (int i = 0; i < plants_hand.size(); i++) {
+            all.add(plants_hand.get(i).getName());
         }
         return all;
     }
@@ -109,12 +110,16 @@ public class Rail extends GameMode {
         for (int i = 0; i < peas.size(); i++) {
             peas.get(i).setXY(this);
             int x = peas.get(i).getGroundX();
-            peas.get(i).operation(GameGround[x]);
+            if (peas.get(i).operation(GameGround[x])) {
+                peas.remove(i);
+            }
         }
         for (int i = 0; i < rockets.size(); i++) {
             rockets.get(i).setXY(this);
             int x = rockets.get(i).getGroundX();
-            rockets.get(i).operation(GameGround[x]);
+            if (rockets.get(i).operation(GameGround[x])) {
+                rockets.remove(i);
+            }
         }
         for (Zombies zombie : ZombiesinGame) {
             zombie.setXY(this);
@@ -165,7 +170,7 @@ public class Rail extends GameMode {
 
 
     public void addPlantsCard() {
-        Plants.add(randomPlant());
+        plants_hand.add(randomPlant());
     }
 
     public Plants randomPlant() {

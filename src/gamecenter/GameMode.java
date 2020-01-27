@@ -94,9 +94,9 @@ public class GameMode {
     }
 
     public ArrayList<String> showLawn() {
-        showLawnX = new ArrayList<>();
-        showLawnY = new ArrayList<>();
-        showLawnHealth = new ArrayList<>();
+        showLawnX.clear();
+        showLawnY.clear();
+        showLawnHealth.clear();
         ArrayList<String> a = new ArrayList<>();
         for (int i = 0; i < PlantsinGame.size(); i++) {
             a.add(PlantsinGame.get(i).getName());

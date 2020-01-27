@@ -44,7 +44,7 @@ public class Ground {
     }
 
     public void Chamnzan(Ground[] grounds) {
-        if (groundY == 0 && chamanzan) {
+        if (chamanzan) {
             for (int i = 0; i < 19; i++) {
                 for (int k = 0; k < grounds[i].settledZombie.size(); i++)
                     grounds[i].settledZombie.remove(k);
