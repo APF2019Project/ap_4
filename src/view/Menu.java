@@ -7,6 +7,7 @@ import gamecenter.Day;
 import gamecenter.GameMode;
 import gamecenter.ZombieGameMode;
 import gamecenter.zombies.Zombies;
+import view.loginController.LoginController;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +15,7 @@ import java.util.Scanner;
 
 public class Menu {
     Scanner input = new Scanner(System.in);
-
+    LoginController loginController = new LoginController();
     public String getOrder() {
 
         return input.nextLine().toLowerCase();
@@ -175,12 +176,12 @@ public class Menu {
     }
 
     public String getUserName() {
-        String str = input.nextLine();
+        String str = loginController.signUpUsername.getText();
         return str;
     }
 
     public String getPassword() {
-        String str = input.nextLine();
+        String str = loginController.signUpPassword.getText();
         return str;
     }
 

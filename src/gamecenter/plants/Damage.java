@@ -15,6 +15,7 @@ public class Damage extends Plants {
         if (name.matches("tangle kelp")) {
             setparameters("Tangle Kelp", 3, 3, 0, ground);
         }
+
         if (name.matches("potato mine")) {
             setparameters("Potato Mine", 2, 3, 1, ground);
         }

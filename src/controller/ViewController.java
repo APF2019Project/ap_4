@@ -3,6 +3,8 @@ package controller;
 import view.*;
 import gamecenter.*;
 
+import java.io.Console;
+
 
 public class ViewController {
     static Menu menu = new Menu();
@@ -15,7 +17,8 @@ public class ViewController {
     public static ZombieGameMode zombieGameMode = new ZombieGameMode();
 
     public static void main(String[] args) {
-
+        Console console = System.console();
+        console.printf("%d",3);
         loginMenu();
     }
 
