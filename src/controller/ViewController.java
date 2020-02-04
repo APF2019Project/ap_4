@@ -1,112 +1,48 @@
 package controller;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import view.*;
 import gamecenter.*;
 
-import java.io.Console;
-
 
 public class ViewController {
+
     static Menu menu = new Menu();
     public static AllUsers allusers = new AllUsers();
-    static String str = "";
     public static Collection collection = new Collection();
     public static Shop shop = new Shop();
     public static Day day = new Day();
     public static Rail rail = new Rail();
     public static ZombieGameMode zombieGameMode = new ZombieGameMode();
 
-    public static void main(String[] args) {
-        Console console = System.console();
-        console.printf("%d",3);
-        loginMenu();
-    }
+    public static String loginMenu(String order, String username, String password) {
+        System.out.println("loginmenu");
 
-    public static void loginMenu() {
-        int flag = 0;
-        while (true) {
-            flag = 0;
-            System.out.println("loginmenu");
-            str = menu.getOrder();
-
-            if (str.matches("help")) {
-                flag = 1;
-                menu.loginHelp();
-                continue;
-            }
-
-            if (str.matches("create account")) {
-                flag = 1;
-                String username = menu.getUserName();
-                String password = menu.getPassword();
-                if (!allusers.newUser(username, password)) {
-                    menu.invalidUser();
-                    continue;
-                } else {
-                    continue;
-                }
-            }
-
-            if (str.matches("login")) {
-                flag = 1;
-                String username = menu.getUserName();
-                String password = menu.getPassword();
-                if (!allusers.login(username, password)) {
-                    menu.invalidUser();
-                    continue;
-                } else {
-                    mainMenu();
-                }
-            }
-
-            if (str.matches("leaderboard")) {
-                flag = 1;
-                leaderBoard();
-                continue;
-            }
-
-            if (str.matches("exit")) {
-                return;
-            }
-
-            if (flag == 0) {
-                menu.invalidCommand();
-                continue;
+        if (order.matches("create account")) {
+            if (!allusers.newUser(username, password)) {
+                menu.invalidUser();
+                return "already exist";
+            } else {
+                return "account created";
             }
         }
-    }
 
-    public static void mainMenu() {
-        while (true) {
-            System.out.println("mainmenu");
-            String str = menu.getOrder();
-
-            if (str.matches("play")) {
-                play();
-                continue;
+        if (order.matches("login")) {
+            if (!allusers.login(username, password)) {
+                return "invalid username or password";
+            } else {
+                return "mainmenu";
             }
-
-            if (str.matches("profile")) {
-                profile();
-                continue;
-            }
-
-            if (str.matches("shop")) {
-                shop();
-                continue;
-            }
-
-            if (str.matches("help")) {
-                menu.mainmenuHelp();
-                continue;
-            }
-
-            if (str.matches("exit")) {
-                return;
-            }
-
-            menu.invalidCommand();
         }
+
+        if (order.matches("leaderboard")) {
+            leaderBoard();
+        }
+        return "null";
     }
 
     public static void leaderBoard() {
@@ -120,49 +56,41 @@ public class ViewController {
         }
     }
 
-    public static void profile() {
-        while (true) {
+    public static String profile(String order, String username, String password) {
             System.out.println("profile");
-            String str = menu.getOrder();
 
-            if (str.matches("change")) {
-                String username = menu.getUserName();
-                String password = menu.getPassword();
+            if (order.matches("change")) {
                 User.change(username, password);
-                continue;
+                return "Changed";
             }
 
-            if (str.matches("delete")) {
-                String username = menu.getUserName();
-                String password = menu.getPassword();
+            if (order.matches("delete")) {
                 if (!User.deleteUser(username, password)) {
                     menu.invalidUser();
+                    return "invalid user";
                 }
-                continue;
+                return "Deleted";
             }
 
-            if (str.matches("rename")) {
-                String username = menu.getUserName();
+            if (order.matches("rename")) {
                 User.renameUsername(username);
-                continue;
+                ;return "Renamed";
             }
 
-            if (str.matches("show")) {
+            if (order.matches("show")) {
                 menu.showCurrentUser();
-                continue;
+
             }
 
-            if (str.matches("help")) {
+            if (order.matches("help")) {
                 menu.profileHelp();
-                continue;
+                ;
             }
 
-            if (str.matches("exit")) {
-                return;
+            if (order.matches("exit")) {
+                return null;
             }
-
-            menu.invalidCommand();
-        }
+            return null;
     }
 
     public static void shop() {
@@ -616,6 +544,37 @@ public class ViewController {
 
 
 
-
+  //  public static void mainMenu() {
+//        while (true) {
+//            System.out.println("mainmenu");
+//            String str = menu.getOrder();
+//
+//            if (str.matches("play")) {
+//                play();
+//                continue;
+//            }
+//
+//            if (str.matches("profile")) {
+//                //profile();
+//                continue;
+//            }
+//
+//            if (str.matches("shop")) {
+//                shop();
+//                continue;
+//            }
+//
+//            if (str.matches("help")) {
+//                menu.mainmenuHelp();
+//                continue;
+//            }
+//
+//            if (str.matches("exit")) {
+//                return;
+//            }
+//
+//            menu.invalidCommand();
+//        }
+//    }
 
 

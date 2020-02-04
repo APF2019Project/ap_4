@@ -7,15 +7,77 @@ import gamecenter.Day;
 import gamecenter.GameMode;
 import gamecenter.ZombieGameMode;
 import gamecenter.zombies.Zombies;
-import view.loginController.LoginController;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Menu {
+public class Menu extends Application {
     Scanner input = new Scanner(System.in);
-    LoginController loginController = new LoginController();
+    static mainmenu mainmenu = new mainmenu();
+    static LoginController loginController = new LoginController();
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+    }
+
+    public void start() {
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public String getOrder() {
 
         return input.nextLine().toLowerCase();
@@ -176,12 +238,12 @@ public class Menu {
     }
 
     public String getUserName() {
-        String str = loginController.signUpUsername.getText();
+        String str = null;
         return str;
     }
 
     public String getPassword() {
-        String str = loginController.signUpPassword.getText();
+        String str = null;
         return str;
     }
 
