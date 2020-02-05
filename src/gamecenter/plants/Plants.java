@@ -30,6 +30,11 @@ public class Plants {
         turn_cooldown = 0;
     }
 
+    @Override
+    public String toString() {
+        return name + "  " + price;
+    }
+
     public int getSun_used() {
 
         return sun_used;

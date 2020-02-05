@@ -132,6 +132,37 @@ public class Collection {
         return false;
     }
 
+    public ArrayList<String> names_c_z() {
+        ArrayList<String> names = new ArrayList<>();
+        for (int i = 0; i < zombies_s.size(); i++) {
+            names.add(zombies_s.get(i).getName());
+        }
+        return names;
+    }
+
+    public ArrayList<String> names_c_p() {
+        ArrayList<String> names = new ArrayList<>();
+        for (int i = 0; i < plants_s.size(); i++) {
+            names.add(plants_s.get(i).getName());
+        }
+        return names;
+    }
+
+    public ArrayList<String> names_z() {
+        ArrayList<String> names = new ArrayList<>();
+        for (int i = 0; i < zombies_hand.size(); i++) {
+            names.add(zombies_hand.get(i).getName());
+        }
+        return names;
+    }
+
+    public ArrayList<String> names_p() {
+        ArrayList<String> names = new ArrayList<>();
+        for (int i = 0; i < plants_hand.size(); i++) {
+            names.add(plants_hand.get(i).getName());
+        }
+        return names;
+    }
 }
 
 

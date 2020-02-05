@@ -4,34 +4,32 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="669.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.shopController.ShopController">
+<AnchorPane fx:id="anchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.shopController.ShopController">
    <children>
-      <Label alignment="TOP_CENTER" layoutX="215.0" layoutY="14.0" prefHeight="17.0" prefWidth="230.0" text="Shop" textAlignment="CENTER">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Label>
-      <Label fx:id="amountOfMoney" layoutX="66.0" layoutY="28.0" />
-      <Button fx:id="collectionBtn" layoutX="40.0" layoutY="151.0" mnemonicParsing="false" onAction="#collectionHandler" text="Collection" />
-      <ListView fx:id="collectionList" layoutX="156.0" layoutY="64.0" onMousePressed="#listClick" prefHeight="200.0" prefWidth="200.0" />
-      <ImageView fx:id="collectionImage" fitHeight="150.0" fitWidth="200.0" layoutX="390.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="410.0" layoutY="219.0" prefHeight="25.0" prefWidth="161.0" text="Label" />
-      <Label layoutX="410.0" layoutY="256.0" prefHeight="17.0" prefWidth="179.0" text="Label" />
-      <Label layoutX="410.0" layoutY="273.0" prefHeight="45.0" prefWidth="200.0" text="Label" />
-      <Label layoutX="293.0" layoutY="287.0" text="other description :" />
-      <Button layoutX="40.0" layoutY="461.0" mnemonicParsing="false" onAction="#shopHandler" text="Shop" />
-      <ListView fx:id="shopList" layoutX="156.0" layoutY="374.0" onMousePressed="#shopListClick" prefHeight="200.0" prefWidth="200.0" />
-      <ImageView fx:id="shopImage" fitHeight="150.0" fitWidth="200.0" layoutX="391.0" layoutY="335.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="401.0" layoutY="494.0" prefHeight="25.0" prefWidth="161.0" text="Label" />
-      <Label layoutX="401.0" layoutY="526.0" prefHeight="25.0" prefWidth="179.0" text="Label" />
-      <Label layoutX="427.0" layoutY="574.0" prefHeight="45.0" prefWidth="200.0" text="Label" />
-      <Label layoutX="308.0" layoutY="588.0" text="other description :" />
-      <Button layoutX="171.0" layoutY="582.0" mnemonicParsing="false" onAction="#buyHandler" prefHeight="45.0" prefWidth="89.0" text="Buy" />
-      <Label fx:id="moneyAmount" layoutX="74.0" layoutY="24.0" prefHeight="25.0" prefWidth="43.0" />
-      <Button fx:id="moneyBtn" layoutX="14.0" layoutY="24.0" mnemonicParsing="false" onAction="#moneyHandler" text="Money" />
-      <Label fx:id="buyMsg" layoutX="178.0" layoutY="638.0" prefHeight="17.0" prefWidth="161.0" text="if the buying was successfull" />
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: black;">
+         <children>
+            <Label alignment="TOP_CENTER" layoutX="335.0" layoutY="44.0" prefHeight="17.0" prefWidth="230.0" text="Shop" textAlignment="CENTER" textFill="#160af5">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="amountOfMoney" layoutX="186.0" layoutY="58.0" />
+            <Button fx:id="collectionBtn" layoutX="237.0" layoutY="103.0" mnemonicParsing="false" onAction="#collectionHandler" text="Collection" />
+            <ListView fx:id="collectionList" layoutX="350.0" layoutY="103.0" onMousePressed="#listClick" prefHeight="200.0" prefWidth="200.0" />
+            <ImageView fx:id="collectionImage" fitHeight="150.0" fitWidth="200.0" layoutX="565.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="249.0" layoutY="340.0" mnemonicParsing="false" onAction="#shopHandler" text="Shop" />
+            <ListView fx:id="shopList" layoutX="350.0" layoutY="340.0" onMousePressed="#shopListClick" prefHeight="200.0" prefWidth="200.0" />
+            <ImageView fx:id="shopImage" fitHeight="150.0" fitWidth="200.0" layoutX="565.0" layoutY="393.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="565.0" layoutY="328.0" mnemonicParsing="false" onAction="#buyHandler" prefHeight="45.0" prefWidth="89.0" text="Buy" />
+            <Label fx:id="moneyAmount" layoutX="205.0" layoutY="54.0" prefHeight="25.0" prefWidth="53.0" textFill="#e4f005" />
+            <Button fx:id="moneyBtn" layoutX="134.0" layoutY="54.0" mnemonicParsing="false" onAction="#moneyHandler" text="Money" />
+            <Label fx:id="buyMsg" layoutX="673.0" layoutY="342.0" prefHeight="17.0" prefWidth="200.0" text="if the buying was successfull" textFill="#fdfbfb" />
+            <Button fx:id="moneyBtn1" layoutY="637.0" mnemonicParsing="false" onAction="#back" prefHeight="55.0" prefWidth="89.0" text="Back" />
+         </children>
+      </Pane>
    </children>
-</Pane>
+</AnchorPane>

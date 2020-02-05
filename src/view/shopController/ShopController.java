@@ -1,13 +1,25 @@
 package view.shopController;
 
+
+import controller.ViewController;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import view.mainmenu;
+
+import java.io.IOException;
 
 public class ShopController {
+
+    @FXML
+    public AnchorPane anchorPane;
+
     private String name;
     @FXML
     private Label amountOfMoney;
@@ -29,41 +41,61 @@ public class ShopController {
     private Label buyMsg;
 
     public void moneyHandler() {
-        moneyAmount.setText(//todo parseString money);
+        moneyAmount.setText(ViewController.shop.getCoin() + "");
     }
 
     public void collectionHandler() {
         collectionList.getItems().removeAll(collectionList.getItems());
-        collectionList.getItems().addAll(//todo string list of all cards)
+        collectionList.getItems().addAll(ViewController.shop.name_c());//todo string list of all cards)
     }
 
     public void listClick() {
-        String temp = collectionList.getSelectionModel().getSelectedItems().toString();
-        String cardName = temp.substring(1, temp.length() - 1);
-        //todo get the card with its name
-        collectionImage.setImage(new Image(//todo path of imageCard));
-                //todo set the information in lables
-
+//        String temp = collectionList.getSelectionModel().getSelectedItems().toString();
+//        String cardName = temp.substring(1, temp.length() - 1);
+//        //todo get the card with its name
+//        collectionImage.setImage(new Image(//todo path of imageCard));
+//                //todo set the information in lables
     }
 
     public void shopHandler() {
         shopList.getItems().removeAll(shopList.getItems());
-        shopList.getItems().addAll(//todo string list of available cards)
+        shopList.getItems().addAll(ViewController.shop.names());//todo string list of available cards)
     }
 
     public void shopListClick() {
-        String temp = shopList.getSelectionModel().getSelectedItem().toString();
-        String cardName = temp.substring(1, temp.length() - 1);
-        //todo get the card with its name
-        shopImage.setImage(new Image((/*todo path of image card))*/)));
-        //todo set the information in lables
-        name = cardName;
-
+        String temp = shopList.getSelectionModel().getSelectedItem();
     }
 
     public void buyHandler() {
-        buyMsg.setText("");//todo if the shopping was successfull or not););
+        String temp = shopList.getSelectionModel().getSelectedItem();
+        int status = ViewController.shop.buyCard(temp);
+        if (status == 0)
+            buyMsg.setText("notEnoughMoney");
+        if (status == -1)
+            buyMsg.setText("invalid card");
+        if (status == 2)
+            buyMsg.setText("its been bought before");
+        if (status == 1)
+            buyMsg.setText("Bought!");
     }
 
+    public void stage(AnchorPane anchorPane) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("shop.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        anchorPane.getChildren().add(root);
+    }
 
+    public void back() {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(mainmenu.class.getResource("mainmenu.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        anchorPane.getChildren().add(root);
+    }
 }

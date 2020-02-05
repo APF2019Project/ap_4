@@ -13,7 +13,7 @@ import view.mainmenu;
 
 import java.io.IOException;
 
-public class CollectionController {
+public class Collection_z {
     private String handCardName;
     private String collectionCardName;
     @FXML
@@ -36,7 +36,7 @@ public class CollectionController {
     public void stage(AnchorPane anchorPane) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("collection.fxml"));
+            root = FXMLLoader.load(getClass().getResource("collectionz.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -45,19 +45,7 @@ public class CollectionController {
 
     public void hand() {
         handList.getItems().removeAll(handList.getItems());
-        handList.getItems().addAll(ViewController.collection.names_p());
-    }
-
-
-    public void remove() {
-        handCardName = handList.getSelectionModel().getSelectedItem();
-        handList.getItems().remove(handCardName);
-        collectionList.getItems().add(handCardName);
-    }
-
-    public void collectionHandler() {
-        collectionList.getItems().removeAll(collectionList.getItems());
-        collectionList.getItems().addAll(ViewController.collection.names_c_p());
+        handList.getItems().addAll(ViewController.collection.names_z());
     }
 
     public void selectCard() {
@@ -66,13 +54,16 @@ public class CollectionController {
         handList.getItems().add(collectionCardName);
     }
 
-    public void selectCollectionList() {
-//        String temp = collectionList.getSelectionModel().getSelectedItem().toString();
-//        String cardName = temp.substring(1, temp.length() - 1);
-//        //todo get the card with its name
-//        collectionImage.setImage(new Image((/*todo path of image card))*/)));
-//        //todo set the information in lables
-//        collectionCardName = cardName;
+
+    public void remove() {
+        handCardName = handList.getSelectionModel().getSelectedItem();
+        collectionList.getItems().add(handCardName);
+        handList.getItems().remove(handCardName);
+    }
+
+    public void collectionHandler() {
+        collectionList.getItems().removeAll(collectionList.getItems());
+        collectionList.getItems().addAll(ViewController.collection.names_c_z());
     }
 
     public void back() {
@@ -85,6 +76,15 @@ public class CollectionController {
         anchorPane.getChildren().add(root);
     }
 
+    public void selectCollectionList() {
+//        String temp = collectionList.getSelectionModel().getSelectedItem().toString();
+//        String cardName = temp.substring(1, temp.length() - 1);
+//        //todo get the card with its name
+//        collectionImage.setImage(new Image((/*todo path of image card))*/)));
+//        //todo set the information in lables
+//        collectionCardName = cardName;
+    }
+
     public void select() {
 //        String temp = handList.getSelectionModel().getSelectedItem().toString();
 //        String cardName = temp.substring(1, temp.length() - 1);
@@ -93,6 +93,5 @@ public class CollectionController {
 //        //todo set the information in lables
 //        handCardName = cardName;
     }
-
 
 }

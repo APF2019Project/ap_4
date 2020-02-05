@@ -1,27 +1,28 @@
 package view;
 
 import controller.ViewController;
-import gamecenter.AllUsers;
-import controller.ViewController.*;
 import gamecenter.Day;
 import gamecenter.GameMode;
 import gamecenter.ZombieGameMode;
-import gamecenter.zombies.Zombies;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import view.collectionController.CollectionController;
+import view.collectionController.Collection_z;
+import view.shopController.ShopController;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Menu extends Application {
     Scanner input = new Scanner(System.in);
     static mainmenu mainmenu = new mainmenu();
     static LoginController loginController = new LoginController();
+    static ShopController shopController = new ShopController();
+    static CollectionController collectionController = new CollectionController();
+    static Collection_z collection_z = new Collection_z();
     public static void main(String[] args) {
         launch(args);
     }

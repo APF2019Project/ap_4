@@ -11,7 +11,7 @@ import gamecenter.*;
 
 public class ViewController {
 
-    static Menu menu = new Menu();
+    public static Menu menu = new Menu();
     public static AllUsers allusers = new AllUsers();
     public static Collection collection = new Collection();
     public static Shop shop = new Shop();

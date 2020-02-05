@@ -19,7 +19,10 @@ public class Zombies {
 
     public Zombies() {
     }
-
+    @Override
+    public String toString() {
+        return name + "  " + price;
+    }
     public String getName() {
 
 

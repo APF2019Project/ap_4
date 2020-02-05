@@ -142,6 +142,29 @@ public class Shop {
     public void setCoin(int coin) {
         this.coin += coin;
     }
+
+    public ArrayList<String> names() {
+        ArrayList<String> names = new ArrayList<>();
+        for (int i = 0; i < plants.size(); i++) {
+            names.add(plants.get(i).getName());
+        }
+        for (int i = 0; i < zombies.size(); i++) {
+            names.add(zombies.get(i).getName());
+        }
+        return names;
+    }
+
+    public ArrayList<String> name_c() {
+        ArrayList<String> all = new ArrayList<String>();
+        for (int i = 0; i < ViewController.collection.zombies_s.size(); i++) {
+            all.add(ViewController.collection.zombies_s.get(i).getName());
+        }
+
+        for (int i = 0; i < ViewController.collection.plants_s.size(); i++) {
+            all.add(ViewController.collection.plants_s.get(i).getName());
+        }
+        return all;
+    }
 }
 
 
