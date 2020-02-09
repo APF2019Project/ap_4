@@ -36,3 +36,6 @@ hs_err_pid*
 .idea/uiDesigner.xml
 .idea/vcs.xml
 ap_progect_grph.iml
+
+.idea/workspace.xml
+*.iml
