@@ -1,6 +1,7 @@
 package view;
 
 import controller.Viewcontroller;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,6 +32,12 @@ public class mainmenu {
 
     public void a(Pane pane) {
         this.pane = pane;
+    }
+
+
+    public void exitHandler(){
+        //todo in network first set the isOnline off
+        Platform.exit();
     }
 
     public void mainmenu(Pane pane) {
