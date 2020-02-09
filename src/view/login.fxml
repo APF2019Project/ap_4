@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginController">
+   <children>
+      <TextField fx:id="signUpUsername" layoutX="172.0" layoutY="121.0" />
+      <Label layoutX="100.0" layoutY="125.0" text="Username" textFill="#fdf4f4" />
+      <Label layoutX="102.0" layoutY="165.0" text="Password" textFill="#f2e7e7" />
+      <Label alignment="CENTER" layoutX="173.0" layoutY="79.0" prefHeight="17.0" prefWidth="135.0" text="Sign Up" textFill="#f0ebeb">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="212.0" layoutY="266.0" prefHeight="25.0" prefWidth="60.0" text="Login" textFill="#fdf5f5">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="102.0" layoutY="323.0" text="Username" textFill="#fdf8f8" />
+      <Label layoutX="104.0" layoutY="362.0" text="Password" textFill="#ede5e5" />
+      <TextField fx:id="loginUsername" layoutX="175.0" layoutY="319.0" />
+      <Button layoutX="215.0" layoutY="204.0" mnemonicParsing="false" onAction="#signUp" text="sign up" />
+      <Label fx:id="msg2" layoutX="169.0" layoutY="397.0" prefHeight="17.0" prefWidth="160.0" />
+      <PasswordField fx:id="loginPassword" layoutX="175.0" layoutY="358.0" />
+      <PasswordField fx:id="signUpPassword" layoutX="172.0" layoutY="161.0" />
+      <BorderPane layoutX="549.0" layoutY="159.0" prefHeight="200.0" prefWidth="200.0" />
+      <Label fx:id="msg" layoutX="569.0" layoutY="170.0" prefHeight="228.0" prefWidth="160.0" textAlignment="CENTER" textFill="#faf7f7">
+         <font>
+            <Font name="Berlin Sans FB" size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="221.0" layoutY="402.0" mnemonicParsing="false" onAction="#login" text="login" />
+   </children>
+</Pane>
