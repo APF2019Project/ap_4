@@ -1,6 +1,6 @@
 package view.collectionController;
 
-import controller.ViewController;
+import clientAndServer.Client;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -45,7 +45,7 @@ public class Collection_z {
 
     public void hand() {
         handList.getItems().removeAll(handList.getItems());
-        handList.getItems().addAll(ViewController.collection.names_z());
+        handList.getItems().addAll(Client.currentClient.getUser().collection.names_z());
     }
 
     public void selectCard() {
@@ -63,7 +63,7 @@ public class Collection_z {
 
     public void collectionHandler() {
         collectionList.getItems().removeAll(collectionList.getItems());
-        collectionList.getItems().addAll(ViewController.collection.names_c_z());
+        collectionList.getItems().addAll(Client.currentClient.getUser().collection.names_c_z());
     }
 
     public void back() {

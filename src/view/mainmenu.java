@@ -1,6 +1,6 @@
 package view;
 
-import controller.ViewController;
+import controller.Viewcontroller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,9 +8,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import view.collectionController.*;
-import java.io.IOException;
 
+import java.io.IOException;
 
 
 public class mainmenu {
@@ -56,22 +55,22 @@ public class mainmenu {
     }
 
     public void rename() {
-        String s = ViewController.profile("rename", user_name.getText(), password.getText());
+        String s = Viewcontroller.profile("rename", user_name.getText(), password.getText());
         msge.setText(s);
 
     }
 
     public void show() {
-        msge.setText(ViewController.allusers.currentuser);
+        msge.setText(Viewcontroller.users.currentuser);
     }
 
     public void delete() {
-        String s = ViewController.profile("delete", user_name.getText(), password.getText());
+        String s = Viewcontroller.profile("delete", user_name.getText(), password.getText());
         msge.setText(s);
     }
 
     public void change() {
-        String s = ViewController.profile("change", user_name.getText(), password.getText());
+        String s = Viewcontroller.profile("change", user_name.getText(), password.getText());
         msge.setText(s);
     }
 
@@ -96,6 +95,7 @@ public class mainmenu {
     }
 
     public void goTOShop() {
+
         Menu.shopController.stage(anchorPane);
     }
 
@@ -110,9 +110,13 @@ public class mainmenu {
     }
 
     public void day() {
+
+
         Menu.collectionController.stage(anchorPane_play);
     }
+
     public void zombie() {
+
         Menu.collection_z.stage(anchorPane_play);
     }
 
@@ -125,4 +129,6 @@ public class mainmenu {
         }
         anchorPane_play.getChildren().add(root);
     }
+
+    public void pvp() {}
 }

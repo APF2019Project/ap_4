@@ -9,9 +9,11 @@ public class WaterZombie extends Zombies {
         type="w";
         if (name.matches("snorkel zombie")) {
             setparameters("Snorkel Zombie", 2, 2, 1, ground);
+            imagePath = "pics/SnorkelZombie.jpg";
             shield = 0;
         } else {
             setparameters("dolphin rider zombie", 2, 2, 1, ground);
+            imagePath = "pics/DolphinRiderZombie.jpg";
             shield = 2;
         }
 

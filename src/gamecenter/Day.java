@@ -1,11 +1,10 @@
 package gamecenter;
 
-import controller.ViewController;
+import controller.Viewcontroller;
 import gamecenter.plants.*;
 import gamecenter.zombies.*;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Day extends GameMode {
     private int sun = 2;
@@ -20,7 +19,7 @@ public class Day extends GameMode {
 
     public Day() {
         super();
-        plants_hand = ViewController.collection.plants_hand;
+        plants_hand = Viewcontroller.collection.plants_hand;
         for (int i = 0; i < 6; i++) {
             for (int k = 0; k < 19; k++) {
                 GameGround[i][k].groundX = i;
@@ -48,7 +47,7 @@ public class Day extends GameMode {
         showLawnHealth = new ArrayList<>();
         zombies_dead = new ArrayList<>();
         plants_dead = new ArrayList<>();
-        plants_hand = ViewController.collection.plants_hand;
+        plants_hand = Viewcontroller.collection.plants_hand;
         for (int i = 0; i < 6; i++) {
             for (int k = 0; k < 19; k++) {
                 GameGround[i][k].groundX = i;
@@ -114,7 +113,7 @@ public class Day extends GameMode {
             zombie.operation(getGroundline(i));
         }
         deathSets();
-        ViewController.shop.setCoin(zombies_dead.size() * 10);
+        Viewcontroller.shop.setCoin(zombies_dead.size() * 10);
         leaderBoards();
         if (zombieWins()) {
             return 0;

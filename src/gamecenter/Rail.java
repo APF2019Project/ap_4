@@ -1,6 +1,6 @@
 package gamecenter;
 
-import controller.ViewController;
+import controller.Viewcontroller;
 import gamecenter.plants.*;
 import gamecenter.zombies.*;
 
@@ -20,7 +20,7 @@ public class Rail extends GameMode {
 
     public Rail() {
         turn = 0;
-        plants_hand = ViewController.collection.plants_hand;
+        plants_hand = Viewcontroller.collection.plants_hand;
         for (int i = 0; i < 6; i++) {
             for (int k = 0; k < 19; k++) {
                 GameGround[i][k].groundX = i;
@@ -127,7 +127,7 @@ public class Rail extends GameMode {
             zombie.operation(getGroundline(i));
         }
         deathSets();
-        ViewController.shop.setCoin(DeadZombies.size() * 10);
+        Viewcontroller.shop.setCoin(DeadZombies.size() * 10);
         leaderBoards();
         if (zombieWins()) {
             return 1;
@@ -174,9 +174,9 @@ public class Rail extends GameMode {
     }
 
     public Plants randomPlant() {
-        int k = generator.nextInt(ViewController.collection.plants_s.size());
+        int k = generator.nextInt(Viewcontroller.collection.plants_s.size());
         Plants current;
-        current = ViewController.collection.plants_s.get(k);
+        current = Viewcontroller.collection.plants_s.get(k);
         return cardFinder(current, current.getName());
     }
 

@@ -1,7 +1,5 @@
 package gamecenter.zombies;
 
-import controller.ViewController;
-import gamecenter.GameMode;
 import gamecenter.Ground;
 
 public class Normal extends Zombies {
@@ -12,16 +10,22 @@ public class Normal extends Zombies {
         type="n";
         if (name.matches("zombie")) {
             setparameters("Zombie", 2, 2, 1, ground);
+            imagePath = "pics/Zombie.jpg";
         }
         if (name.matches("football zombie")) {
             setparameters("football zombie", 3, 4, 1, ground);
+            imagePath = "pics/FootballZombie.jpg";
+
         }
         if (name.matches("buckethead zombie")) {
             setparameters("Buckethead Zombie", 2, 3, 1, ground);
+            imagePath = "pics/BucketheadZombie.jpg";
 
         }
         if (name.matches("conehead zombie")) {
             setparameters("Conehead Zombie", 2, 3, 1, ground);
+            imagePath = "pics/ch.png";
+
         }
     }
 /*

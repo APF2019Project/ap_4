@@ -1,12 +1,11 @@
 package gamecenter;
 
-import controller.ViewController;
+import controller.Viewcontroller;
 import gamecenter.plants.*;
 import gamecenter.zombies.Zombies;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Random;
 
 public class ZombieGameMode extends GameMode {
@@ -25,7 +24,7 @@ public class ZombieGameMode extends GameMode {
 
 
     public ZombieGameMode() {
-        zombies_hand = ViewController.collection.zombies_hand;
+        zombies_hand = Viewcontroller.collection.zombies_hand;
         for (int i = 0; i < 6; i++) {
             for (int k = 0; k < 19; k++) {
                 GameGround[i][k].groundX = i;
@@ -64,7 +63,7 @@ public class ZombieGameMode extends GameMode {
         turn = 0;
         coin = 50;
         ladder = 3;
-        zombies_hand = ViewController.collection.zombies_hand;
+        zombies_hand = Viewcontroller.collection.zombies_hand;
         zombies_health = new ArrayList<>();
         plants = new ArrayList<>();
         zombies = new Zombies[6][2];
@@ -114,7 +113,7 @@ public class ZombieGameMode extends GameMode {
         for (int i = 0; i < plants_dead.size(); i++) {
             coin += plants_dead.get(i).getHealth() * 10;
         }
-        ViewController.shop.setCoin(plants_dead.size() * 10);
+        Viewcontroller.shop.setCoin(plants_dead.size() * 10);
         if (!plantsCheck()) {
             return 2;
         }

@@ -1,6 +1,6 @@
 package gamecenter;
 
-import controller.ViewController;
+import controller.Viewcontroller;
 import gamecenter.plants.Plants;
 import gamecenter.zombies.Zombies;
 
@@ -20,7 +20,7 @@ public class WaterMode extends GameMode {
 
     public WaterMode() {
         super();
-        plants_hand = ViewController.collection.plants_hand;
+        plants_hand = Viewcontroller.collection.plants_hand;
         for (int i = 0; i < 6; i++) {
             for (int k = 0; k < 19; k++) {
                 GameGround[i][k].groundX = i;

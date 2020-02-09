@@ -1,20 +1,13 @@
 package view;
 
-import controller.ViewController;
-import javafx.application.Application;
-import javafx.event.ActionEvent;
+import controller.Viewcontroller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-
-import sample.*;
 
 import java.io.IOException;
 
@@ -46,12 +39,12 @@ public class LoginController {
 
 
     public void signUp() {
-        String s = ViewController.loginMenu("create account", signUpUsername.getText(), signUpPassword.getText());
+        String s = Viewcontroller.loginMenu("create account", signUpUsername.getText(), signUpPassword.getText());
         msg.setText(s);
     }
 
     public void login() {
-        String s = ViewController.loginMenu("login", signUpUsername.getText(), signUpPassword.getText());
+        String s = Viewcontroller.loginMenu("login", signUpUsername.getText(), signUpPassword.getText());
         msg.setText(s);
         if (s.equals("mainmenu")) {
             Menu.mainmenu.mainmenu(pane);

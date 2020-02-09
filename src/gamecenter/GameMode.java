@@ -1,6 +1,6 @@
 package gamecenter;
 
-import controller.ViewController;
+import controller.Viewcontroller;
 import gamecenter.plants.*;
 import gamecenter.zombies.*;
 
@@ -199,16 +199,16 @@ public class GameMode {
     }
 
     public Zombies randomZombie() {
-        int k = generator.nextInt(ViewController.shop.zombies.size());
+        int k = generator.nextInt(Viewcontroller.shop.zombies.size());
         if (k == 13 || k == 14) k = 5;
-        current = ViewController.shop.zombies.get(k);
+        current = Viewcontroller.shop.zombies.get(k);
         return cardFinder(current, current.getName());
     }
 
     public void leaderBoards() {
         for (int i = 0; i < zombies_dead.size(); i++) {
             Zombies zombies = new Zombies();
-            ViewController.allusers.currentuser1.ZombiesKilled.add(zombies);
+            Viewcontroller.users.currentuser1.ZombiesKilled.add(zombies);
         }
     }
 }

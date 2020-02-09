@@ -1,6 +1,5 @@
 package gamecenter.zombies;
 
-import controller.ViewController;
 import gamecenter.Ground;
 
 public class SpiderZombie extends Zombies {
@@ -8,6 +7,7 @@ public class SpiderZombie extends Zombies {
     public SpiderZombie(Ground ground) {
         type="s";
         setparameters("bungee zombie",0,3,10000,ground); turn=0;
+        imagePath = "pics/BungeeZombie.jpg";
     }
 @Override
     public void operation(Ground[] grounds){

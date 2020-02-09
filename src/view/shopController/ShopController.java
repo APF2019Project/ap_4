@@ -1,7 +1,7 @@
 package view.shopController;
 
 
-import controller.ViewController;
+import clientAndServer.Client;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,10 +16,8 @@ import view.mainmenu;
 import java.io.IOException;
 
 public class ShopController {
-
     @FXML
     public AnchorPane anchorPane;
-
     private String name;
     @FXML
     private Label amountOfMoney;
@@ -41,12 +39,12 @@ public class ShopController {
     private Label buyMsg;
 
     public void moneyHandler() {
-        moneyAmount.setText(ViewController.shop.getCoin() + "");
+        moneyAmount.setText(Client.currentClient.getUser().shop.getCoin() + "");
     }
 
     public void collectionHandler() {
         collectionList.getItems().removeAll(collectionList.getItems());
-        collectionList.getItems().addAll(ViewController.shop.name_c());//todo string list of all cards)
+        collectionList.getItems().addAll(Client.currentClient.getUser().shop.name_c());//todo string list of all cards)
     }
 
     public void listClick() {
@@ -59,7 +57,7 @@ public class ShopController {
 
     public void shopHandler() {
         shopList.getItems().removeAll(shopList.getItems());
-        shopList.getItems().addAll(ViewController.shop.names());//todo string list of available cards)
+        shopList.getItems().addAll(Client.currentClient.getUser().shop.names());//todo string list of available cards)
     }
 
     public void shopListClick() {
@@ -68,15 +66,16 @@ public class ShopController {
 
     public void buyHandler() {
         String temp = shopList.getSelectionModel().getSelectedItem();
-        int status = ViewController.shop.buyCard(temp);
+        int status = Client.currentClient.getUser().shop.buyCard(temp);
         if (status == 0)
             buyMsg.setText("notEnoughMoney");
         if (status == -1)
             buyMsg.setText("invalid card");
         if (status == 2)
             buyMsg.setText("its been bought before");
-        if (status == 1)
+        if (status == 1){
             buyMsg.setText("Bought!");
+        }
     }
 
     public void stage(AnchorPane anchorPane) {

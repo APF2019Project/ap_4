@@ -1,6 +1,6 @@
 package view;
 
-import controller.ViewController;
+import controller.Viewcontroller;
 import gamecenter.Day;
 import gamecenter.GameMode;
 import gamecenter.ZombieGameMode;
@@ -130,25 +130,25 @@ public class Menu extends Application {
     }
 
     public void showLaeaderboards() {
-        String[] name = ViewController.allusers.Leaderboard();
-        int[] number = ViewController.allusers.Leaderboardnumbers();
-        for (int i = 0; i < ViewController.allusers.users.size(); i++) {
+        String[] name = Viewcontroller.users.Leaderboard();
+        int[] number = Viewcontroller.users.Leaderboardnumbers();
+        for (int i = 0; i < Viewcontroller.users.users.size(); i++) {
             System.out.print("name " + name[i] + " killed");
             System.out.println(number[i]);
         }
     }
 
     public void showShop() {
-        ArrayList<String> name = ViewController.shop.ShowShop();
-        ArrayList<Integer> number = ViewController.shop.ShowShopprices();
+        ArrayList<String> name = Viewcontroller.shop.ShowShop();
+        ArrayList<Integer> number = Viewcontroller.shop.ShowShopprices();
         for (int i = 0; i < name.size(); i++) {
             System.out.println(name.get(i) + " Price: " + number.get(i));
         }
     }
 
     public void showCollection_shop() {
-        ArrayList<String> name = ViewController.shop.ShowCollectionPlants();
-        ArrayList<String> name1 = ViewController.shop.ShowCollectionZombies();
+        ArrayList<String> name = Viewcontroller.shop.ShowCollectionPlants();
+        ArrayList<String> name1 = Viewcontroller.shop.ShowCollectionZombies();
         for (int i = 0; i < name.size(); i++) {
             System.out.print(name.get(i) + "//");
         }
@@ -161,11 +161,11 @@ public class Menu extends Application {
 
     public void showMoney() {
 
-        System.out.println(ViewController.shop.getCoin());
+        System.out.println(Viewcontroller.shop.getCoin());
     }
 
     public void showHandZombie() {
-        ArrayList<String> name = ViewController.collection.showHandZombie();
+        ArrayList<String> name = Viewcontroller.collection.showHandZombie();
         for (int i = 0; i < name.size(); i++) {
             System.out.print(name.get(i) + "//");
         }
@@ -173,7 +173,7 @@ public class Menu extends Application {
     }
 
     public void showHandPlants() {
-        ArrayList<String> name = ViewController.collection.showHandPlants();
+        ArrayList<String> name = Viewcontroller.collection.showHandPlants();
         for (int i = 0; i < name.size(); i++) {
             System.out.print(name.get(i) + "//");
         }
@@ -181,7 +181,7 @@ public class Menu extends Application {
     }
 
     public void showCollectionPlants() {
-        ArrayList<String> name = ViewController.collection.showCollectionPlants();
+        ArrayList<String> name = Viewcontroller.collection.showCollectionPlants();
         for (int i = 0; i < name.size(); i++) {
             System.out.print(name.get(i) + "//");
         }
@@ -189,7 +189,7 @@ public class Menu extends Application {
     }
 
     public void showCollectionZombies() {
-        ArrayList<String> name = ViewController.collection.showCollectionZombies();
+        ArrayList<String> name = Viewcontroller.collection.showCollectionZombies();
         for (int i = 0; i < name.size(); i++) {
             System.out.print(name.get(i) + "//");
         }
@@ -235,7 +235,7 @@ public class Menu extends Application {
 
     public void showCurrentUser() {
 
-        System.out.println(ViewController.allusers.currentuser);
+        System.out.println(Viewcontroller.users.currentuser);
     }
 
     public String getUserName() {
@@ -340,11 +340,11 @@ public class Menu extends Application {
 
     public void recordRail() {
 
-        System.out.println(ViewController.rail.record());
+        System.out.println(Viewcontroller.rail.record());
     }
 
     public void listRail() {
-        ArrayList<String> name = ViewController.rail.list();
+        ArrayList<String> name = Viewcontroller.rail.list();
         for (int i = 0; i < name.size(); i++) {
             System.out.print(name.get(i) + "//");
         }

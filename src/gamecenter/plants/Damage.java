@@ -1,6 +1,5 @@
 package gamecenter.plants;
 
-import controller.ViewController;
 import gamecenter.GameMode;
 import gamecenter.Ground;
 import gamecenter.zombies.Zombies;
@@ -9,33 +8,39 @@ import java.util.ArrayList;
 
 public class Damage extends Plants {
 
-    public Damage(String name, Ground ground) {
-        name = name.toLowerCase();
+    public Damage(String name2, Ground ground) {
+        name2 = name2.toLowerCase();
         type = "damage";
-        if (name.matches("tangle kelp")) {
+        if (name2.matches("tangle kelp")) {
             setparameters("Tangle Kelp", 3, 3, 0, ground);
+            imagePath = "pics/TangleKelp.jpg";
         }
 
-        if (name.matches("potato mine")) {
+        if (name2.matches("potato mine")) {
             setparameters("Potato Mine", 2, 3, 1, ground);
+            imagePath = "pics/PotatoMine.jpg";
         }
-        if (name.matches("cherry bomb")) {
+        if (name2.matches("cherry bomb")) {
             setparameters("Cherry Bomb", 2, 4, 0, ground);
+            imagePath = "pics/CherryBomb.jpg";
         }
-        if (name.matches("cattail")) {
+        if (name2.matches("cattail")) {
             setparameters("Cattail", 5, 5, 3, ground);
+            imagePath = "pics/CherryBomb.jpg";
         }
-        if (name.matches("jalapeno")) {
+        if (name2.matches("jalapeno")) {
             setparameters("Jalapeno", 4, 5, 0, ground);
+            imagePath = "pics/Jalapeno.jpg";
         }
-        if (name.matches("explode-o-nut")) {
+        if (name2.matches("explode-o-nut")) {
             setparameters("Explode-o-nut", 4, 5, 3, ground);
+            imagePath = "pics/Explode-o-nut.jpg";
         }
     }
 
     @Override
     public void operation(GameMode gameMode) {
-
+        String name = this.name2;
         turn_shoot++;
         if (!isThereAnyZombie(gameMode))
             return;
@@ -44,27 +49,21 @@ public class Damage extends Plants {
             if (zombies.size() != 0) {
                 zombies.get(0).setHealth(1);
             }
-        }
-
-        if (name.equals("jalapeno")) {
+        }else if (name.equals("jalapeno")) {
             for (int j = 0; j < 19; j++) {
                 ArrayList<Zombies> zombies = gameMode.GameGround[groundX][j].settledZombie;
                 for (int i = 0; i < zombies.size(); i++) {
                     zombies.get(i).suddenDeath();
                 }
             }
-        }
-
-        if (name.equals("potato mine")) {
+        }else if (name.equals("potato mine")) {
             if (turn_shoot > 1) {
                 ArrayList<Zombies> zombies = gameMode.GameGround[groundX][groundY].settledZombie;
                 if (zombies.size() != 0) {
                     zombies.get(0).suddenDeath();
                 }
             }
-        }
-
-        if (name.equals("cherry bomb")) {
+        }else if (name.equals("cherry bomb")) {
             for (int i = -1; i <= 1; i++) {
                 for (int j = -1; j <= 1; j++) {
                     ArrayList<Zombies> zombies = gameMode.GameGround[groundX + i][groundY + j].settledZombie;
@@ -73,6 +72,8 @@ public class Damage extends Plants {
                     }
                 }
             }
+        }else {
+
         }
     }
 

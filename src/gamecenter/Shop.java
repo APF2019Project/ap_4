@@ -1,6 +1,6 @@
 package gamecenter;
 
-import controller.ViewController;
+
 import gamecenter.plants.*;
 import gamecenter.zombies.*;
 import gamecenter.zombies.Zombies;
@@ -11,6 +11,10 @@ import java.util.Arrays;
 public class Shop {
     int coin = 10000;
     Ground e = null;
+    Collection collection;
+    public Shop(Collection collection) {
+        this.collection = collection;
+    }
     ArrayList<Plants> plants = new ArrayList<>(
             Arrays.asList(
                     new Damage("Tangle Kelp", e),
@@ -58,16 +62,14 @@ public class Shop {
                     new WaterZombie("Dolphin Rider Zombie", e)
             ));
     public ArrayList<Integer> allprice = new ArrayList<>();
-
-
     //buy sth bought
     public int buyCard(String name) {
-        for (Plants plants : ViewController.collection.plants_s) {
+        for (Plants plants : this.collection.plants_s) {
             if (plants.getName().equals(name)) {
                 return 2;
             }
         }
-        for (Zombies zombies : ViewController.collection.zombies_s) {
+        for (Zombies zombies : this.collection.zombies_s) {
             if (zombies.getName().equals(name)) {
                 return 2;
             }
@@ -75,7 +77,7 @@ public class Shop {
         for (Plants plant : plants) {
             if (name.equals(plant.getName())) {
                 if (plant.getPrice() <= coin) {
-                    ViewController.collection.plants_s.add(plant);
+                    this.collection.plants_s.add(plant);
                     coin -= plant.getPrice();
                     return 1;
                 } else return 0;
@@ -84,13 +86,25 @@ public class Shop {
         for (Zombies zombie : zombies) {
             if (name.equals(zombie.getName())) {
                 if (zombie.getPrice() <= coin) {
-                    ViewController.collection.zombies_s.add(zombie);
+                    this.collection.zombies_s.add(zombie);
                     coin -= zombie.getPrice();
                     return 1;
                 } else return 0;
             }
         }
         return -1;
+    }
+
+    public Plants makeCard_p(String type, String name, int health, int sun, int cooldown) {
+        Plants plants =  new Plants(type, name, sun, cooldown, health);
+        this.plants.add(plants);
+        return plants;
+    }
+
+    public Zombies makeCard_z(String type, String name, int health, int speed, int damage) {
+        Zombies zombies = new Zombies(type, name, speed, health, damage);
+        this.zombies.add(zombies);
+        return zombies;
     }
 
     public ArrayList<String> ShowShop() {
@@ -121,16 +135,16 @@ public class Shop {
 
     public ArrayList<String> ShowCollectionZombies() {
         ArrayList<String> all = new ArrayList<String>();
-        for (int i = 0; i < ViewController.collection.zombies_s.size(); i++) {
-            all.add(ViewController.collection.zombies_s.get(i).getName());
+        for (int i = 0; i < this.collection.zombies_s.size(); i++) {
+            all.add(this.collection.zombies_s.get(i).getName());
         }
         return all;
     }
 
     public ArrayList<String> ShowCollectionPlants() {
         ArrayList<String> all = new ArrayList<String>();
-        for (int i = 0; i < ViewController.collection.plants_s.size(); i++) {
-            all.add(ViewController.collection.plants_s.get(i).getName());
+        for (int i = 0; i < this.collection.plants_s.size(); i++) {
+            all.add(this.collection.plants_s.get(i).getName());
         }
         return all;
     }
@@ -156,12 +170,12 @@ public class Shop {
 
     public ArrayList<String> name_c() {
         ArrayList<String> all = new ArrayList<String>();
-        for (int i = 0; i < ViewController.collection.zombies_s.size(); i++) {
-            all.add(ViewController.collection.zombies_s.get(i).getName());
+        for (int i = 0; i < this.collection.zombies_s.size(); i++) {
+            all.add(this.collection.zombies_s.get(i).getName());
         }
 
-        for (int i = 0; i < ViewController.collection.plants_s.size(); i++) {
-            all.add(ViewController.collection.plants_s.get(i).getName());
+        for (int i = 0; i < this.collection.plants_s.size(); i++) {
+            all.add(this.collection.plants_s.get(i).getName());
         }
         return all;
     }

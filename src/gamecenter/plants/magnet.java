@@ -1,6 +1,5 @@
 package gamecenter.plants;
 
-import controller.ViewController;
 import gamecenter.GameMode;
 import gamecenter.Ground;
 import gamecenter.zombies.Zombies;
@@ -14,12 +13,13 @@ public class magnet extends Plants {
         type = "magnet";
         if (name.matches("magnet-shroom")) {
             setparameters("Magnet-shroom", 4, 4, 2, ground);
+            imagePath = "pics/Magnet-shroom.jpg";
         }
     }
 
     @Override
     public void operation(GameMode gameMode) {
-
+        String name = this.name2;
         turn_shoot++;
         if (!isThereAnyZombie(gameMode))
             return;

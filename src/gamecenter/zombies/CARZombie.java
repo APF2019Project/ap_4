@@ -8,14 +8,17 @@ public class CARZombie extends Zombies {
         type = "c";
         if (name.matches("zomboni")) {
             setparameters("Zomboni", 2, 3, 1000, ground);
+            imagePath = "pics/Zomboni.jpg";
         }
         else {
             setparameters("Catapult Zombie", 2, 3, 1000, ground);
+            imagePath = "pics/CatapultZombie.jpg";
         }
     }
 
     @Override
     public void operation(Ground[] grounds) {
+        String name;
         int y = getGround().getGroundY();
         if (y == 0) {
             grounds[0].Chamnzan(grounds);

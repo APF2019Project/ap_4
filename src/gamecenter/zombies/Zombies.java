@@ -1,10 +1,12 @@
 package gamecenter.zombies;
 
-import controller.ViewController;
 import gamecenter.GameMode;
 import gamecenter.Ground;
 
 public class Zombies {
+    public String imagePath;
+    public int capacity = 2;
+    protected String name2;
     public int shield;
     public String type = "";
     private String name;
@@ -47,6 +49,14 @@ public class Zombies {
         this.damage = damage;
         this.ground = ground;
     }
+    public Zombies(String name2, String name, int speed, int health, int damage) {
+        this.name = name.toLowerCase();
+        this.price = (1 + speed) * health * 10;
+        this.speed = speed;
+        this.health = health;
+        this.damage = damage;
+        this.name2 = name2;
+    }
 
     public Ground getGround() {
 
@@ -79,7 +89,7 @@ public class Zombies {
     }
 
     public void operation(Ground[] grounds) {
-
+        String name = name2;
         int y = getGround().getGroundY();
         if (y == 0) {
             grounds[0].Chamnzan(grounds);

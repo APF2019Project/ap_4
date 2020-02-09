@@ -1,11 +1,7 @@
 package gamecenter.plants;
 
-import controller.ViewController;
 import gamecenter.GameMode;
 import gamecenter.Ground;
-import gamecenter.zombies.Zombies;
-
-import java.util.ArrayList;
 
 public class WithoutActon extends Plants {
 
@@ -14,9 +10,11 @@ public class WithoutActon extends Plants {
         type = "withoutaction";
         if (name.matches("wall-nut")) {
             setparameters("Wall-nut", 2, 4, 4, ground);
+            imagePath = "pics/Wall-nut.jpg";
         }
         if (name.matches("tall-nut")) {
             setparameters("Tall-nut", 4, 6, 6, ground);
+            imagePath = "pics/Tall-nut.jpg";
         }
     }
 

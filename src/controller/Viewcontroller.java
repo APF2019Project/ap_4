@@ -1,29 +1,24 @@
 package controller;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import view.*;
 import gamecenter.*;
 
 
-public class ViewController {
+public class Viewcontroller {
 
     public static Menu menu = new Menu();
-    public static AllUsers allusers = new AllUsers();
+    public static AllUsers users = new AllUsers();
     public static Collection collection = new Collection();
-    public static Shop shop = new Shop();
     public static Day day = new Day();
     public static Rail rail = new Rail();
     public static ZombieGameMode zombieGameMode = new ZombieGameMode();
+    public static Shop shop;
 
     public static String loginMenu(String order, String username, String password) {
         System.out.println("loginmenu");
 
         if (order.matches("create account")) {
-            if (!allusers.newUser(username, password)) {
+            if (!users.newUser(username, password)) {
                 menu.invalidUser();
                 return "already exist";
             } else {
@@ -32,7 +27,7 @@ public class ViewController {
         }
 
         if (order.matches("login")) {
-            if (!allusers.login(username, password)) {
+            if (!users.login(username, password)) {
                 return "invalid username or password";
             } else {
                 return "mainmenu";
@@ -131,7 +126,7 @@ public class ViewController {
             }
 
             if (str.matches("money")) {
-                System.out.println(ViewController.shop.getCoin());
+                System.out.println(Viewcontroller.shop.getCoin());
                 continue;
             }
 
@@ -530,21 +525,7 @@ public class ViewController {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  //  public static void mainMenu() {
+//  public static void mainMenu() {
 //        while (true) {
 //            System.out.println("mainmenu");
 //            String str = menu.getOrder();

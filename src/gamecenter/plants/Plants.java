@@ -1,10 +1,11 @@
 package gamecenter.plants;
 
-import controller.ViewController;
 import gamecenter.GameMode;
 import gamecenter.Ground;
 
 public class Plants {
+    public String imagePath;
+    public int capacity = 2;
     protected int turn_cooldown = 0;
     public String type = "";
     protected String name;
@@ -16,6 +17,7 @@ public class Plants {
     protected int groundX;
     protected int groundY;
     protected int turn_shoot = 0;
+    protected String name2 = "";
 
     public Plants() {
     }
@@ -27,14 +29,23 @@ public class Plants {
         this.health = health;
         this.cooldown = cooldown;
         this.ground = ground;
+        name2 = name;
         turn_cooldown = 0;
     }
-
+    public Plants(String name2, String name, int sun_used, int cooldown, int health) {
+        this.price = sun_used * health * cooldown + 1;
+        this.name = name.toLowerCase();
+        this.sun_used = sun_used;
+        this.health = health;
+        this.cooldown = cooldown;
+        turn_cooldown = 0;
+        this.name2 = name2;
+    }
     @Override
     public String toString() {
         return name + "  " + price;
-    }
 
+    }
     public int getSun_used() {
 
         return sun_used;
