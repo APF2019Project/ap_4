@@ -57,8 +57,7 @@ public class mainmenu {
 
 
     public void exitHandler() throws IOException {
-        //todo in network first set the isOnline off
-        //
+
         Client.getCurrentClient().exit();
         Platform.exit();
     }
