@@ -110,6 +110,13 @@ public class ClientHandler implements Runnable {
                     Formatter formatter = new Formatter(outputStream);
                     formatter.format("%s\n", all);
                     formatter.flush();
+                }else if (message.getStatus() == Status.OFFLINE){
+                    for (User user : Server.getUsers()) {
+                        if (user.getUsername().equals(this.name)){
+                            user.setOnline(false);
+                            break;
+                        }
+                    }
                 }
 
             } catch (Exception e) {

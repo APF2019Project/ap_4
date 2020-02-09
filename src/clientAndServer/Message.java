@@ -16,6 +16,7 @@ public class Message {
     private User user;
     private String errorMessage;
 
+
     public Message(Status status, User user) {
         this.status = status ;
         this.user = user ;
@@ -80,5 +81,6 @@ public class Message {
 }
 
 enum Status {
-     SEND_ACCOUNTS, NEW_ACCOUNT_SIGN_UP, ERROR, NEW_ACCOUNT_LOGIN, GET_ACCOUNTS;
+     SEND_ACCOUNTS, NEW_ACCOUNT_SIGN_UP, ERROR, NEW_ACCOUNT_LOGIN, GET_ACCOUNTS, SEND_MESSAGE, SEND_REPLY , GET_MESSAGE,
+    SEND_IMAGE, OFFLINE ;
 }

@@ -12,6 +12,9 @@ public class User {
     public Shop shop = new Shop(collection);
     String username;
     String password;
+    private boolean isOnline ;
+
+
     public ArrayList<Zombies> ZombiesKilled = new ArrayList<>();
 
     public User(String username, String password) {
@@ -58,6 +61,11 @@ public class User {
         return password;
     }
 
-    public void setOnline(boolean b) {
+    public boolean isOnline() {
+        return isOnline;
+    }
+
+    public void setOnline(boolean online) {
+        isOnline = online;
     }
 }

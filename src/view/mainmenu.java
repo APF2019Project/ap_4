@@ -1,7 +1,11 @@
 package view;
 
+import clientAndServer.Client;
 import controller.Viewcontroller;
+import gamecenter.User;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class mainmenu {
@@ -29,14 +34,32 @@ public class mainmenu {
     public Label msge;
     @FXML
     private TextArea user_name;
+    @FXML
+    private ListView<String> onlineList ;
 
     public void a(Pane pane) {
         this.pane = pane;
     }
 
+    public void refresh() throws IOException {
+        Client.getCurrentClient().refresh();
+        ArrayList<String> accountNames = new ArrayList<>();
+        for (User account: Client.getCurrentClient().getUsers()) {
+            if (account.getUsername().equals(Client.getCurrentClient().getUser().getUsername()))
+                continue;
+            if (account.isOnline())
+            accountNames.add(account.getUsername());
+        }
+        ObservableList<String> userNames = FXCollections.observableArrayList(accountNames);
+        onlineList.setItems(userNames);
 
-    public void exitHandler(){
+    }
+
+
+    public void exitHandler() throws IOException {
         //todo in network first set the isOnline off
+        //
+        Client.getCurrentClient().exit();
         Platform.exit();
     }
 

@@ -118,6 +118,11 @@ public class Client {
         this.selectedAccount = selectedAccount;
     }
 
+    public void exit() throws IOException {
+        Message message = new Message(Status.OFFLINE);
+        Message.sendMessage(message,this.socket);
+    }
+
 //    public void sendComment(String commentText, String postTitle) throws IOException {
 //        Message message = new Message(Status.SEND_COMMENT,this.getSelectedAccount(), postTitle,new String(this.getUser().getUsername() + " : " + commentText)) ;
 //        Message.sendMessage(message, socket);
