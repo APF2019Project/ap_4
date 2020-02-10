@@ -117,6 +117,7 @@ public class ClientHandler implements Runnable {
                             break;
                         }
                     }
+                    Server.toJson();
                 }
 
             } catch (Exception e) {

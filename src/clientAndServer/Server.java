@@ -1,7 +1,11 @@
 package clientAndServer;
 
+import com.gilecode.yagson.YaGson;
 import gamecenter.User;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -25,6 +29,7 @@ public class Server extends Thread {
     public void run() {
 
         System.out.println("clientAndSever.Server");
+        Server.getJson();
 
         Socket socket;
         while (true) {
@@ -51,4 +56,33 @@ public class Server extends Thread {
     public static ArrayList<ClientHandler> getAllClients() {
         return allClients;
     }
+
+    public static void toJson() {
+        FileWriter fileWriter;
+        try {
+            fileWriter = new FileWriter("C:\\Users\\comiran\\IdeaProjects\\nemoone\\src\\json\\account.json");
+            YaGson gson = new YaGson();
+            String z = gson.toJson(Server.getUsers());
+            fileWriter.write(z);
+            fileWriter.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void getJson() {
+        YaGson yaGson = new YaGson();
+        try {
+            User[] accounts = yaGson.fromJson(new FileReader("C:\\Users\\comiran\\IdeaProjects\\nemoone\\src\\json\\account.json"), User[].class);
+            if (accounts != null) {
+                for (int i = 0; i < accounts.length; i++) {
+                    Server.getUsers().add(accounts[i]);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

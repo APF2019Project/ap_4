@@ -57,7 +57,6 @@ public class mainmenu {
 
 
     public void exitHandler() throws IOException {
-
         Client.getCurrentClient().exit();
         Platform.exit();
     }

@@ -38,12 +38,11 @@ public class ChatController {
 
     }
 
-    @FXML
     public void send() {
+        String text = textMessage.getText() ;
 
     }
 
-    @FXML
  public void startChat() {
 
     }
