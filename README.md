@@ -2,5 +2,5 @@
 |     name      | student_number |
 | ------------- | ------------- |
 | mohammadhossenin jalali  | 97101456 |
-|   mohammadjavad hamzeh   | 97101553 |
+|   komeil yahyazade   | 97109257 |
 |      mojtaba salehi      | 97106816 |
