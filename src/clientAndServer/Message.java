@@ -3,6 +3,7 @@ package clientAndServer;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.YaGsonBuilder;
 import gamecenter.User;
+import view.chatController.Payam;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -15,7 +16,12 @@ public class Message {
     private ArrayList<User> allUsers;
     private User user;
     private String errorMessage;
+    private Payam payam ;
 
+    public Message(Status status, Payam payam){
+        this.status = status ;
+        this.payam = payam ;
+    }
 
     public Message(Status status, User user) {
         this.status = status ;
@@ -39,6 +45,11 @@ public class Message {
         this.status = status ;
     }
 
+    public Message(Status status, Payam payam, User selectedAccount) {
+        this.status = status ;
+        this.payam = payam ;
+        this.user = selectedAccount ;
+    }
 
 
     public static void sendMessage(Message message, Socket socket) throws IOException {
@@ -78,9 +89,17 @@ public class Message {
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }
+
+
+    public Payam getPayam() {
+        return payam;
+    }
+
+    public void setPayam(Payam payam) {
+        this.payam = payam;
+    }
 }
 
 enum Status {
-     SEND_ACCOUNTS, NEW_ACCOUNT_SIGN_UP, ERROR, NEW_ACCOUNT_LOGIN, GET_ACCOUNTS, SEND_MESSAGE, SEND_REPLY , GET_MESSAGE,
-    SEND_IMAGE, OFFLINE ;
+     SEND_ACCOUNTS, NEW_ACCOUNT_SIGN_UP, ERROR, NEW_ACCOUNT_LOGIN, GET_ACCOUNTS, SEND_PAYAM, SEND_REPLY , GET_PAYAM, OFFLINE ;
 }

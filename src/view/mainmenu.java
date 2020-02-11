@@ -15,6 +15,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 
@@ -53,6 +55,9 @@ public class mainmenu {
         ObservableList<String> userNames = FXCollections.observableArrayList(accountNames);
         onlineList.setItems(userNames);
 
+    }
+    public void goToChat(){
+        //todo
     }
 
 

@@ -3,6 +3,7 @@ package clientAndServer;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.YaGsonBuilder;
 import gamecenter.User;
+import view.chatController.Payam;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -84,7 +85,9 @@ public class Client {
         for (User account: users) {
             if (this.user.getUsername().equals(account.getUsername())){
                 this.user = account ;
-                break;
+            } else if (selectedAccount != null){
+                if (selectedAccount.getUsername().equals(account.getUsername()))
+                    this.selectedAccount = account ;
             }
 
         }
@@ -121,6 +124,11 @@ public class Client {
     public void exit() throws IOException {
         Message message = new Message(Status.OFFLINE);
         Message.sendMessage(message,this.socket);
+    }
+
+    public void sendPayam(Payam payam) throws IOException {
+        Message message = new Message(Status.SEND_PAYAM, payam, selectedAccount);
+        message.sendMessage(message,this.socket);
     }
 
 //    public void sendComment(String commentText, String postTitle) throws IOException {

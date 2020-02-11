@@ -118,6 +118,12 @@ public class ClientHandler implements Runnable {
                         }
                     }
                     Server.toJson();
+                }else if (message.getStatus() == Status.SEND_PAYAM){
+                    for (User user : Server.getUsers()){
+                        if (user.getUsername().equals(this.name) || user.getUsername().equals(message.getUser().getUsername())){
+                            user.getPayamHa().add(message.getPayam()) ;
+                        }
+                    }
                 }
 
             } catch (Exception e) {

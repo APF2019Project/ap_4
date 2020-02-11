@@ -6,12 +6,14 @@ import clientAndServer.Client;
 import clientAndServer.Server;
 import gamecenter.zombies.*;
 import controller.Viewcontroller;
+import view.chatController.Payam;
 
 public class User {
     public Collection collection = new Collection();
     public Shop shop = new Shop(collection);
     String username;
     String password;
+    private ArrayList<Payam> payamHa = new ArrayList<>() ;
     private boolean isOnline ;
 
 
@@ -67,5 +69,9 @@ public class User {
 
     public void setOnline(boolean online) {
         isOnline = online;
+    }
+
+    public ArrayList<Payam> getPayamHa() {
+        return payamHa;
     }
 }

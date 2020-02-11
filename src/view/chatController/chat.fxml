@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="752.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="752.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.chatController.ChatController">
    <children>
       <ImageView fitHeight="567.0" fitWidth="758.0" layoutX="-4.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -15,8 +15,8 @@
          </image>
       </ImageView>
       <ListView fx:id="accountList" layoutX="247.0" layoutY="36.0" onMousePressed="#startChat" prefHeight="117.0" prefWidth="258.0" />
-      <Button layoutX="135.0" layoutY="82.0" mnemonicParsing="false" text="Refresh" />
-      <ListView fx:id="messageList" layoutX="38.0" layoutY="214.0" onMousePressed="#replyMessage" prefHeight="230.0" prefWidth="472.0" />
+      <Button layoutX="135.0" layoutY="82.0" mnemonicParsing="false" onAction="#refreshButton" text="Refresh" />
+      <ListView fx:id="messageList" layoutX="38.0" layoutY="214.0" onMousePressed="#ShowImage" prefHeight="230.0" prefWidth="472.0" />
       <Button layoutX="391.0" layoutY="505.0" mnemonicParsing="false" onAction="#chooseImage" text="choose image" />
       <Button layoutX="384.0" layoutY="474.0" mnemonicParsing="false" onAction="#send" text="Send" />
       <TextField fx:id="textMessage" layoutX="131.0" layoutY="474.0" prefHeight="75.0" prefWidth="221.0" />
