@@ -20,8 +20,8 @@
       <Button alignment="CENTER" layoutY="512.0" mnemonicParsing="false" onAction="#menu_back" prefHeight="50.0" prefWidth="81.0" text="Back" />
       <Button layoutX="852.0" layoutY="538.0" mnemonicParsing="false" onAction="#exitHandler" text="EXIT" />
       <Button layoutX="387.0" layoutY="456.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" text="Chat" />
-      <ListView layoutX="350.0" layoutY="42.0" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="onlineList" layoutX="350.0" layoutY="42.0" prefHeight="200.0" prefWidth="200.0" />
       <Label layoutX="352.0" layoutY="24.0" style="-fx-background-color: #080000;" text="online users :" textFill="#af0f0f" />
-      <Button fx:id="refresh" layoutX="571.0" layoutY="42.0" mnemonicParsing="false" text="Refresh" />
+      <Button fx:id="refresh" layoutX="571.0" layoutY="42.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
    </children>
 </AnchorPane>
