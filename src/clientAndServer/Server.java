@@ -60,7 +60,7 @@ public class Server extends Thread {
     public static void toJson() {
         FileWriter fileWriter;
         try {
-            fileWriter = new FileWriter("C:\\Users\\comiran\\IdeaProjects\\nemoone\\src\\json\\account.json");
+            fileWriter = new FileWriter("json/account.json");
             YaGson gson = new YaGson();
             String z = gson.toJson(Server.getUsers());
             fileWriter.write(z);
@@ -74,7 +74,7 @@ public class Server extends Thread {
     public static void getJson() {
         YaGson yaGson = new YaGson();
         try {
-            User[] accounts = yaGson.fromJson(new FileReader("C:\\Users\\comiran\\IdeaProjects\\nemoone\\src\\json\\account.json"), User[].class);
+            User[] accounts = yaGson.fromJson(new FileReader("json/account.json"), User[].class);
             if (accounts != null) {
                 for (int i = 0; i < accounts.length; i++) {
                     Server.getUsers().add(accounts[i]);

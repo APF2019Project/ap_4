@@ -1,5 +1,6 @@
 package view;
 
+import clientAndServer.Server;
 import controller.Viewcontroller;
 import gamecenter.Day;
 import gamecenter.GameMode;
@@ -13,6 +14,10 @@ import view.collectionController.CollectionController;
 import view.collectionController.Collection_z;
 import view.shopController.ShopController;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -23,8 +28,17 @@ public class Menu extends Application {
     static ShopController shopController = new ShopController();
     static CollectionController collectionController = new CollectionController();
     static Collection_z collection_z = new Collection_z();
-    public static void main(String[] args) {
-        launch(args);
+    public static void main(String[] args) throws IOException {
+        FileInputStream inputStream = new FileInputStream("isServer.txt");
+        byte[] bytes = new byte[100];
+        inputStream.read(bytes);
+        inputStream.close();
+        if (bytes[0] == 49) {
+            new FileOutputStream("isServer.txt").write(48);
+            new Server().start();
+        } else {
+            launch(args);
+        }
     }
 
     @Override

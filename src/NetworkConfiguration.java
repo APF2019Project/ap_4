@@ -10,7 +10,7 @@ public class NetworkConfiguration {
 
     public static void loadFromIni() {
         try {
-            Ini ini = new Ini(new FileReader(new File("./src/Duelyst/Utility/config.ini")));
+            Ini ini = new Ini(new FileReader(new File("config.ini")));
             Ini.Section section = ini.get("server");
 
             String port = section.get("port");
